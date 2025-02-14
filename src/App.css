@@ -1,6 +1,7 @@
 html {
   font-family: Lato;
   letter-spacing: 0.6;
+  user-select: none;
 }
 body {
   background-color: rgba(129, 128, 228, 0.276);
@@ -8,7 +9,7 @@ body {
   letter-spacing: 0.6;
 }
 
-[type="text"] {
+[type="text"],[type="search"] {
   margin-bottom: 20px;
   padding: 4px;
   padding-left: 10px;

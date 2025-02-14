@@ -1,5 +1,7 @@
 import React from 'react';
 
+
+
 export default function Item({
   i,
   el,
@@ -11,46 +13,48 @@ export default function Item({
   setMsg,
 }) {
 
+
+
   const deleteItem = (EL) => {
-    setArr(arr.filter((el) => el.id !== EL.id));
-    setFinder(null);
-    setMsg('Eliminado: ' + EL.text);
-  };
+      setArr(arr.filter((el) => el.id !== EL.id))
+      setFinder(null);
+      setMsg('Eliminado: ' + EL.text);
+  }
+
 
   const toggleItem = (id) => {
-    arr.map((el) => (el.id === id ? (el.toggle = !el.toggle) : el));
+      arr.map((el) => (el.id === id ? (el.toggle = !el.toggle) : el))
 
-    arr.find((el) => el.id === id).toggle
-      ? setMsg('Marcado como Completado')
-      : setMsg('Desmarcado');
-  };
+      arr.find((el) => el.id === id).toggle
+          ? setMsg('Marcado como Completado')
+          : setMsg('Desmarcado');
+  }
+
 
   const editItem = (item) => {
-    setState(item);
-    setEdit(item);
-  };
+      setState(item);
+      setEdit(item);
+  }
+
+
+
+
 
   return (
-    <div key={i} className="item">
 
-      <div className={el.toggle ? 'active' : ''}>{el.text}, {el.text2}</div>
+      <div key={i} className="item">
 
-      <button onClick={() => deleteItem(el)}>Delete</button>
+          <div className={el.toggle ? 'active' : ''}>{el.nombreDelSocio}, {el.text2}</div>
 
-      <button onClick={() => editItem(el)}>Edit</button>
+          <button onClick={() => deleteItem(el)}>Delete</button>
 
-      <input
-        className='dn'
-        type="button"
-        id={el.id}
-        onClick={() => toggleItem(el.id)}
-      />
+          <button onClick={() => editItem(el)}>Edit</button>
 
-      <label  className='cursor-pointer' 
-              htmlFor={el.id}>
-              {el.toggle ? ' Completed' : ' Incomplet' }
-      </label>
+          <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el.id)} />
 
-    </div>
+          <label className='cursor-pointer' htmlFor={el.id}> {el.toggle ? ' Completed' : ' Incomplet' } </label>
+
+      </div>
+
   );
 }

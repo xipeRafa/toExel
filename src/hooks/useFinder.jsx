@@ -11,7 +11,7 @@ const useFinder = () => {
 
     const handleSearch = (e, arr) => {
         setTXT(e.target.value);
-        setFinder(arr.filter((el) => el.text.indexOf(searchTXT) > -1));
+        setFinder(arr.filter((el) => el.nombreDelSocio.indexOf(searchTXT) > -1));
     };
 
     return [finder, setFinder, handleSearch, setTXT, searchTXT]

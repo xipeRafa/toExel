@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-// import { JsonToExcel } from "react-json-to-excel";
+
 import * as XLSX from "xlsx"
 
 import FinderSearch from './components/FinderSearch.jsx';
@@ -19,14 +19,33 @@ export default function App() {
 
 
   const [state, setState] = useState({
-      text: '',
-      text2:'',
-      toggle: false,
+      numeroRegistroDelClub: '',
+      domicilioDelClub:'',
+      nombreDelSocio: '',
+
+      curp: '',
+      numeroDelSocio:'',
+      domicilioDelSocio: '',
+
+      clase: '',
+      calibre:'',
+      marca: '',
+
+      modelo: '',
+      matricula:'',
+      folio: '',
+
+      armasCortas: '',
+      armasLargas:''
   })
+
+
 
   const [editMode, setEdit] = useState(null);
 
   const [arr, setArr] = useLocalStorage();
+
+  console.log(arr)
 
   const [finder, setFinder, handleSearch, setTXT, searchTXT] = useFinder(); 
 
@@ -35,13 +54,13 @@ export default function App() {
 
 
   const downloadExcel = (data) => {
-    const worksheet = XLSX.utils.json_to_sheet(data);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-    //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
-    //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
-    XLSX.writeFile(workbook, "DataSheet.xlsx");
-  };
+      const worksheet = XLSX.utils.json_to_sheet(data);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+      //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
+      //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
+      XLSX.writeFile(workbook, "DataSheet.xlsx");
+  }
 
 
 
@@ -77,20 +96,13 @@ export default function App() {
       />
 
 
-     {/*  <JsonToExcel
-        title="Download as Excel"
-        data={arr}
-        fileName="sample-file"
-        btnClassName="custom-classname"
-      />*/}
-
-
       <button onClick={()=>downloadExcel(arr)}>
-    Download As Excel
-</button>
+          Download As Excel
+      </button>
 
-      {finder === null
-        ? arr.map((el, i) => (
+      { 
+
+        arr.filter((el) => el.nombreDelSocio.indexOf(searchTXT) > -1).map((el, i) => (
             <Item
               key={i}
               i={i}
@@ -103,21 +115,7 @@ export default function App() {
               setMsg={setMsg}
             />
           ))
-
-        : finder.map((el, i) => (
-            <Item
-              key={i}
-              i={i}
-              setEdit={setEdit}
-              setState={setState}
-              el={el}
-              arr={arr}
-              setArr={setArr}
-              setFinder={setFinder}
-              setMsg={setMsg}
-            />
-          ))
-      }
+       }
 
 
 
