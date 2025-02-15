@@ -17,7 +17,7 @@ const useLocalStorage = () => {
             : localStorage.setItem('array', JSON.stringify([]));
     }, [arr])
 
-    console.log('arrLocalStorage:', arr)
+    //console.log('arrLocalStorage:', arr)
 
     return [arr, setArr]
 

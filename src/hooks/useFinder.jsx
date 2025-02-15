@@ -10,6 +10,7 @@ const useFinder = () => {
 
     const [searchTXT, setSearchTXT] = useState('')
 
+
     const handleSearch = (e, arr) => {
 
         setSearchTXT(e.target.value)

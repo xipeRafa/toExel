@@ -14,10 +14,10 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
         setError(false)
 
         if (arr.length === 0) {
-            setMsg('No hay Socios Escritas');
+            setMsg('No hay Socios Escritos');
             return;
         } else {
-            setMsg('Todos las Socios');
+            setMsg(`${arr.length}, Todos las Socios`);
         }
 
         setFinder(null)
@@ -33,7 +33,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
         let check = arr.some((el) => el.toggle === true);
   
         if (check) {
-            setMsg('Socios Activos');
+            setMsg(`${arr.filter((el) => el.toggle === true).length} Socios Activos`)
         } else {
             setMsg('No hay Socios Activos');
         }
@@ -50,7 +50,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
         let check = arr.some((el) => el.toggle === false)
   
         if (check) {
-            setMsg('Socios Inactivos');
+            setMsg(`${arr.filter((el) => el.toggle === false).length} Socios Inactivos`)
         } else {
             setMsg('No hay Socios Inactivos');
         }

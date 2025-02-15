@@ -52,17 +52,24 @@ export default function App() {
 
   useEffect(()=>{
 
-      if(finderState !== null && searchTXT.length>3){
+      if(finderState !== null){
 
-          if(finderState.length===1){
+          if(finderState.length===1 && searchTXT.length>3){
               setMsg('Encontrado')
+              console.log('true-59') 
           }else{
               setMsg(`${finderState.length} Resultados`)
+              console.log('false-62') 
+          }
+
+          if(searchTXT.length===0){
+              setFinder(null)   
+              setMsg(`${arr.length}, Todos las Socios`)
           }
 
       }
 
-  },[finderState])
+  },[searchTXT])
 
 
   const downloadExcel = (data) => {

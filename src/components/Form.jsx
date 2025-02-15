@@ -72,7 +72,7 @@ export default function Form({
                 state.id = Date.now();
                 state.toggle = true;
                 setArr([...arr, state]);
-                setMsg('Wuuu !!!');
+                setMsg('Nuevo Socio Añadido');
             }else{
               setMsg('Socio Con Nombre Repetido')
             }
