@@ -26,8 +26,8 @@ export default function Item({
       arr.map((el) => (el.id === id ? (el.toggle = !el.toggle) : el))
 
       arr.find((el) => el.id === id).toggle
-          ? setMsg('Marcado como Completado')
-          : setMsg('Desmarcado');
+          ? setMsg('Marcado como Activo')
+          : setMsg('Marcado como Inactivo')
   }
 
 
@@ -44,7 +44,7 @@ export default function Item({
 
       <div key={i} className="item">
 
-          <div className={el.toggle ? 'active' : ''}>{el.nombreDelSocio}</div>
+          <div className={!el.toggle ? 'active' : ''}>{el.nombreDelSocio}</div>
 
           <button onClick={() => deleteItem(el)}>Delete</button>
 
@@ -52,7 +52,7 @@ export default function Item({
 
           <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el.id)} />
 
-          <label className='cursor-pointer' htmlFor={el.id}> {el.toggle ? 'Activo' : ' Inactivo' } </label>
+          <label className='labelItemToggle' htmlFor={el.id}> {!el.toggle ? 'Inactivo' : ' Activo' } </label>
 
       </div>
 

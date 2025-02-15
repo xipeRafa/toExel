@@ -14,10 +14,10 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
         setError(false)
 
         if (arr.length === 0) {
-            setMsg('No hay Tareas Escritas');
+            setMsg('No hay Socios Escritas');
             return;
         } else {
-            setMsg('Todas las Tareas');
+            setMsg('Todos las Socios');
         }
 
         setFinder(null)
@@ -30,16 +30,15 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
         setError(false)
 
-        let check = arr.some((el) => el.toggle === false);
+        let check = arr.some((el) => el.toggle === true);
   
         if (check) {
-            setMsg('Tareas Activas');
+            setMsg('Socios Activos');
         } else {
-            setMsg('No hay Tareas Activas');
+            setMsg('No hay Socios Activos');
         }
 
-        setFinder(arr.filter((el) => el.toggle === false))
-
+        setFinder(arr.filter((el) => el.toggle === true))
     }
 
 
@@ -48,16 +47,15 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
         setError(false)
 
-        let check = arr.some((el) => el.toggle === true)
+        let check = arr.some((el) => el.toggle === false)
   
         if (check) {
-            setMsg('Tareas Completadas');
+            setMsg('Socios Inactivos');
         } else {
-            setMsg('No hay Tareas Completadas');
+            setMsg('No hay Socios Inactivos');
         }
 
-        setFinder(arr.filter((el) => el.toggle === true))
-
+        setFinder(arr.filter((el) => el.toggle === false))
     }
 
 
@@ -70,10 +68,10 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
         setError(false)
 
         if (arr.length === 0) {
-            setMsg('No hay Tareas Escritas para Ordenar');
+            setMsg('No hay Socios Escritos para Ordenar');
             return;
         } else {
-            setMsg('Tareas de Mayor a Menor');
+            setMsg('Socios de Mayor a Menor por Fecha');
         }
 
         let copy = [...arr]
@@ -89,10 +87,10 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
         setError(false)
 
         if (arr.length === 0) {
-            setMsg('No hay Tareas Escritas para Ordenar');
+            setMsg('No hay Socios Escritos para Ordenar');
             return;
         } else {
-            setMsg('Tareas de Menor a Mayor');
+            setMsg('Socios de Menor a Mayor por Fecha');
         }
 
         let copy = [...arr]

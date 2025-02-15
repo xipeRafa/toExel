@@ -10,7 +10,7 @@ export default function FinderSearch({arr, handleSearch, searchTXT}) {
       <input
           className='finder'
           autoComplete="off"
-          placeholder="BUSCAR POR NOMBRE DE SOCIO..."
+          placeholder="BUSCAR SOCIO POR NOMBRE..."
           onChange={(e) => handleSearch(e, arr)}
           type="search"
           value={searchTXT}

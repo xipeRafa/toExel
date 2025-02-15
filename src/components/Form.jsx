@@ -70,10 +70,9 @@ export default function Form({
             if(arr.find((el) => (el.nombreDelSocio === nombreDelSocio )) === undefined){
 
                 state.id = Date.now();
-                state.toggle = false;
+                state.toggle = true;
                 setArr([...arr, state]);
                 setMsg('Wuuu !!!');
-                console.log('tue')
             }else{
               setMsg('Socio Con Nombre Repetido')
             }

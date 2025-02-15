@@ -44,10 +44,25 @@ export default function App() {
 
   const [arr, setArr] = useLocalStorage();
 
-  const [finderState, setFinder, handleSearch, setSearchTXT, searchTXT] = useFinder(); 
+  const [finderState, setFinder, handleSearch, searchTXT, setSearchTXT] = useFinder(); 
 
   const [msg, setMsg, setFinderMsg, finderMsg, error, setError] = useMsgs();
 
+
+
+  useEffect(()=>{
+
+      if(finderState !== null && searchTXT.length>3){
+
+          if(finderState.length===1){
+              setMsg('Encontrado')
+          }else{
+              setMsg(`${finderState.length} Resultados`)
+          }
+
+      }
+
+  },[finderState])
 
 
   const downloadExcel = (data) => {
