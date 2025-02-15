@@ -17,7 +17,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
             setMsg('No hay Socios Escritos');
             return;
         } else {
-            setMsg(`${arr.length}, Todos las Socios`);
+            setMsg(`${arr.length}, Todos los Socios`);
         }
 
         setFinder(null)
