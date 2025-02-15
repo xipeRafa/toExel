@@ -39,11 +39,6 @@ body {
   display: flex;
 }
 
-@media(max-width:800px){
-    .formStyle0{
-        flex-direction: column;
-    }
-}
 
 .formStyle1{
     padding-top: 20px;
@@ -103,12 +98,17 @@ button:focus{
 .msg {
   position: fixed;
   top: 6px;
+  left: 60px;
   border: 2px solid #98bed4;
   padding: 4px 10px;
   color: rgb(58, 118, 142);
   background-color: #cce1ec;
   letter-spacing: 0.2px;
   box-shadow: 90vh -862px 0px 100vh rgba(0,0,0, 1)!important;
+  -webkit-box-shadow: 90vh -862px 0px 100vh rgba(0,0,0, 1)!important;
+   -moz-box-shadow: 90vh -862px 0px 100vh rgba(0,0,0, 1)!important; 
+   -o-box-shadow: 90vh -862px 0px 100vh rgba(0,0,0, 1)!important; 
+   -ms-box-shadow: 90vh -862px 0px 100vh rgba(0,0,0, 1)!important;
   text-transform: uppercase;
   width: 50%;
 }
@@ -197,6 +197,16 @@ label{
    background-color: dodgerblue;
 }
 
+
+@media(max-width:800px){
+    .formStyle0{
+        flex-direction: column;
+    }
+    .msg {
+      width: 80%;
+      left: 28px;
+    }
+}
 
 
 
