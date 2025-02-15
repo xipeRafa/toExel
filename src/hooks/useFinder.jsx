@@ -5,16 +5,16 @@ import { useState } from 'react';
 
 const useFinder = () => {
 
-    const [finder, setFinder] = useState(null);
+    const [finderState, setFinder] = useState(null);
 
-    const [searchTXT, setTXT] = useState('');
+    const [searchTXT, setSearchTXT] = useState('');
 
     const handleSearch = (e, arr) => {
-        setTXT(e.target.value);
+        setSearchTXT(e.target.value);
         setFinder(arr.filter((el) => el.nombreDelSocio.indexOf(searchTXT) > -1));
     };
 
-    return [finder, setFinder, handleSearch, setTXT, searchTXT]
+    return [finderState, setFinder, handleSearch, setSearchTXT, searchTXT]
 
 }
 

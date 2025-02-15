@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-
+// import { JsonToExcel } from "react-json-to-excel";
 import * as XLSX from "xlsx"
 
 import FinderSearch from './components/FinderSearch.jsx';
@@ -40,14 +40,11 @@ export default function App() {
   })
 
 
-
   const [editMode, setEdit] = useState(null);
 
   const [arr, setArr] = useLocalStorage();
 
-  console.log(arr)
-
-  const [finder, setFinder, handleSearch, setTXT, searchTXT] = useFinder(); 
+  const [finderState, setFinder, handleSearch, setSearchTXT, searchTXT] = useFinder(); 
 
   const [msg, setMsg, setFinderMsg, finderMsg, error, setError] = useMsgs();
 
@@ -67,7 +64,7 @@ export default function App() {
   return (
     <div>
 
-      <FinderSearch arr={arr} handleSearch={handleSearch} searchTXT={searchTXT} />
+      
 
       {finderMsg ? <p className="msg">{finderMsg}</p> : ''}
 
@@ -84,8 +81,11 @@ export default function App() {
         setState={setState}
         state={state}
         setEdit={setEdit}
-        setTXT={setTXT}
+        setSearchTXT={setSearchTXT}
       />
+
+      <FinderSearch arr={arr} handleSearch={handleSearch} searchTXT={searchTXT} />
+      <br />
 
       <MenuButtons
         setError={setError}
@@ -96,13 +96,20 @@ export default function App() {
       />
 
 
+     {/*  <JsonToExcel
+        title="Download as Excel"
+        data={arr}
+        fileName="sample-file"
+        btnClassName="custom-classname"
+      />*/}
+
+
       <button onClick={()=>downloadExcel(arr)}>
           Download As Excel
       </button>
 
-      { 
-
-        arr.filter((el) => el.nombreDelSocio.indexOf(searchTXT) > -1).map((el, i) => (
+      {finderState === null
+        ? arr.map((el, i) => (
             <Item
               key={i}
               i={i}
@@ -115,7 +122,21 @@ export default function App() {
               setMsg={setMsg}
             />
           ))
-       }
+
+        : finderState.map((el, i) => (
+            <Item
+              key={i}
+              i={i}
+              setEdit={setEdit}
+              setState={setState}
+              el={el}
+              arr={arr}
+              setArr={setArr}
+              setFinder={setFinder}
+              setMsg={setMsg}
+            />
+          ))
+      }
 
 
 

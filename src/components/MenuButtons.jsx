@@ -78,7 +78,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
         let copy = [...arr]
 
-        setFinder(copy.sort((o1, o2) => o1.text.length - o2.text.length))
+        setFinder(copy.sort((o1, o2) => o1.nombreDelSocio.length - o2.nombreDelSocio.length))
 
     }
 
@@ -97,7 +97,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
         let copy = [...arr]
 
-        setFinder(copy.sort((o1, o2) => o2.text.length - o1.text.length))
+        setFinder(copy.sort((o1, o2) => o2.nombreDelSocio.length - o1.nombreDelSocio.length))
 
     }
 
@@ -108,23 +108,23 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
 /* -=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=------------------------------clearComplete----------- */
 
-    const handleClearComplete = () => {
+    // const handleClearComplete = () => {
 
-        setError(false)
+    //     setError(false)
 
-        let check = arr.some((el) => el.toggle === true);
+    //     let check = arr.some((el) => el.toggle === true);
 
-        if (check) {
-            setMsg('Las Tareas Completadas se Eliminaron ');
-        } else {
-            setMsg('No hay Tareas Completadas para Eliminar');
-            return;
-        }
+    //     if (check) {
+    //         setMsg('Las Tareas Completadas se Eliminaron ');
+    //     } else {
+    //         setMsg('No hay Tareas Completadas para Eliminar');
+    //         return;
+    //     }
 
-        setArr(arr.filter((el) => el.toggle === false))
+    //     setArr(arr.filter((el) => el.toggle === false))
 
-        setFinder(null)
-    }
+    //     setFinder(null)
+    // }
 
 
 
@@ -137,7 +137,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
           <button onClick={handleSort}>Min to Max</button>
           <button onClick={handleUnSort}>Max to Min</button>
 
-          <button onClick={handleClearComplete}>Clear Completed</button>
+          {/*<button onClick={handleClearComplete}>Clear Completed</button>*/}
       </>
   );
 }

@@ -18,7 +18,7 @@ export default function Form({
   setState,
   state,
   setEdit,
-  setTXT
+  setSearchTXT
 }) {
   
     const handleState = (e) => {
@@ -67,14 +67,14 @@ export default function Form({
             setMsg('Ediatado Exitosamente');
         } else {
             state.id = Date.now();
-            // state.toggle = false;
+            state.toggle = false;
             setMsg('Wuuu !!!');
         }
 
         setFinder(null);
         setError(false) 
         // setState({ text: '', text2:'' });
-        setTXT('')
+        setSearchTXT('')
         setFinderMsg(null);
     }
 
@@ -90,9 +90,10 @@ export default function Form({
   return (
 
 
-      <form onSubmit={onSubmit}>
-
+      <form onSubmit={onSubmit} className='formStyle0'>
+        <div className='formStyle1'>
           <input
+              type="text"
               autoComplete="off"
               placeholder="Numero Registro Del Club"
               name="numeroRegistroDelClub"
@@ -101,6 +102,7 @@ export default function Form({
           />
 
           <input
+              type="text"
               autoComplete="off"
               placeholder="Domicilio Del Club"
               name="domicilioDelClub"
@@ -109,6 +111,7 @@ export default function Form({
           />
 
            <input
+              type="text"
               autoComplete="off"
               placeholder="Nombre Del Socio"
               name="nombreDelSocio"
@@ -117,96 +120,112 @@ export default function Form({
           />
 
           <input
+              type="text"
               autoComplete="off"
-              placeholder="curp"
+              placeholder="CURP"
               name="curp"
               onChange={handleState}
               value={curp}
           />
 
           <input
+              type="text"
               autoComplete="off"
-              placeholder="numeroDelSocio"
+              placeholder="Numero Del Socio"
               name="numeroDelSocio"
               onChange={handleState}
               value={numeroDelSocio}
           />
 
            <input
+              type="text"
               autoComplete="off"
-              placeholder="domicilioDelSocio"
+              placeholder="Domicilio Del Socio"
               name="domicilioDelSocio"
               onChange={handleState}
               value={domicilioDelSocio}
           />
 
           <input
+              type="text"
               autoComplete="off"
-              placeholder="clase"
+              placeholder="Clase"
               name="clase"
               onChange={handleState}
               value={clase}
           />
 
+
+</div>
+
+<div className='formStyle2'>
           <input
+              type="text"
               autoComplete="off"
-              placeholder="calibre"
+              placeholder="Calibre"
               name="calibre"
               value={calibre}
           />
 
            <input
+              type="text"
               autoComplete="off"
-              placeholder="marca"
+              placeholder="Marca"
               name="marca"
               onChange={handleState}
               value={marca}
           />
 
           <input
+              type="text"
               autoComplete="off"
-              placeholder="modelo"
+              placeholder="Modelo"
               name="modelo"
               onChange={handleState}
               value={modelo}
           />
 
           <input
+              type="text"
               autoComplete="off"
-              placeholder="matricula"
+              placeholder="Matricula"
               name="matricula"
               onChange={handleState}
               value={matricula}
           />
 
            <input
+              type="text"
               autoComplete="off"
-              placeholder="folio"
+              placeholder="Folio"
               name="folio"
               onChange={handleState}
               value={folio}
           />
 
           <input
+              type="text"
               autoComplete="off"
-              placeholder="armasCortas"
+              placeholder="Armas Cortas"
               name="armasCortas"
               onChange={handleState}
               value={armasCortas}
           />
 
           <input
+              type="text"
               autoComplete="off"
-              placeholder="armasLargas"
+              placeholder="Armas Largas"
               name="armasLargas"
               onChange={handleState}
               value={armasLargas}
           />
- 
+ </div>
 
-
-          <button type="submit"> {editMode ? 'save edit' : 'send'} </button>
-    
+<br />
+          <button type="submit"> {editMode ? 'Editar' : 'Guardar'} </button>
+ <br />   
+ <br />
 
           {error ?
               <p className="msgError"> TYPE FIRSTLY
@@ -217,7 +236,7 @@ export default function Form({
 
           {msg ?
               <p className="msg"> {msg}
-                  <button className="buttonClose" onClick={handleClose}>x</button>
+                  <button className="buttonClose" onClick={handleClose}>✘</button>
               </p>
           : '' }
 

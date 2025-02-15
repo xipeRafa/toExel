@@ -18,7 +18,7 @@ export default function Item({
   const deleteItem = (EL) => {
       setArr(arr.filter((el) => el.id !== EL.id))
       setFinder(null);
-      setMsg('Eliminado: ' + EL.text);
+      setMsg('Eliminado: ' + EL.nombreDelSocio);
   }
 
 
@@ -44,7 +44,7 @@ export default function Item({
 
       <div key={i} className="item">
 
-          <div className={el.toggle ? 'active' : ''}>{el.nombreDelSocio}, {el.text2}</div>
+          <div className={el.toggle ? 'active' : ''}>{el.nombreDelSocio}</div>
 
           <button onClick={() => deleteItem(el)}>Delete</button>
 
