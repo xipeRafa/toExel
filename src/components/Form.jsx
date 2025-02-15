@@ -59,16 +59,24 @@ export default function Form({
         //     return;
         // }
 
-        setArr([...arr, state]);
+     
 
         if (editMode) {
             setArr(arr.map((el) => (el.id === state.id ? state : el)));
             setEdit(null);
             setMsg('Ediatado Exitosamente');
         } else {
-            state.id = Date.now();
-            state.toggle = false;
-            setMsg('Wuuu !!!');
+
+            if(arr.find((el) => (el.nombreDelSocio === nombreDelSocio )) === undefined){
+
+                state.id = Date.now();
+                state.toggle = false;
+                setArr([...arr, state]);
+                setMsg('Wuuu !!!');
+                console.log('tue')
+            }else{
+              setMsg('Socio Con Nombre Repetido')
+            }
         }
 
         setFinder(null);

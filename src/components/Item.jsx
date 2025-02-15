@@ -52,7 +52,7 @@ export default function Item({
 
           <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el.id)} />
 
-          <label className='cursor-pointer' htmlFor={el.id}> {el.toggle ? ' Completed' : ' Incomplet' } </label>
+          <label className='cursor-pointer' htmlFor={el.id}> {el.toggle ? 'Activo' : ' Inactivo' } </label>
 
       </div>
 

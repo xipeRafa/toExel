@@ -130,12 +130,12 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
   return (
       <>
-          <button onClick={handleAll}>Show All</button>
-          <button onClick={handleActive}>Active</button>
-          <button onClick={handleCompleted}>Completed</button>
+          <button onClick={handleAll}>TODOS</button>
+          <button onClick={handleActive}>Activos</button>
+          <button onClick={handleCompleted}>Inactivos</button>
 
-          <button onClick={handleSort}>Min to Max</button>
-          <button onClick={handleUnSort}>Max to Min</button>
+          <button onClick={handleSort}>Fecha Min to Max</button>
+          <button onClick={handleUnSort}>Fecha Max to Min</button>
 
           {/*<button onClick={handleClearComplete}>Clear Completed</button>*/}
       </>
