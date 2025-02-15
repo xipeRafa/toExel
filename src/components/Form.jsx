@@ -243,9 +243,12 @@ export default function Form({
 
 
           {msg ?
-              <p className="msg"> {msg}
-                  <button className="buttonClose" onClick={handleClose}>✘</button>
+            <div className='divSombra'>
+              <p className="msg" onClick={handleClose}> {msg}
+                  {/*<div className="buttonClose" onClick={handleClose}>✘</button>*/}
               </p>
+
+              </div>
           : '' }
 
 
