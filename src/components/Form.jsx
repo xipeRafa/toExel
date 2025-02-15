@@ -171,6 +171,7 @@ export default function Form({
               autoComplete="off"
               placeholder="Calibre"
               name="calibre"
+              onChange={handleState}
               value={calibre}
           />
 

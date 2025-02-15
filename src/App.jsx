@@ -163,7 +163,7 @@ export default function App() {
 
 
       {arr.length === 0 ? (
-          <p className="check">No hay Tareas Escritas</p>
+          <p className="check">No hay Socios Escritos</p>
       ) : null}
       
     </div>
