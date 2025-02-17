@@ -81,6 +81,26 @@ export default function Form({
         setFinder(null);
         setError(false) 
         // setState({ text: '', text2:'' });
+        setState({
+      numeroRegistroDelClub: '',
+      domicilioDelClub:'',
+      nombreDelSocio: '',
+
+      curp: '',
+      numeroDelSocio:'',
+      domicilioDelSocio: '',
+
+      clase: '',
+      calibre:'',
+      marca: '',
+
+      modelo: '',
+      matricula:'',
+      folio: '',
+
+      armasCortas: '',
+      armasLargas:''
+  });
         setSearchTXT('')
         setFinderMsg(null);
     }
@@ -106,6 +126,7 @@ export default function Form({
               name="numeroRegistroDelClub"
               onChange={handleState}
               value={numeroRegistroDelClub}
+              required
           />
 
           <input
@@ -115,6 +136,7 @@ export default function Form({
               name="domicilioDelClub"
               onChange={handleState}
               value={domicilioDelClub}
+              required
           />
 
            <input
@@ -124,6 +146,7 @@ export default function Form({
               name="nombreDelSocio"
               onChange={handleState}
               value={nombreDelSocio}
+              required
           />
 
           <input
@@ -133,6 +156,7 @@ export default function Form({
               name="curp"
               onChange={handleState}
               value={curp}
+              required
           />
 
           <input
@@ -142,6 +166,7 @@ export default function Form({
               name="numeroDelSocio"
               onChange={handleState}
               value={numeroDelSocio}
+              required
           />
 
            <input
@@ -151,6 +176,7 @@ export default function Form({
               name="domicilioDelSocio"
               onChange={handleState}
               value={domicilioDelSocio}
+              required
           />
 
           <input
@@ -160,6 +186,7 @@ export default function Form({
               name="clase"
               onChange={handleState}
               value={clase}
+              required
           />
 
 
@@ -173,6 +200,7 @@ export default function Form({
               name="calibre"
               onChange={handleState}
               value={calibre}
+              required
           />
 
            <input
@@ -182,6 +210,7 @@ export default function Form({
               name="marca"
               onChange={handleState}
               value={marca}
+              required
           />
 
           <input
@@ -191,6 +220,7 @@ export default function Form({
               name="modelo"
               onChange={handleState}
               value={modelo}
+              required
           />
 
           <input
@@ -200,6 +230,7 @@ export default function Form({
               name="matricula"
               onChange={handleState}
               value={matricula}
+              required
           />
 
            <input
@@ -209,6 +240,7 @@ export default function Form({
               name="folio"
               onChange={handleState}
               value={folio}
+              required
           />
 
           <input
@@ -218,6 +250,7 @@ export default function Form({
               name="armasCortas"
               onChange={handleState}
               value={armasCortas}
+              required
           />
 
           <input
@@ -227,6 +260,7 @@ export default function Form({
               name="armasLargas"
               onChange={handleState}
               value={armasLargas}
+              required
           />
  </div>
 
