@@ -69,8 +69,6 @@ export default function App() {
 
       }
 
-      setMsg('BASE DE DATOS SOCIOS')
-
   },[searchTXT])
 
 
@@ -132,7 +130,7 @@ export default function App() {
       </button>
 
       {finderState === null
-        ? arr.map((el, i) => (
+        ? arr.sort((a, b) => b.nombreDelSocio - a.nombreDelSocio).map((el, i) => (
             <Item
               key={i}
               i={i}
@@ -146,7 +144,7 @@ export default function App() {
             />
           ))
 
-        : finderState.map((el, i) => (
+        : finderState.sort((a, b) => a.nombreDelSocio - b.nombreDelSocio).map((el, i) => (
             <Item
               key={i}
               i={i}

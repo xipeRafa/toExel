@@ -14,7 +14,8 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
         setError(false)
 
         if (arr.length === 0) {
-            setMsg('No hay Socios Escritos');
+            setMsg(null)
+            setError('No hay Socios Escritos');
             return;
         } else {
             setMsg(`${arr.length}, Todos los Socios`);
@@ -35,7 +36,8 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
         if (check) {
             setMsg(`${arr.filter((el) => el.toggle === true).length} Socios Activos`)
         } else {
-            setMsg('No hay Socios Activos');
+            setMsg(null)
+            setError('No hay Socios Activos');
         }
 
         setFinder(arr.filter((el) => el.toggle === true))
@@ -52,7 +54,8 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
         if (check) {
             setMsg(`${arr.filter((el) => el.toggle === false).length} Socios Inactivos`)
         } else {
-            setMsg('No hay Socios Inactivos');
+            setMsg(null)
+            setError('No hay Socios Inactivos');
         }
 
         setFinder(arr.filter((el) => el.toggle === false))
@@ -68,7 +71,8 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
         setError(false)
 
         if (arr.length === 0) {
-            setMsg('No hay Socios Escritos para Ordenar');
+            setMsg(null)
+            setError('No hay Socios Escritos para Ordenar');
             return;
         } else {
             setMsg('Socios de Mayor a Menor por Fecha');
@@ -76,7 +80,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
         let copy = [...arr]
 
-        setFinder(copy.sort((o1, o2) => o1.nombreDelSocio.length - o2.nombreDelSocio.length))
+        setFinder(copy.sort((o1, o2) => o1.id - o2.id))
 
     }
 
@@ -87,7 +91,8 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
         setError(false)
 
         if (arr.length === 0) {
-            setMsg('No hay Socios Escritos para Ordenar');
+            setMsg(null)
+            setError('No hay Socios Escritos para Ordenar');
             return;
         } else {
             setMsg('Socios de Menor a Mayor por Fecha');
@@ -95,7 +100,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
         let copy = [...arr]
 
-        setFinder(copy.sort((o1, o2) => o2.nombreDelSocio.length - o1.nombreDelSocio.length))
+        setFinder(copy.sort((o1, o2) => o2.id - o1.id))
 
     }
 

@@ -7,9 +7,9 @@ const useMsgs = () => {
 
     const [finderMsg, setFinderMsg] = useState(null)
 
-    const [error, setError] = useState(false)
+    const [error, setError] = useState(null)
 
-    const [msg, setMsg] = useState(null)
+    const [msg, setMsg] = useState('BASE DE DATOS SOCIOS')
 
   
     return [msg, setMsg, setFinderMsg, finderMsg, error, setError]

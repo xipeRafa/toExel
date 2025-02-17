@@ -43,14 +43,10 @@ body {
 }
 
 
-.formStyle1{
+.formStyle1, .formStyle2{
     padding-top: 20px;
     text-align: center;
-}
-
-.formStyle2{
-    padding-top: 20px;
-    text-align: center;
+    width: 50%;
 }
 
 
@@ -88,15 +84,14 @@ button:focus{
 
 .msgError {
   position: fixed;
-  top: 0;
-  width: 300px;
-  text-align: center;
+  top: 6px;
+  left: 60px;
+  padding: 4px 10px;
   border: 2px solid #ce8776;
-  padding: 4px 20px;
   color: rgb(192, 78, 78);
   background-color: rgb(235, 215, 215);
-  letter-spacing: 0.6;
-  z-index: 999;
+  text-transform: uppercase;
+  width: 50%;
 }
 
 .msg {
@@ -107,7 +102,6 @@ button:focus{
   padding: 4px 10px;
   color: rgb(58, 118, 142);
   background-color: #cce1ec;
-  letter-spacing: 0.2px;
 /*  box-shadow: 90vh -862px 0px 100vh rgba(0,0,0, 1)!important;
   -webkit-box-shadow: 90vh -862px 0px 100vh rgba(0,0,0, 1)!important;
    -moz-box-shadow: 90vh -862px 0px 100vh rgba(0,0,0, 1)!important; 
@@ -146,12 +140,11 @@ button:focus{
 
 
 label{
- /*  padding-left:1.3em; */
   font-family: serif;
   font-style: italic;
   color:rgb(81, 103, 110);
-  padding-left: 4px;
-  margin-top: 20px;
+  display: block;
+  width: 100%;
 } 
 
 .active{
@@ -237,7 +230,6 @@ modal{
 .modalContent{
     text-align: left;
     margin: 56px;
-    text-transform: capitalize;
     display: flex;
     flex-direction: row;
     background-color: rgba(129, 128, 228, 0.276);
@@ -248,7 +240,7 @@ modal{
 }
 .modalContent>div>p>span{
 
-    color: gray;
+    color: rgba(0, 0, 0, .4);
     font-size: 22px;
     margin-left: 16px;
     letter-spacing: 0;
@@ -291,7 +283,10 @@ modal>button{
     .formStyle0{
         flex-direction: column;
     }
-    .msg {
+    .formStyle1, .formStyle2{
+      width: 100%;
+    }
+    .msg, .msgError {
       width: 80%;
       left: 28px;
       text-align: center;
@@ -308,9 +303,6 @@ modal>button{
     .modalContent>div{
       width: 100%;
       padding-bottom: 0 ;
-    }
-    .modalContent>div:first-of-type{
-      
     }
 
     .modalContent>div>p>span{

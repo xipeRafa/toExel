@@ -30,15 +30,15 @@ export default function Item({
   }
 
 
-  const toggleItem = (id) => {
+  const toggleItem = (id, nombre) => {
 
       if (window.confirm("Cambiar")) {
 
           arr.map((el) => (el.id === id ? (el.toggle = !el.toggle) : el))
 
           arr.find((el) => el.id === id).toggle
-            ? setMsg('Marcado como Activo')
-            : setMsg('Marcado como Inactivo')
+            ? setMsg(`Marcado como Activo: ${ nombre}`)
+            : setMsg(`Marcado como Inactivo: ${ nombre}`)
 
       }
       
@@ -97,7 +97,7 @@ export default function Item({
 
               <button onClick={() => deleteItem(el)}>Borrar</button>
               <button onClick={() => editItem(el)}>Editar</button>
-              <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el.id)} />
+              <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el.id, el.nombreDelSocio)} />
               <label className='labelItemToggle' htmlFor={el.id}> {!el.toggle ? 'Inactivo' : ' Activo' } </label>
 
           </modal>

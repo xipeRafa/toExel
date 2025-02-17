@@ -77,7 +77,7 @@ export default function Form({
             }else{
                 setMsg('Socio Con Nombre Repetido')
             }
-            
+
         }
 
         setFinder(null);
@@ -110,7 +110,7 @@ export default function Form({
 
     const handleClose = () => {
         setError(false);
-        setMsg(null);
+        setMsg('BASE DE DATOS SOCIOS');
     }
 
 
@@ -121,6 +121,8 @@ export default function Form({
 
       <form onSubmit={onSubmit} className='formStyle0'>
         <div className='formStyle1'>
+
+          <label className={!editMode ? 'dn' : ''}>Numero Registro Del Club</label>
           <input
               type="text"
               autoComplete="off"
@@ -131,6 +133,7 @@ export default function Form({
               required
           />
 
+          <label className={!editMode ? 'dn' : ''}>Domicilio Del Club</label>
           <input
               type="text"
               autoComplete="off"
@@ -141,16 +144,19 @@ export default function Form({
               required
           />
 
+          <label className={!editMode ? 'dn' : ''}>Nombre Del Socio</label>
            <input
               type="text"
               autoComplete="off"
               placeholder="Nombre Del Socio"
               name="nombreDelSocio"
               onChange={handleState}
-              value={nombreDelSocio}
+              value={nombreDelSocio.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase())}
               required
           />
+         
 
+          <label className={!editMode ? 'dn' : ''}>CURP</label>
           <input
               type="text"
               autoComplete="off"
@@ -161,6 +167,7 @@ export default function Form({
               required
           />
 
+          <label className={!editMode ? 'dn' : ''}>Numero Del Socio</label>
           <input
               type="text"
               autoComplete="off"
@@ -171,6 +178,7 @@ export default function Form({
               required
           />
 
+          <label className={!editMode ? 'dn' : ''}>Domicilio Del Socio</label>
            <input
               type="text"
               autoComplete="off"
@@ -181,6 +189,7 @@ export default function Form({
               required
           />
 
+          <label className={!editMode ? 'dn' : ''}>Clase</label>
           <input
               type="text"
               autoComplete="off"
@@ -195,6 +204,8 @@ export default function Form({
 </div>
 
 <div className='formStyle2'>
+
+          <label className={!editMode ? 'dn' : ''}>Calibre</label>
           <input
               type="text"
               autoComplete="off"
@@ -205,7 +216,8 @@ export default function Form({
               required
           />
 
-           <input
+          <label className={!editMode ? 'dn' : ''}>Marca</label>
+          <input
               type="text"
               autoComplete="off"
               placeholder="Marca"
@@ -215,6 +227,7 @@ export default function Form({
               required
           />
 
+          <label className={!editMode ? 'dn' : ''}>Modelo</label>
           <input
               type="text"
               autoComplete="off"
@@ -225,6 +238,7 @@ export default function Form({
               required
           />
 
+          <label className={!editMode ? 'dn' : ''}>Matricula</label>
           <input
               type="text"
               autoComplete="off"
@@ -235,7 +249,8 @@ export default function Form({
               required
           />
 
-           <input
+          <label className={!editMode ? 'dn' : ''}>Folio</label>
+          <input
               type="text"
               autoComplete="off"
               placeholder="Folio"
@@ -245,6 +260,7 @@ export default function Form({
               required
           />
 
+          <label className={!editMode ? 'dn' : ''}>Armas Cortas</label>
           <input
               type="text"
               autoComplete="off"
@@ -255,6 +271,7 @@ export default function Form({
               required
           />
 
+          <label className={!editMode ? 'dn' : ''}>Armas Largas</label>
           <input
               type="text"
               autoComplete="off"
@@ -272,19 +289,20 @@ export default function Form({
  <br />
 
           {error ?
-              <p className="msgError"> TYPE FIRSTLY
-                <button className="buttonClose" onClick={handleClose}>x</button>
-              </p> 
+            <div className='divSombra'>
+                <p className="msgError"> {error}
+                    <button className="buttonClose" onClick={handleClose}>✘</button>
+                </p> 
+            </div>
           : ''}
 
 
           {msg ?
             <div className='divSombra'>
-              <p className="msg" > {/*onClick={handleClose}*/} {msg}
-                  {/*<div className="buttonClose" onClick={handleClose}>✘</button>*/}
-              </p>
-
-              </div>
+                <p className="msg" onClick={handleClose}> {msg}
+                    {/*<div className="buttonClose" onClick={handleClose}></button>*/}
+                </p>
+            </div>
           : '' }
 
 
