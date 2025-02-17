@@ -62,7 +62,7 @@ export default function Form({
      
 
         if (editMode) {
-            setArr(arr.map((el) => (el.id === state.id ? state : el)));
+            setArr(arr.map( (el) => (el.id === state.id ? state : el) ))
             setEdit(null);
             setMsg('Editado Exitosamente');
         } else {
@@ -72,10 +72,12 @@ export default function Form({
                 state.id = Date.now();
                 state.toggle = true;
                 setArr([...arr, state]);
-                setMsg('Nuevo Socio Añadido');
+                setMsg('Nuevo Socio Añadido')
+
             }else{
-              setMsg('Socio Con Nombre Repetido')
+                setMsg('Socio Con Nombre Repetido')
             }
+            
         }
 
         setFinder(null);
@@ -278,7 +280,7 @@ export default function Form({
 
           {msg ?
             <div className='divSombra'>
-              <p className="msg" onClick={handleClose}> {msg}
+              <p className="msg" > {/*onClick={handleClose}*/} {msg}
                   {/*<div className="buttonClose" onClick={handleClose}>✘</button>*/}
               </p>
 
