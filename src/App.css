@@ -235,7 +235,7 @@ modal{
 
 .modalContent{
     text-align: left;
-    margin: 60px;
+    margin: 56px;
     text-transform: capitalize;
     display: flex;
     flex-direction: row;
@@ -277,6 +277,7 @@ modal>button{
     margin: 0;
     width: 100%;
     margin: 0!important;
+    border-bottom: 1px solid gray;
 }
 
 .btnCerrarModal:focus{
@@ -300,18 +301,26 @@ modal>button{
     .modalContent{
       flex-direction: column;
       margin: 10px;
-      margin-top: 40px;
+      margin-top: 28px;
     }
     .modalContent>div{
       width: 100%;
+      padding-bottom: 0 ;
+    }
+    .modalContent>div:first-of-type{
+      
     }
 
     .modalContent>div>p>span{
       font-size: 16px;
     }
 
-     .modalContent>div>p{
+    .modalContent>div>p{
       font-size: 24px;
+    }
+
+    modal>button{
+        margin: 10px 20px!important;
     }
 }
 

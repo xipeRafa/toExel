@@ -64,7 +64,7 @@ export default function Form({
         if (editMode) {
             setArr(arr.map((el) => (el.id === state.id ? state : el)));
             setEdit(null);
-            setMsg('Ediatado Exitosamente');
+            setMsg('Editado Exitosamente');
         } else {
 
             if(arr.find((el) => (el.nombreDelSocio === nombreDelSocio )) === undefined){

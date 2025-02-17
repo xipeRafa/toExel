@@ -48,6 +48,7 @@ export default function Item({
   const editItem = (item) => {
       setIsActiveModal(!isActiveModal)
       window.scrollTo(0,0);
+      setMsg('Listo para Editar')
       setState(item);
       setEdit(item);
   }
@@ -71,24 +72,26 @@ export default function Item({
 
               <div className='modalContent'>
 
-              <div>
+                  <div>
+                      <p><span>Nombre:</span> {el.nombreDelSocio} </p>
+                      <p><span>CURP:</span> {el.curp}</p>
+                      <p><span>Numero:</span> {el.numeroDelSocio}</p>
 
-                  <p><span>Nombre:</span> {el.nombreDelSocio} </p>
-                  <p><span>CURP:</span> {el.curp}</p>
-                  <p><span>Numero:</span> {el.numeroDelSocio}</p>
+                      <p><span>Domicilio:</span> {el.domicilioDelSocio}</p>
+                      <p><span>Clase:</span> {el.clase}</p>
+                      <p><span>Calibre:</span> {el.calibre}</p>
+                  </div> 
 
-                  <p><span>Domicilio:</span> {el.domicilioDelSocio}</p>
-                  <p><span>Clase:</span> {el.clase}</p>
-                  <p><span>Calibre:</span> {el.calibre}</p>
- </div> <div>
-                  <p><span>Marca:</span> {el.marca}</p>
-                  <p><span>Modelo:</span> {el.modelo}</p>
-                  <p><span>Matricula:</span> {el.matricula}</p>
+                  <div>
+                      <p><span>Marca:</span> {el.marca}</p>
+                      <p><span>Modelo:</span> {el.modelo}</p>
+                      <p><span>Matricula:</span> {el.matricula}</p>
 
-                  <p><span>Folio:</span> {el.folio}</p>
-                  <p><span>Armas Cortas:</span> {el.armasCortas}</p>
-                  <p><span>Armas Largas:</span> {el.armasLargas}</p>
- </div>
+                      <p><span>Folio:</span> {el.folio}</p>
+                      <p><span>Armas Cortas:</span> {el.armasCortas}</p>
+                      <p><span>Armas Largas:</span> {el.armasLargas}</p>
+                  </div>
+
               </div>
 
 
