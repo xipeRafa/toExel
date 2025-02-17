@@ -266,7 +266,7 @@ modal>button{
 }
 
 .btnCerrarModal{
-    background-color: transparent;
+    background-color: gainsboro;
     text-align: right;
     color: gray;
     border-radius: 0;
