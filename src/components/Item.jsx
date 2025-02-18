@@ -73,7 +73,7 @@ export default function Item({
               <div className='modalContent'>
 
                   <div>
-                      <p><span>Nombre:</span> {el.nombreDelSocio} </p>
+                      <p className='name'>{el.nombreDelSocio} </p>
                       <p><span>CURP:</span> {el.curp}</p>
                       <p><span>Numero:</span> {el.numeroDelSocio}</p>
 

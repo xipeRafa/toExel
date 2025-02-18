@@ -274,10 +274,17 @@ modal>button{
     border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
+.btnCerrarModal:hover{
+  opacity: 1;
+}
+
 .btnCerrarModal:focus{
     border:1px solid transparent;
 }
 
+.name{
+   margin-left: 16px!important;
+}
 
 @media(max-width:800px){
     .formStyle0{
@@ -310,7 +317,7 @@ modal>button{
     }
 
     .modalContent>div>p{
-      font-size: 24px;
+      font-size: 22px;
     }
 
     modal>button{
