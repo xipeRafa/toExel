@@ -7,12 +7,12 @@ export default function Login() {
 
 
   const [loginState, setLoginState]=useState({nameLogin:'', passwordLogin:''})
-
+console.log(loginState)
   const { nameLogin, passwordLogin } = loginState
 
   const handleLogin =(e)=>{
       const {name, value}= e.target
-      setLoginState({ ...loginState, [name]:value })
+      setLoginState({ ...loginState, [name]:value.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase()) })
   }
 
    const [isActiveModal, setIsActiveModal] = useState(true)
@@ -21,7 +21,7 @@ export default function Login() {
 
 
    const handlerEntrar=()=>{
-      if(nameLogin==='susana' && passwordLogin==='susy123'){
+      if(nameLogin==='Susana' && passwordLogin==='Susy123'){
           localStorage.userSocio=nameLogin
           setIsActiveModal(!isActiveModal)
       }else{
@@ -56,7 +56,7 @@ export default function Login() {
           onChange={(e)=>handleLogin(e)}
           type="text"
           name='nameLogin'
-          value={nameLogin}
+          value={nameLogin.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase())}
       />
 
 
