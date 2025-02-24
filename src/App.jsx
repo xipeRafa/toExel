@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './App.css';
 
 // import { JsonToExcel } from "react-json-to-excel";
@@ -8,6 +8,8 @@ import FinderSearch from './components/FinderSearch.jsx';
 import Form from './components/Form.jsx';
 import Item from './components/Item.jsx';
 import MenuButtons from './components/MenuButtons.jsx';
+
+import Login from './components/auth/Login.jsx';
 
 import useFinder from './hooks/useFinder.jsx';
 import useLocalStorage from './hooks/useLocalStorage.jsx';
@@ -90,6 +92,8 @@ export default function App() {
       
 
       {finderMsg ? <p className="msg">{finderMsg}</p> : ''}
+
+      <Login />
 
       <Form
         editMode={editMode}

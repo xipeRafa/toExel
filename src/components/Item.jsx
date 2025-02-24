@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { useEffect, useState } from 'react'
 
 
@@ -61,12 +61,13 @@ export default function Item({
 
       <div key={i} className="item">
 
-          <div className={!el.toggle ? 'active' : ''} onClick={() => setIsActiveModal(!isActiveModal)}>{el.nombreDelSocio}</div>
 
-     
+          <div className={!el.toggle ? 'active' : ''} onClick={() => setIsActiveModal(!isActiveModal)}>
+              {el.nombreDelSocio} {el.apellidoPaterno} {el.apellidoMaterno}
+          </div>
 
 
-          <modal className={!isActiveModal ? 'detallesContent inModal' : 'detallesContent outModal'}>
+          <modal className={!isActiveModal ? 'inModal' : 'outModal'}>
 
               <button className='btnCerrarModal' onClick={() => setIsActiveModal(!isActiveModal)}>Cerrar ✕</button>
 
@@ -101,6 +102,7 @@ export default function Item({
               <label className='labelItemToggle' htmlFor={el.id}> {!el.toggle ? 'Inactivo' : ' Activo' } </label>
 
           </modal>
+          
 
       </div>
 

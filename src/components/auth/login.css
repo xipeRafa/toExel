@@ -1,0 +1,43 @@
+
+
+
+
+[type="text"], [type="password"]{
+  margin-bottom: 20px;
+  padding: 8px;
+  padding-left: 10px;
+  border: hidden;
+  letter-spacing: 1px;
+  color: gray;
+  width: 50%;
+  margin-left: 25%;
+}
+
+.LoginButton{
+	width: 47%;
+	margin-left: 27%!important;
+	background-color: skyblue;
+}
+
+@media(max-width:900px){
+	.LoginButton{
+	width: 49%;
+	margin-left: 28%!important;
+	background-color: skyblue;
+}
+}
+
+
+.inModalLogin{
+    position: fixed;
+    top:0px;
+    left: 0px;
+/*    transition: .4s;*/
+}
+
+.outModalLogin {
+    position: fixed;
+    top:0px;
+    left: -150%;
+/*    transition: .4s;*/
+}

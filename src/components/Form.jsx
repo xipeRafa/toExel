@@ -1,4 +1,4 @@
-import React from 'react';
+
 // import '../style.css';
 
 
@@ -22,7 +22,7 @@ export default function Form({
 }) {
   
     const handleState = (e) => {
-        setState({ ...state, [e.target.name]: e.target.value });
+        setState({ ...state, [e.target.name]: e.target.value })
     }
   
     const {
