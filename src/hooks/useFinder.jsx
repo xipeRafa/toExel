@@ -16,7 +16,7 @@ const useFinder = () => {
         setSearchTXT(e.target.value)
 
         if(searchTXT.length>3){
-            setFinder(arr.filter((el) => el.nombreDelSocio.indexOf(searchTXT) > -1))
+            setFinder(arr.filter((el) => el.apellidoPaterno.indexOf(searchTXT) > -1))
         }
        
     }

@@ -30,6 +30,8 @@ export default function Form({
       numeroRegistroDelClub,
       domicilioDelClub,
       nombreDelSocio,
+      apellidoPaterno,
+      apellidoMaterno,
 
       curp,
       numeroDelSocio,
@@ -87,6 +89,8 @@ export default function Form({
       numeroRegistroDelClub: '',
       domicilioDelClub:'',
       nombreDelSocio: '',
+      apellidoPaterno: '',
+      apellidoMaterno: '',
 
       curp: '',
       numeroDelSocio:'',
@@ -154,7 +158,28 @@ export default function Form({
               value={nombreDelSocio.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase())}
               required
           />
-         
+
+           <label className={!editMode ? 'dn' : ''}>Apellido Paterno</label>
+           <input
+              type="text"
+              autoComplete="off"
+              placeholder="Apellido Paterno"
+              name="apellidoPaterno"
+              onChange={handleState}
+              value={apellidoPaterno.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase())}
+              required
+          />
+
+           <label className={!editMode ? 'dn' : ''}>Apellido Materno</label>
+           <input
+              type="text"
+              autoComplete="off"
+              placeholder="Apellido Materno"
+              name="apellidoMaterno"
+              onChange={handleState}
+              value={apellidoMaterno.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase())}
+              required
+          />
 
           <label className={!editMode ? 'dn' : ''}>CURP</label>
           <input
@@ -189,6 +214,10 @@ export default function Form({
               required
           />
 
+</div>
+
+<div className='formStyle2'>
+
           <label className={!editMode ? 'dn' : ''}>Clase</label>
           <input
               type="text"
@@ -199,11 +228,6 @@ export default function Form({
               value={clase}
               required
           />
-
-
-</div>
-
-<div className='formStyle2'>
 
           <label className={!editMode ? 'dn' : ''}>Calibre</label>
           <input

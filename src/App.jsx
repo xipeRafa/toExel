@@ -22,6 +22,8 @@ export default function App() {
       numeroRegistroDelClub: '',
       domicilioDelClub:'',
       nombreDelSocio: '',
+      apellidoPaterno: '',
+      apellidoMaterno: '',
 
       curp: '',
       numeroDelSocio:'',
@@ -130,7 +132,7 @@ export default function App() {
       </button>
 
       {finderState === null
-        ? arr.sort((a, b) => b.nombreDelSocio - a.nombreDelSocio).map((el, i) => (
+        ? arr.sort((a, b) => b.apellidoPaterno - a.apellidoPaterno).map((el, i) => (
             <Item
               key={i}
               i={i}
@@ -144,7 +146,7 @@ export default function App() {
             />
           ))
 
-        : finderState.sort((a, b) => a.nombreDelSocio - b.nombreDelSocio).map((el, i) => (
+        : finderState.sort((a, b) => a.apellidoPaterno - b.apellidoPaterno).map((el, i) => (
             <Item
               key={i}
               i={i}
