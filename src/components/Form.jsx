@@ -115,6 +115,10 @@ export default function Form({
     const handleClose = () => {
         setError(false);
         setMsg('BASE DE DATOS SOCIOS');
+
+        
+          localStorage.removeItem("userSocio")
+          location.reload()
     }
 
 
