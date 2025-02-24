@@ -50,7 +50,7 @@ console.log(loginState)
       <h2>Socios Data Base</h2>
 
       <input
-          className='finder'
+          className='Login'
           autoComplete="off"
           placeholder="Nombre"
           onChange={(e)=>handleLogin(e)}
