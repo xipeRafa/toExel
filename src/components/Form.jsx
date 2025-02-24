@@ -115,11 +115,20 @@ export default function Form({
     const handleClose = () => {
         setError(false);
         setMsg('BASE DE DATOS SOCIOS');
-
-        
-          localStorage.removeItem("userSocio")
-          location.reload()
     }
+
+
+    const handleSalir = () => {
+        setError(false);
+        setMsg('BASE DE DATOS SOCIOS');
+
+        if (window.confirm("Do you want to open in new tab?")) {
+            localStorage.removeItem("userSocio")
+            location.reload()
+        }
+        
+    }
+
 
 
 
@@ -327,7 +336,7 @@ export default function Form({
 
           {msg ?
             <div className='divSombra'>
-                <p className="msg" onClick={handleClose}> {msg}
+                <p className="msg" onClick={handleSalir}> {msg}
                     {/*<div className="buttonClose" onClick={handleClose}></button>*/}
                 </p>
             </div>
