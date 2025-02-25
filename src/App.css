@@ -184,6 +184,7 @@ label{
 
 .labelItemToggle{
   cursor: pointer;
+  margin-top: 20px;
 }
 .labelItemToggle:hover{
   opacity: .5;
