@@ -102,14 +102,14 @@ export default function App() {
 
       <div className='totalesGenerales'>
           <span>Armas Cortas: {arr.filter(el=>el.armasCortas === '1').length}</span>
-          <span>Armas Largas: {arr.filter(el=>el.armasLarga === '1').length}</span>
+          <span>Armas Largas: {arr.filter(el=>el.armasLargas === '1').length}</span>
 
           <span>
-              Total de Armas: {arr.filter(el=>el.armasLarga === '1').length + arr.filter(el=>el.armasCortas === '1').length}
+              Total de Armas: {arr.filter(el=>el.armasLargas === '1').length + arr.filter(el=>el.armasCortas === '1').length}
           </span>
       </div>
 
-      
+
       <FinderSearch arr={arr} handleSearch={handleSearch} searchTXT={searchTXT} />
       <br />
 
