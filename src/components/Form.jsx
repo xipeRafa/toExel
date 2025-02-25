@@ -81,8 +81,9 @@ export default function Form({
             // }
 
 
-                state.id = Date.now();
+                state.id = Date.now()+state.nombreDelSocio;
                 state.toggle = true;
+                state.armasArr = []
                 setArr([...arr, state]);
                 setMsg('Nuevo Socio Añadido')
 
@@ -247,7 +248,6 @@ export default function Form({
               name="clase"
               onChange={handleState}
               value={clase}
-              required
           />
 
           <label className={!editMode ? 'dn' : ''}>Calibre</label>
@@ -258,7 +258,6 @@ export default function Form({
               name="calibre"
               onChange={handleState}
               value={calibre}
-              required
           />
 
           <label className={!editMode ? 'dn' : ''}>Marca</label>
@@ -269,7 +268,6 @@ export default function Form({
               name="marca"
               onChange={handleState}
               value={marca}
-              required
           />
 
           <label className={!editMode ? 'dn' : ''}>Modelo</label>
@@ -280,7 +278,6 @@ export default function Form({
               name="modelo"
               onChange={handleState}
               value={modelo}
-              required
           />
 
           <label className={!editMode ? 'dn' : ''}>Matricula</label>
@@ -291,7 +288,6 @@ export default function Form({
               name="matricula"
               onChange={handleState}
               value={matricula}
-              required
           />
 
           <label className={!editMode ? 'dn' : ''}>Folio</label>
@@ -302,29 +298,26 @@ export default function Form({
               name="folio"
               onChange={handleState}
               value={folio}
-              required
           />
 
-          <label className={!editMode ? 'dn' : ''}>Armas Cortas</label>
+          <label className={!editMode ? 'dn' : ''}>Arma Corta</label>
           <input
               type="number"
               autoComplete="off"
-              placeholder="Armas Cortas"
+              placeholder="Arma Corta"
               name="armasCortas"
               onChange={handleState}
               value={armasCortas}
-              required
           />
 
-          <label className={!editMode ? 'dn' : ''}>Armas Largas</label>
+          <label className={!editMode ? 'dn' : ''}>Arma Larga</label>
           <input
               type="number"
               autoComplete="off"
-              placeholder="Armas Largas"
+              placeholder="Arma Larga"
               name="armasLargas"
               onChange={handleState}
               value={armasLargas}
-              required
           />
  </div>
 

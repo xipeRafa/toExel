@@ -37,7 +37,8 @@ export default function App() {
       folio: '',
 
       armasCortas: '',
-      armasLargas:''
+      armasLargas:'',
+      
   })
 
 

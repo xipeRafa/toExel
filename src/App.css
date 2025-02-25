@@ -185,6 +185,7 @@ label{
 .labelItemToggle{
   cursor: pointer;
   margin-top: 20px;
+  margin-bottom: 100px;
 }
 .labelItemToggle:hover{
   opacity: .8;
@@ -209,7 +210,7 @@ label{
 
 
 .inModal{
-    position: fixed;
+    position: absolute;
     top:0px;
     left: 0px;
     transition: .4s;
@@ -225,12 +226,11 @@ label{
 modal{
   width: 100%;
   background-color: gainsboro;
-  height: 100%;
   display: flex;
   flex-direction: column;
   z-index: 99;
   text-align: center;
-  padding: 0;
+  border-bottom: 100vh solid gainsboro;
 }
 
 .modalContent{
@@ -238,15 +238,39 @@ modal{
     margin: 56px;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     background-color: rgba(129, 128, 228, 0.276);
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-}
-.modalContent>div{
-  width: 50%;
-  padding: 20px 0;
-}
-.modalContent>div>p>span{
+    height: 100%;
+  padding: 6px;
 
+}
+
+.modalContent>div{
+  min-width: 49%;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.newArmas{
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.newArmas>div{
+  width: 49%;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+.modalContent>div>p>span{
+    color: rgba(0, 0, 0, .4);
+    font-size: 22px;
+    margin-left: 16px;
+    letter-spacing: 0;
+/*    font-family: serif;*/
+}
+
+.modalContent>div>div>p>span{
     color: rgba(0, 0, 0, .4);
     font-size: 22px;
     margin-left: 16px;
@@ -255,6 +279,14 @@ modal{
 }
 
 .modalContent>div>p{
+  margin: 0;
+  margin-bottom: 10px;
+  font-size: 30px;
+/*  font-family: sans-serif;*/
+  color: rgba(0, 0, 0, .7);
+}
+
+.modalContent>div>div>p{
   margin: 0;
   margin-bottom: 10px;
   font-size: 30px;
@@ -327,6 +359,10 @@ modal>button{
       font-size: 22px;
     }
 
+    .newArmas>div{
+      width: 100%;
+    }
+
     modal>button{
         margin: 10px 20px!important;
     }
@@ -359,7 +395,9 @@ modal>button{
   margin-bottom: 20px;
 }
 
-
+.guardarArma{
+  margin-bottom: 600px!important;
+}
 
 
 
