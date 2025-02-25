@@ -7,31 +7,35 @@ export default function Login() {
 
 
   const [loginState, setLoginState]=useState({nameLogin:'', passwordLogin:''})
-console.log(loginState)
+
   const { nameLogin, passwordLogin } = loginState
 
   const handleLogin =(e)=>{
+
       const {name, value}= e.target
+
       setLoginState({ ...loginState, [name]:value.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase()) })
+
   }
 
-   const [isActiveModal, setIsActiveModal] = useState(true)
+
+  const [isActiveModal, setIsActiveModal] = useState(true)
 
 
 
 
-   const handlerEntrar=()=>{
+  const handlerEntrar=()=>{
       if(nameLogin==='Susana' && passwordLogin==='Susy123'){
           localStorage.userSocio=nameLogin
-          setIsActiveModal(!isActiveModal)
+          setIsActiveModal(false)
       }else{
           alert('Nombre o Contraseña incorrecto')
       }
-   }
+  }
 
 
 
-    useEffect(()=>{
+  useEffect(()=>{
 
       if(localStorage.userSocio !== undefined){
 
@@ -39,7 +43,7 @@ console.log(loginState)
 
       }
 
-    },[])
+  },[])
 
 
   return (
@@ -56,7 +60,7 @@ console.log(loginState)
           onChange={(e)=>handleLogin(e)}
           type="text"
           name='nameLogin'
-          value={nameLogin.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase())}
+          value={nameLogin}
       />
 
 

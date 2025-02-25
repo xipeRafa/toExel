@@ -69,16 +69,24 @@ export default function Form({
             setMsg('Editado Exitosamente');
         } else {
 
-            if(arr.find((el) => (el.nombreDelSocio === nombreDelSocio )) === undefined){
+            // if(arr.find((el) => (el.nombreDelSocio === nombreDelSocio )) === undefined){
+
+            //     state.id = Date.now();
+            //     state.toggle = true;
+            //     setArr([...arr, state]);
+            //     setMsg('Nuevo Socio Añadido')
+
+            // }else{
+            //     setMsg('Socio Con Nombre Repetido')
+            // }
+
 
                 state.id = Date.now();
                 state.toggle = true;
                 setArr([...arr, state]);
                 setMsg('Nuevo Socio Añadido')
 
-            }else{
-                setMsg('Socio Con Nombre Repetido')
-            }
+         
 
         }
 
@@ -122,7 +130,7 @@ export default function Form({
         setError(false);
         setMsg('BASE DE DATOS SOCIOS');
 
-        if (window.confirm("Do you want to open in new tab?")) {
+        if (window.confirm("Do you want to go out?")) {
             localStorage.removeItem("userSocio")
             location.reload()
         }
@@ -299,7 +307,7 @@ export default function Form({
 
           <label className={!editMode ? 'dn' : ''}>Armas Cortas</label>
           <input
-              type="text"
+              type="number"
               autoComplete="off"
               placeholder="Armas Cortas"
               name="armasCortas"
@@ -310,7 +318,7 @@ export default function Form({
 
           <label className={!editMode ? 'dn' : ''}>Armas Largas</label>
           <input
-              type="text"
+              type="number"
               autoComplete="off"
               placeholder="Armas Largas"
               name="armasLargas"

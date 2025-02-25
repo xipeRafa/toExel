@@ -1,7 +1,7 @@
 
 // import '../style.css';
 
-
+import * as XLSX from "xlsx"
 
 
 
@@ -130,9 +130,34 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
     // }
 
 
+    
+  const downloadExcel = (data) => {
+
+      let hello = []
+
+      data.map(el =>{
+        delete el.id
+        delete el.toggle
+
+        // el.NoREGCLUB = el.numeroRegistroDelClub
+        // delete el.numeroRegistroDelClub
+
+        hello.unshift(el)
+      })
+
+     console.log(hello)
+      const worksheet = XLSX.utils.json_to_sheet(data);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1") 
+      //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
+      //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
+      XLSX.writeFile(workbook, "DataSheet.xlsx");
+  }
+
+
 
   return (
-      <>
+      <div className='menuButtons'>
           <button onClick={handleAll}>TODOS</button>
           <button onClick={handleActive}>Activos</button>
           <button onClick={handleCompleted}>Inactivos</button>
@@ -140,7 +165,12 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
           <button onClick={handleSort}>Fecha Min to Max</button>
           <button onClick={handleUnSort}>Fecha Max to Min</button>
 
+
+            <button onClick={()=>downloadExcel(arr)}>
+                Download As Excel
+            </button>
+
           {/*<button onClick={handleClearComplete}>Clear Completed</button>*/}
-      </>
+      </div>
   );
 }

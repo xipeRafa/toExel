@@ -30,18 +30,29 @@ export default function Item({
   }
 
 
-  const toggleItem = (id, nombre) => {
+  const toggleItem = (ID, nombre) => {
+    if (window.confirm("Quieres Cambiar Status")) {
 
-      if (window.confirm("Cambiar")) {
+      let ttArr = []
 
-          arr.map((el) => (el.id === id ? (el.toggle = !el.toggle) : el))
+      arr.map((el) => {
+          if(el.id === ID){
+              el.toggle = !el.toggle
+              ttArr.push(el)
+          }
+      })
 
-          arr.find((el) => el.id === id).toggle
+
+      setArr(arr.map( (el) => (el.id === ID ? ttArr : el) ).flat())
+
+
+
+      arr.find((el) => el.id === ID).toggle
             ? setMsg(`Marcado como Activo: ${ nombre}`)
             : setMsg(`Marcado como Inactivo: ${ nombre}`)
 
-      }
-      
+
+    }  
   }
 
 
@@ -102,7 +113,7 @@ export default function Item({
               <label className='labelItemToggle' htmlFor={el.id}> {!el.toggle ? 'Inactivo' : ' Activo' } </label>
 
           </modal>
-          
+
 
       </div>
 

@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
-// import { JsonToExcel } from "react-json-to-excel";
-import * as XLSX from "xlsx"
-
 import FinderSearch from './components/FinderSearch.jsx';
 import Form from './components/Form.jsx';
 import Item from './components/Item.jsx';
@@ -76,15 +73,6 @@ export default function App() {
   },[searchTXT])
 
 
-  const downloadExcel = (data) => {
-      const worksheet = XLSX.utils.json_to_sheet(data);
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1") 
-      //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
-      //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
-      XLSX.writeFile(workbook, "DataSheet.xlsx");
-  }
-
 
 
   return (
@@ -111,6 +99,17 @@ export default function App() {
         setSearchTXT={setSearchTXT}
       />
 
+
+      <div className='totalesGenerales'>
+          <span>Armas Cortas: {arr.filter(el=>el.armasCortas === '1').length}</span>
+          <span>Armas Largas: {arr.filter(el=>el.armasLarga === '1').length}</span>
+
+          <span>
+              Total de Armas: {arr.filter(el=>el.armasLarga === '1').length + arr.filter(el=>el.armasCortas === '1').length}
+          </span>
+      </div>
+
+      
       <FinderSearch arr={arr} handleSearch={handleSearch} searchTXT={searchTXT} />
       <br />
 
@@ -131,12 +130,10 @@ export default function App() {
       />*/}
 
 
-      <button onClick={()=>downloadExcel(arr)}>
-          Download As Excel
-      </button>
+     
 
       {finderState === null
-        ? arr.sort((a, b) => b.apellidoPaterno - a.apellidoPaterno).map((el, i) => (
+        ? arr.sort((a, b) => b.nombreDelSocio - a.nombreDelSocio).map((el, i) => (
             <Item
               key={i}
               i={i}
@@ -150,7 +147,7 @@ export default function App() {
             />
           ))
 
-        : finderState.sort((a, b) => a.apellidoPaterno - b.apellidoPaterno).map((el, i) => (
+        : finderState.sort((a, b) => a.nombreDelSocio - b.nombreDelSocio).map((el, i) => (
             <Item
               key={i}
               i={i}
