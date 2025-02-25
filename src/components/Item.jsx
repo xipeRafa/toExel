@@ -140,6 +140,11 @@ export default function Item({
 
   }
 
+  const modalName=()=>{
+      window.scrollTo(0,0);
+      setIsActiveModal(!isActiveModal)
+  }
+
 
 
   return (
@@ -147,7 +152,7 @@ export default function Item({
       <div key={i} className="item">
 
 
-          <div className={!el.toggle ? 'active' : ''} onClick={() => setIsActiveModal(!isActiveModal)}>
+          <div className={!el.toggle ? 'active' : ''} onClick={modalName}>
               {el.nombreDelSocio} {el.apellidoPaterno} {el.apellidoMaterno}
           </div>
 
