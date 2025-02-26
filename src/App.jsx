@@ -39,6 +39,8 @@ export default function App() {
       armasCortas: '',
       armasLargas:'',
 
+      fechaDeInscripcion:0
+
   })
 
 

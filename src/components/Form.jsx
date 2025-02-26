@@ -20,9 +20,31 @@ export default function Form({
   setEdit,
   setSearchTXT
 }) {
+
+     const formateador = new Intl.DateTimeFormat("es-MX", {
+        dateStyle: "long",
+        //timeStyle: "short",
+    })
+
+    const milisegundosComoFecha = (milisegundos='1740207600000') => {  // '8 de agosto de 2024, 12:08 a.m.'
+
+        return formateador.format(new Date(milisegundos))
+
+    }
+
+
   
     const handleState = (e) => {
-        setState({ ...state, [e.target.name]: e.target.value })
+        const {name, value} = e.target
+        setState({ ...state, [name]: value })
+    }
+
+
+    const handleStateDateInput = (e) => {
+        const {name, value} = e.target
+        let dateInMscds = Date.parse(value)+25200000 
+        console.log(dateInMscds)
+        setState({ ...state, [name]: dateInMscds })
     }
   
     const {
@@ -46,7 +68,9 @@ export default function Form({
       folio,
 
       armasCortas,
-      armasLargas 
+      armasLargas,
+
+      fechaDeInscripcion 
 
     } = state;
 
@@ -81,7 +105,7 @@ export default function Form({
             // }
 
 
-                state.id = Date.now()+state.nombreDelSocio;
+                state.id = Date.now();
                 state.toggle = true;
                 state.armasArr = []
                 setArr([...arr, state]);
@@ -222,7 +246,6 @@ export default function Form({
               name="numeroDelSocio"
               onChange={handleState}
               value={numeroDelSocio}
-              required
           />
 
           <label className={!editMode ? 'dn' : ''}>Domicilio Del Socio</label>
@@ -234,6 +257,15 @@ export default function Form({
               onChange={handleState}
               value={domicilioDelSocio}
               required
+          />
+
+          <label className={!editMode ? 'dn' : ''}>Fecha de Inscripción</label>
+          <input
+              type="date"
+              autoComplete="off"
+              placeholder="Fecha de Inscripción"
+              name="fechaDeInscripcion"
+              onChange={handleStateDateInput}
           />
 
 </div>
@@ -318,6 +350,19 @@ export default function Form({
               name="armasLargas"
               onChange={handleState}
               value={armasLargas}
+          />
+
+          
+           <label className={!editMode ? 'dn' : ''}>Fecha De Inscripcion</label>
+          <input
+              className='fechaDeInscripcion'
+              readOnly
+              type="text"
+              value={fechaDeInscripcion === 0 
+                        ? 'Fecha de Inscripción' 
+                        : `Fecha de Inscripción: ${milisegundosComoFecha(fechaDeInscripcion)}`
+                      }
+              
           />
  </div>
 

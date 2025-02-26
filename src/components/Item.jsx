@@ -13,6 +13,17 @@ export default function Item({
   setMsg,
 }) {
 
+   const formateador = new Intl.DateTimeFormat("es-MX", {
+        dateStyle: "long",
+        //timeStyle: "short",
+    })
+
+    const milisegundosComoFecha = (milisegundos) => {  // '8 de agosto de 2024, 12:08 a.m.'
+
+        return formateador.format(new Date(milisegundos))
+
+    }
+
 
  const [isActiveModal, setIsActiveModal] = useState(true)
 
@@ -170,7 +181,8 @@ export default function Item({
                       <p><span>Numero:</span> {el.numeroDelSocio}</p>
 
                       <p><span>Domicilio:</span> {el.domicilioDelSocio}</p>
-                    
+
+                      <p><span>Fecha de Inscripcion:</span> {milisegundosComoFecha(el.fechaDeInscripcion)}</p>
                   </div> 
 
                   <div>
