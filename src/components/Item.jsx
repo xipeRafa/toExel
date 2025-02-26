@@ -74,9 +74,6 @@ export default function Item({
   const anadirArma =(item)=>{
       setIsActiveModalNewArma(!isActiveModalNewArma)
       window.scrollTo(0,0);
-      setMsg('Listo para Añadir Arma')
-      // setState(item);
-      // setEdit(item);
   }
 
 
@@ -172,7 +169,13 @@ export default function Item({
 
               <button className='btnCerrarModal' onClick={() => setIsActiveModal(!isActiveModal)}>Cerrar ✕</button>
 
+     <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el.id, el.nombreDelSocio)} />
+              <label className='labelItemToggle' htmlFor={el.id}> {!el.toggle ? 'Inactivo' : ' Activo' } </label>
+
+
               <div className='modalContent'>
+
+
 
                   <div>
                       <p className='name'>{el.nombreDelSocio} </p>
@@ -220,8 +223,8 @@ export default function Item({
               <button onClick={() => editItem(el)}>Editar</button>
               <button onClick={() => anadirArma(el)}>Añadir Arma</button>
 
-              <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el.id, el.nombreDelSocio)} />
-              <label className='labelItemToggle' htmlFor={el.id}> {!el.toggle ? 'Inactivo' : ' Activo' } </label>
+        {/*      <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el.id, el.nombreDelSocio)} />
+              <label className='labelItemToggle' htmlFor={el.id}> {!el.toggle ? 'Inactivo' : ' Activo' } </label>*/}
 
 
           </modal>
@@ -230,7 +233,7 @@ export default function Item({
           <modal className={!isActiveModalNewArma ? 'inModal' : 'outModal'}>
 
               <button className='btnCerrarModal' onClick={()=>setIsActiveModalNewArma(!isActiveModalNewArma)}>Cerrar ✕</button>
-
+<br />
               <div className='modalContent'>
 
 

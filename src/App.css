@@ -184,8 +184,7 @@ label{
 
 .labelItemToggle{
   cursor: pointer;
-  margin-top: 20px;
-  margin-bottom: 100px;
+  margin-top: 50px;
 }
 .labelItemToggle:hover{
   opacity: .8;
@@ -230,12 +229,13 @@ modal{
   flex-direction: column;
   z-index: 99;
   text-align: center;
-  border-bottom: 100vh solid gainsboro;
+  border-bottom: 40vh solid gainsboro;
 }
 
 .modalContent{
     text-align: left;
     margin: 56px;
+    margin-top: 20px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -299,8 +299,9 @@ modal>button{
 
 .btnCerrarModal{
     background-color: gainsboro;
+/*    background-color: rgba(100, 0, 0, .1);*/
     text-align: right;
-    color: gray;
+    color: rgba(111, 0, 0, .4);
     border-radius: 0;
     border:1px solid transparent;
     position: absolute;
@@ -309,11 +310,12 @@ modal>button{
     margin: 0;
     width: 100%;
     margin: 0!important;
-    border-bottom: 1px solid rgba(0, 0, 0, .1);
+    border-bottom: 1px solid rgba(111, 0, 0, .1);
 }
 
 .btnCerrarModal:hover{
   opacity: 1;
+  background-color: rgba(100, 0, 0, .1);
 }
 
 .btnCerrarModal:focus{
@@ -365,6 +367,10 @@ modal>button{
     modal>button{
         margin: 10px 20px!important;
     }
+
+    modal{
+        border-bottom: 100vh solid gainsboro;
+    }
 }
 
 
@@ -410,6 +416,8 @@ modal>button{
   outline: none;
   border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
+
+
 
 
 

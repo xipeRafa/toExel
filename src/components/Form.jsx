@@ -74,7 +74,7 @@ console.log(milisegundos)
 
     } = state;
 
-console.log(state)
+
 
     const onSubmit = (e) => {
 
@@ -90,7 +90,7 @@ console.log(state)
         if (editMode) {
             setArr(arr.map( (el) => (el.id === state.id ? state : el) ))
             setEdit(null);
-            setMsg('Editado Exitosamente');
+            setMsg('Editado: ' + state.nombreDelSocio);
         } else {
 
             // if(arr.find((el) => (el.nombreDelSocio === nombreDelSocio )) === undefined){
@@ -262,6 +262,7 @@ console.log(state)
 
           <label className={!editMode ? 'dn' : ''}>Fecha de Inscripción</label>
           <input
+
               type="date"
               autoComplete="off"
               placeholder="Fecha de Inscripción"
@@ -335,6 +336,7 @@ console.log(state)
 
           <label className={!editMode ? 'dn' : ''}>Arma Corta</label>
           <input
+              min="0" step="1" max="1"
               type="number"
               autoComplete="off"
               placeholder="Arma Corta"
@@ -345,6 +347,7 @@ console.log(state)
 
           <label className={!editMode ? 'dn' : ''}>Arma Larga</label>
           <input
+              min="0" step="1" max="1"
               type="number"
               autoComplete="off"
               placeholder="Arma Larga"
@@ -361,7 +364,7 @@ console.log(state)
               type="text"
               value={fechaDeInscripcion === 0 
                         ? 'Fecha de Inscripción' 
-                        : `Fecha de Inscripción: ${milisegundosComoFecha(fechaDeInscripcion)}`
+                        : `Inscripción: ${milisegundosComoFecha(fechaDeInscripcion)}`
                       }
               
           />
