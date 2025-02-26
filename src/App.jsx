@@ -38,7 +38,7 @@ export default function App() {
 
       armasCortas: '',
       armasLargas:'',
-      
+
   })
 
 
@@ -73,7 +73,21 @@ export default function App() {
 
   },[searchTXT])
 
+  let ac = []
+   let al = []
 
+
+    arr.map(el => {
+        el.armasArr.map(el=>{
+            if(el.armasCortas === '1'){
+                ac.push('corta')
+            }
+
+            if(el.armasLargas === '1'){
+                al.push('larga')
+            }
+        })
+    })
 
 
   return (
@@ -102,11 +116,11 @@ export default function App() {
 
 
       <div className='totalesGenerales'>
-          <span>Armas Cortas: {arr.filter(el=>el.armasCortas === '1').length}</span>
-          <span>Armas Largas: {arr.filter(el=>el.armasLargas === '1').length}</span>
+          <span>Armas Cortas: {arr.filter(el=>el.armasCortas === '1').length + ac.length}</span>
+          <span>Armas Largas: {arr.filter(el=>el.armasLargas === '1').length + al.length}</span>
 
           <span>
-              Total de Armas: {arr.filter(el=>el.armasLargas === '1').length + arr.filter(el=>el.armasCortas === '1').length}
+              Total de Armas: {arr.filter(el=>el.armasLargas === '1').length + arr.filter(el=>el.armasCortas === '1').length + ac.length + al.length}
           </span>
       </div>
 

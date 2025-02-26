@@ -181,8 +181,8 @@ export default function Item({
                       <p><span>Matricula:</span> {el.matricula}</p>
 
                       <p><span>Folio:</span> {el.folio}</p>
-                      <p><span>Armas Cortas:</span> {el.armasCortas}</p>
-                      <p><span>Armas Largas:</span> {el.armasLargas}</p>
+                      <p><span>Arma Corta:</span> {el.armasCortas}</p>
+                      <p><span>Arma Larga:</span> {el.armasLargas}</p>
                   </div>
 
                   <div className='newArmas'>{el.armasArr.map((ele, i)=>(
