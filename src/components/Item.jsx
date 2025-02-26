@@ -182,7 +182,8 @@ export default function Item({
 
                       <p><span>Domicilio:</span> {el.domicilioDelSocio}</p>
 
-                      <p><span>Fecha de Inscripcion:</span> {milisegundosComoFecha(el.fechaDeInscripcion)}</p>
+                      <p><span>Fecha de Inscripción:</span></p>
+                       <p><span></span> {milisegundosComoFecha(el.fechaDeInscripcion)}</p>
                   </div> 
 
                   <div>

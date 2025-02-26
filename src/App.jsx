@@ -42,7 +42,7 @@ export default function App() {
       fechaDeInscripcion:0
 
   })
-
+console.log(state)
 
   const [editMode, setEdit] = useState(null);
 

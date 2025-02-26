@@ -26,8 +26,8 @@ export default function Form({
         //timeStyle: "short",
     })
 
-    const milisegundosComoFecha = (milisegundos='1740207600000') => {  // '8 de agosto de 2024, 12:08 a.m.'
-
+    const milisegundosComoFecha = (milisegundos) => {  // '8 de agosto de 2024, 12:08 a.m.'
+console.log(milisegundos)
         return formateador.format(new Date(milisegundos))
 
     }
@@ -74,7 +74,7 @@ export default function Form({
 
     } = state;
 
-
+console.log(state)
 
     const onSubmit = (e) => {
 
@@ -138,7 +138,8 @@ export default function Form({
       folio: '',
 
       armasCortas: '',
-      armasLargas:''
+      armasLargas:'',
+      fechaDeInscripcion:0
   });
         setSearchTXT('')
         setFinderMsg(null);
