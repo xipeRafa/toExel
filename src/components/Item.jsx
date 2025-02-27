@@ -160,7 +160,7 @@ export default function Item({
       <div key={i} className="item">
 
 
-          <div className={!el.toggle ? 'active' : ''} onClick={modalName}>
+          <div className={!el.toggle ? 'active c-pointer' : 'c-pointer'} onClick={modalName}>
               {el.nombreDelSocio} {el.apellidoPaterno} {el.apellidoMaterno}
           </div>
 
@@ -169,7 +169,7 @@ export default function Item({
 
               <button className='btnCerrarModal' onClick={() => setIsActiveModal(!isActiveModal)}>Cerrar ✕</button>
 
-     <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el.id, el.nombreDelSocio)} />
+              <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el.id, el.nombreDelSocio)} />
               <label className='labelItemToggle' htmlFor={el.id}> {!el.toggle ? 'Inactivo' : ' Activo' } </label>
 
 
@@ -230,10 +230,22 @@ export default function Item({
           </modal>
 
 
+
+
+
+
+
+
+
+
           <modal className={!isActiveModalNewArma ? 'inModal' : 'outModal'}>
 
               <button className='btnCerrarModal' onClick={()=>setIsActiveModalNewArma(!isActiveModalNewArma)}>Cerrar ✕</button>
 <br />
+
+
+
+
               <div className='modalContent'>
 
 

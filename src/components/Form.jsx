@@ -27,7 +27,7 @@ export default function Form({
     })
 
     const milisegundosComoFecha = (milisegundos=0) => {  // '8 de agosto de 2024, 12:08 a.m.'
-console.log(milisegundos)
+
         return formateador.format(new Date(milisegundos))
 
     }

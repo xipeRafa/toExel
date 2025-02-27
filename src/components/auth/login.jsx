@@ -10,6 +10,7 @@ export default function Login() {
 
   const { nameLogin, passwordLogin } = loginState
 
+
   const handleLogin =(e)=>{
 
       const {name, value}= e.target
@@ -47,38 +48,42 @@ export default function Login() {
 
 
   return (
-    <modal className={isActiveModal ? ' inModalLogin' : ' outModalLogin'}>
+    <div className={isActiveModal ? ' inModalLogin modalLogin' : ' outModalLogin modalLogin'}>
 
 
       <h2>ENTRAR</h2>
       <h2>Socios Data Base</h2>
 
-      <input
-          className='Login'
-          autoComplete="off"
-          placeholder="Nombre"
-          onChange={(e)=>handleLogin(e)}
-          type="text"
-          name='nameLogin'
-          value={nameLogin}
-      />
+      <div className='loginContainer'>
+
+          <input
+            className='Login'
+            autoComplete="off"
+            placeholder="Nombre"
+            onChange={(e)=>handleLogin(e)}
+            type="text"
+            name='nameLogin'
+            value={nameLogin}
+          />
 
 
-      <input
-          className='Login'
-          autoComplete="off"
-          placeholder="Contraseña"
-          onChange={(e)=>handleLogin(e)}
-          type="password"
-          name='passwordLogin'
-          value={passwordLogin}
-      />
+          <input
+            className='Login'
+            autoComplete="off"
+            placeholder="Contraseña"
+            onChange={(e)=>handleLogin(e)}
+            type="password"
+            name='passwordLogin'
+            value={passwordLogin}
+          />
 
-      <button className='LoginButton' onClick={handlerEntrar}>Entrar</button>
+          <button className='LoginButton' onClick={handlerEntrar}>Entrar</button>
+      </div>
+
+      
 
 
-    </modal>
-
+    </div>
   );
 
 }

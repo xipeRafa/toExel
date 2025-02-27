@@ -1,30 +1,60 @@
 
+.loginContainer{
+    width: 50%;
+/*    overflow: hidden;*/
+    margin-left: 25%;
 
+}
 
 
 .Login{
-  margin-bottom: 20px;
-  padding: 8px;
-  padding-left: 10px;
-  border: hidden;
-  letter-spacing: 1px;
-  color: gray;
-  width: 50%;
-  margin-left: 25%;
+    margin-bottom: 20px;
+/*    padding: 8px;*/
+/*    padding-left: 10px;*/
+    border: hidden;
+    letter-spacing: 1px;
+    color: gray;
+    width: 100%;
+/*    margin-left: 25%;*/
+   box-sizing: border-box;
 }
 
 .LoginButton{
-	width: 47%;
-	margin-left: 27%!important;
-	background-color: skyblue;
+	width: 100%;
+/*	margin-left: 27%!important;*/
+	background-color: steelblue;
+/*    margin-bottom: 100%;*/
+    color: white;
+    font-weight: 800;
+    letter-spacing: 1px;
+    margin: 0;
+    margin-top: 30px;
+     box-sizing: border-box;
+
 }
 
 @media(max-width:900px){
-	.LoginButton{
-	width: 49%;
-	margin-left: 28%!important;
-	background-color: skyblue;
+	.loginContainer{
+        width: 80%;
+        margin-left: 10%;
+    }
 }
+
+.modalLogin{
+
+    width: 100%;
+    background-image: linear-gradient(91deg, rgba(139, 198, 236, 1) 18%, #8BC6EC 67%);
+
+    display: flex;
+    flex-direction: column;
+    z-index: 99;
+    text-align: center;
+    box-shadow: 11px 0px 0px 70vh #8BC6EC;
+}
+
+.modalLogin>h2{
+    color: rgba(0, 0, 0, .7);
+    letter-spacing: .6px;
 }
 
 
@@ -33,11 +63,12 @@
     top:0px;
     left: 0px;
 /*    transition: .4s;*/
+    
 }
 
 .outModalLogin {
     position: fixed;
     top:0px;
-    left: -150%;
+    left: -3000px;
 /*    transition: .4s;*/
 }
