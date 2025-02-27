@@ -267,7 +267,7 @@ console.log(milisegundos)
               autoComplete="off"
               placeholder="Fecha de Inscripción"
               name="fechaDeInscripcion"
-              onChange={handleStateDateInput}
+              onChange={()=>handleStateDateInput()}
           />
 
 </div>
