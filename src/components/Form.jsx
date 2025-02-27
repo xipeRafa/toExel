@@ -26,7 +26,7 @@ export default function Form({
         //timeStyle: "short",
     })
 
-    const milisegundosComoFecha = (milisegundos) => {  // '8 de agosto de 2024, 12:08 a.m.'
+    const milisegundosComoFecha = (milisegundos=0) => {  // '8 de agosto de 2024, 12:08 a.m.'
 console.log(milisegundos)
         return formateador.format(new Date(milisegundos))
 
@@ -43,7 +43,7 @@ console.log(milisegundos)
     const handleStateDateInput = (e) => {
         const {name, value} = e.target
         let dateInMscds = Date.parse(value)+25200000 
-        console.log(dateInMscds)
+        console.log(value)
         setState({ ...state, [name]: dateInMscds })
     }
   
