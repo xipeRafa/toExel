@@ -14,7 +14,63 @@ import useMsgs from './hooks/useMsgs.jsx';
 
 
 
+import {
+  getDocs,
+  collection,
+  addDoc,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from 'firebase/firestore';
+
+import { firestoreDB } from './firebase/firebaseConfig';
+
+
+
 export default function App() {
+
+
+  const [arr, setArr] = useLocalStorage();
+
+    const [items, setItems] = useState([]);
+
+  const itemCollection = collection(firestoreDB, 'sociosCaza')
+  
+
+
+  const [getDB, setGetDB] = useState(true);
+
+  useEffect(() => {
+     let isMounted = true
+
+     if(isMounted = true){
+    getDocs(itemCollection)
+      .then((item) => {
+          if (item.size === 0) {
+              console.log('No results!');
+          }
+
+          const documents = item.docs.map((doc) => ({
+              idDB: doc.id,
+              ...doc.data(),
+          }));
+
+          setItems(documents)
+          localStorage.setItem('array', JSON.stringify(documents))
+      })
+      .catch((err) => {
+          console.log('Error searching items', err);
+      });
+
+      setTimeout(()=>{
+          setArr(JSON.parse(localStorage.array)) // refresca la vista
+      },1111)
+
+    }
+    isMounted = false
+  }, [getDB]);
+
+
 
 
   const [state, setState] = useState({
@@ -42,11 +98,10 @@ export default function App() {
       fechaDeInscripcion:0
 
   })
-console.log(state)
+
 
   const [editMode, setEdit] = useState(null);
 
-  const [arr, setArr] = useLocalStorage();
 
   const [finderState, setFinder, handleSearch, searchTXT, setSearchTXT] = useFinder(); 
 
@@ -92,6 +147,56 @@ console.log(state)
     })
 
 
+
+ const postCollection = collection(firestoreDB, 'sociosCaza');
+
+  const postSocio =(state)=>{
+            addDoc(postCollection, state)
+                .then(() => {
+        
+                    //+setToggle(!toggle);
+                    console.log('wuuu!!')
+
+                })
+                .catch((error) => console.log(error));
+  }
+
+
+
+
+    const deleteByIdDB = async (idDB) => {
+        
+        const aDoc = doc(firestoreDB, 'sociosCaza', idDB)
+
+        try {
+            await deleteDoc(aDoc);
+            console.log(idDB, 'Fue Eliminado')
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
+
+
+  const updateByIdDB = async (idDB, obj) => {
+
+      const aDoc = doc(firestoreDB, 'sociosCaza', idDB)
+
+      try {
+          await updateDoc(aDoc, obj)
+          console.log(idDB, 'Fue Editado')
+      } catch (error) {
+          console.error(error);
+      }
+
+  }
+
+
+
+
+
+
   return (
     <div>
       
@@ -114,6 +219,10 @@ console.log(state)
         state={state}
         setEdit={setEdit}
         setSearchTXT={setSearchTXT}
+        postSocio={postSocio}
+        setGetDB={setGetDB}
+        getDB={getDB}
+        updateByIdDB={updateByIdDB}
       />
 
 
@@ -161,6 +270,7 @@ console.log(state)
               setArr={setArr}
               setFinder={setFinder}
               setMsg={setMsg}
+              deleteByIdDB={deleteByIdDB}
             />
           ))
 
@@ -175,6 +285,7 @@ console.log(state)
               setArr={setArr}
               setFinder={setFinder}
               setMsg={setMsg}
+              deleteByIdDB={deleteByIdDB}
             />
           ))
       }

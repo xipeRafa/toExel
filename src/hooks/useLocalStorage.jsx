@@ -11,6 +11,8 @@ const useLocalStorage = () => {
 
     const [arr, setArr] = useState(arrInitial);
 
+
+
     useEffect(() => {
         arrInitial
             ? localStorage.setItem('array', JSON.stringify(arr))

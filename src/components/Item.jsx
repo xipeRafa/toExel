@@ -11,7 +11,10 @@ export default function Item({
   setArr,
   setFinder,
   setMsg,
+  deleteByIdDB
 }) {
+
+
 
    const formateador = new Intl.DateTimeFormat("es-MX", {
         dateStyle: "long",
@@ -30,12 +33,14 @@ export default function Item({
  const [isActiveModalNewArma, setIsActiveModalNewArma] = useState(true)
 
   const deleteItem = (EL) => {
-
+console.log(EL)
       if (window.confirm("Quieres Borrar a este Socio")) {
           setIsActiveModal(!isActiveModal)
           setArr(arr.filter((el) => el.id !== EL.id))
+          deleteByIdDB(EL.idDB)
           setFinder(null);
           setMsg('Eliminado: ' + EL.nombreDelSocio);
+
       }   
       
   }
@@ -64,9 +69,13 @@ export default function Item({
 
 
   const editItem = (item) => {
+
+    console.log(item.idDB, el)
+
       setIsActiveModal(!isActiveModal)
       window.scrollTo(0,0);
       setMsg('Listo para Editar')
+
       setState(item);
       setEdit(item);
   }

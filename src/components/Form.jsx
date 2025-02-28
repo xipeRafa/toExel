@@ -3,8 +3,6 @@
 
 
 
-
-
 export default function Form({
   editMode,
   msg,
@@ -18,7 +16,11 @@ export default function Form({
   setState,
   state,
   setEdit,
-  setSearchTXT
+  setSearchTXT,
+  postSocio,
+  setGetDB,
+  getDB,
+  updateByIdDB
 }) {
 
      const formateador = new Intl.DateTimeFormat("es-MX", {
@@ -43,7 +45,6 @@ export default function Form({
     const handleStateDateInput = (e) => {
         const {name, value} = e.target
         let dateInMscds = Date.parse(value)+25200000 
-        console.log(value)
         setState({ ...state, [name]: dateInMscds })
     }
   
@@ -74,7 +75,7 @@ export default function Form({
 
     } = state;
 
-
+console.log(state)
 
     const onSubmit = (e) => {
 
@@ -91,6 +92,7 @@ export default function Form({
             setArr(arr.map( (el) => (el.id === state.id ? state : el) ))
             setEdit(null);
             setMsg('Editado: ' + state.nombreDelSocio);
+            updateByIdDB(state.idDB, state)
         } else {
 
             // if(arr.find((el) => (el.nombreDelSocio === nombreDelSocio )) === undefined){
@@ -110,7 +112,8 @@ export default function Form({
                 state.armasArr = []
                 setArr([...arr, state]);
                 setMsg('Nuevo Socio Añadido')
-
+                postSocio(state)
+      
          
 
         }
@@ -140,10 +143,16 @@ export default function Form({
       armasCortas: '',
       armasLargas:'',
       fechaDeInscripcion:0
-  });
+        });
+
         setSearchTXT('')
-        setFinderMsg(null);
+        setFinderMsg(null)
+
+        setTimeout(()=>{
+            setGetDB(!getDB)
+        },700)
     }
+    ///////////////////// fin de submit()
 
 
     const handleClose = () => {
