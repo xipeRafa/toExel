@@ -51,8 +51,6 @@ export default function Form({
   
     const {
 
-      numeroRegistroDelClub,
-      domicilioDelClub,
       nombreDelSocio,
       apellidoPaterno,
       apellidoMaterno,
@@ -123,8 +121,6 @@ export default function Form({
         setError(false) 
         // setState({ text: '', text2:'' });
         setState({
-      numeroRegistroDelClub: '',
-      domicilioDelClub:'',
       nombreDelSocio: '',
       apellidoPaterno: '',
       apellidoMaterno: '',
@@ -185,24 +181,22 @@ export default function Form({
 
           <label className={!editMode ? 'dn' : ''}>Numero Registro Del Club</label>
           <input
+          readOnly
               type="text"
               autoComplete="off"
-              placeholder="Numero Registro Del Club"
-              name="numeroRegistroDelClub"
-              onChange={handleState}
-              value={numeroRegistroDelClub}
-              required
+              placeholder="624"
+              //name="numeroRegistroDelClub"
           />
 
           <label className={!editMode ? 'dn' : ''}>Domicilio Del Club</label>
           <input
+          readOnly
               type="text"
               autoComplete="off"
-              placeholder="Domicilio Del Club"
+              placeholder="San Luis Potosi No. 158, Col. San Benito, C. P. 83190, Hermosillo, Son."
               name="domicilioDelClub"
-              onChange={handleState}
-              value={domicilioDelClub}
-              required
+              //onChange={handleState}
+              //value={domicilioDelClub}
           />
 
           <label className={!editMode ? 'dn' : ''}>Nombre Del Socio</label>

@@ -1,8 +1,8 @@
 
 // import '../style.css';
 
-import * as XLSX from "xlsx"
-
+//import * as XLSX from "xlsx"
+import ReactHTMLTableToExcel from "react-html-table-to-excel"
 
 
 export default function MenuButtons({setError, setMsg, setFinder, items}) {
@@ -131,28 +131,28 @@ export default function MenuButtons({setError, setMsg, setFinder, items}) {
 
 
     
-  const downloadExcel = (data) => {
+  // const downloadExcel = (data) => {
 
-      let hello = []
+  //     let hello = []
 
-      data.map(el =>{
-        delete el.id
-        delete el.toggle
+  //     data.map(el =>{
+  //       delete el.id
+  //       delete el.toggle
 
-        // el.NoREGCLUB = el.numeroRegistroDelClub
-        // delete el.numeroRegistroDelClub
+  //       // el.NoREGCLUB = el.numeroRegistroDelClub
+  //       // delete el.numeroRegistroDelClub
 
-        hello.unshift(el)
-      })
+  //       hello.unshift(el)
+  //     })
 
-     console.log(hello)
-      const worksheet = XLSX.utils.json_to_sheet(data);
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1") 
-      //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
-      //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
-      XLSX.writeFile(workbook, "DataSheet.xlsx");
-  }
+  //    console.log(hello)
+  //     const worksheet = XLSX.utils.json_to_sheet(data);
+  //     const workbook = XLSX.utils.bo9ok_new();
+  //     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1") 
+  //     //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
+  //     //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
+  //     XLSX.writeFile(workbook, "DataSheet.xlsx");
+  // }
 
 
 
@@ -166,9 +166,36 @@ export default function MenuButtons({setError, setMsg, setFinder, items}) {
           <button onClick={handleUnSort}>Fecha Max to Min</button>
 
 
-            <button onClick={()=>downloadExcel(items)}>
+            <button className='dn' onClick={()=>downloadExcel(items)}>
                 Download As Excel
             </button>
+
+               <ReactHTMLTableToExcel
+                    id="test-table-xls-button"
+                    className="download-table-xls-button"
+                    table="table-to-xls"
+                    filename="tablexls"
+                    sheet="tablexls"
+                    buttonText="Download as XLS"/>
+
+                <table id="table-to-xls" className='dn'>
+                    <tr>
+                        <th>Firstname s</th>
+                        <th>Lastname s</th>
+                        <th>Age s</th>
+                    </tr>
+                    <tr>
+                        <td>Jill cccc</td>
+                        <td>Smithccc</td>
+                        <td>50 ccc</td>
+                    </tr>
+                    <tr>
+                        <td>Eve fff</td>
+                        <td>Jackson fff</td>
+                        <td>94 34256</td>
+                    </tr>
+                </table>
+
 
           {/*<button onClick={handleClearComplete}>Clear Completed</button>*/}
       </div>

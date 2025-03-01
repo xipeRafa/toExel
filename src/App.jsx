@@ -76,8 +76,6 @@ export default function App() {
 
 
   const [state, setState] = useState({
-      numeroRegistroDelClub: '',
-      domicilioDelClub:'',
       nombreDelSocio: '',
       apellidoPaterno: '',
       apellidoMaterno: '',
