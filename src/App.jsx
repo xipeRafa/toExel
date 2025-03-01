@@ -30,7 +30,7 @@ import { firestoreDB } from './firebase/firebaseConfig';
 export default function App() {
 
 
-  const [arr, setArr] = useLocalStorage();
+  // const [arr, setArr] = useLocalStorage();
 
     const [items, setItems] = useState([]);
 
@@ -56,17 +56,19 @@ export default function App() {
           }));
 
           setItems(documents)
-          localStorage.setItem('array', JSON.stringify(documents))
+          //localStorage.setItem('array', JSON.stringify(documents))
       })
       .catch((err) => {
           console.log('Error searching items', err);
       });
 
-      setTimeout(()=>{
-          setArr(JSON.parse(localStorage.array)) // refresca la vista
-      },1111)
+      // setTimeout(()=>{
+      //     setArr(JSON.parse(localStorage.array)) // refresca la vista
+      // },1111)
 
+    
     }
+
     isMounted = false
   }, [getDB]);
 
@@ -115,15 +117,13 @@ export default function App() {
 
           if(finderState.length===1 && searchTXT.length>3){
               setMsg('Encontrado')
-              console.log('true-59') 
           }else{
               setMsg(`${finderState.length} Resultados`)
-              console.log('false-62') 
           }
 
           if(searchTXT.length===0){
               setFinder(null)   
-              setMsg(`${arr.length}, Todos las Socios`)
+              setMsg(`${items.length}, Todos las Socios`)
           }
 
       }
@@ -134,7 +134,7 @@ export default function App() {
    let al = []
 
 
-    arr.map(el => {
+    items.map(el => {
         el.armasArr.map(el=>{
             if(el.armasCortas === '1'){
                 ac.push('corta')
@@ -185,7 +185,6 @@ export default function App() {
 
       try {
           await updateDoc(aDoc, obj)
-          console.log(idDB, 'Fue Editado')
       } catch (error) {
           console.error(error);
       }
@@ -209,8 +208,9 @@ export default function App() {
         editMode={editMode}
         error={error}
         msg={msg}
-        setArr={setArr}
-        arr={arr}
+        // setArr={setArr}
+        // arr={arr}
+        items={items}
         setMsg={setMsg}
         setFinder={setFinder}
         setError={setError}
@@ -227,24 +227,25 @@ export default function App() {
 
 
       <div className='totalesGenerales'>
-          <span>Armas Cortas: {arr.filter(el=>el.armasCortas === '1').length + ac.length}</span>
-          <span>Armas Largas: {arr.filter(el=>el.armasLargas === '1').length + al.length}</span>
+          <span>Armas Cortas: {items.filter(el=>el.armasCortas === '1').length + ac.length}</span>
+          <span>Armas Largas: {items.filter(el=>el.armasLargas === '1').length + al.length}</span>
 
           <span>
-              Total de Armas: {arr.filter(el=>el.armasLargas === '1').length + arr.filter(el=>el.armasCortas === '1').length + ac.length + al.length}
+              Total de Armas: {items.filter(el=>el.armasLargas === '1').length + items.filter(el=>el.armasCortas === '1').length + ac.length + al.length}
           </span>
       </div>
 
 
-      <FinderSearch arr={arr} handleSearch={handleSearch} searchTXT={searchTXT} />
+      <FinderSearch items={items} handleSearch={handleSearch} searchTXT={searchTXT} />
       <br />
 
       <MenuButtons
         setError={setError}
         setMsg={setMsg}
         setFinder={setFinder}
-        arr={arr}
-        setArr={setArr}
+        // arr={arr}
+        // setArr={setArr}
+        items={items}
       />
 
 
@@ -259,18 +260,23 @@ export default function App() {
      
 
       {finderState === null
-        ? arr.sort((a, b) => b.nombreDelSocio - a.nombreDelSocio).map((el, i) => (
+        ? items.sort((a, b) => b.nombreDelSocio - a.nombreDelSocio).map((el, i) => (
             <Item
               key={i}
               i={i}
               setEdit={setEdit}
               setState={setState}
+              state={state}
               el={el}
-              arr={arr}
-              setArr={setArr}
+              // arr={arr}
+              // setArr={setArr}
               setFinder={setFinder}
               setMsg={setMsg}
               deleteByIdDB={deleteByIdDB}
+              setGetDB={setGetDB}
+              getDB={getDB}
+              updateByIdDB={updateByIdDB}
+              items={items}
             />
           ))
 
@@ -280,19 +286,24 @@ export default function App() {
               i={i}
               setEdit={setEdit}
               setState={setState}
+              state={state}
               el={el}
-              arr={arr}
-              setArr={setArr}
+              // arr={arr}
+              // setArr={setArr}
               setFinder={setFinder}
               setMsg={setMsg}
               deleteByIdDB={deleteByIdDB}
+              setGetDB={setGetDB}
+              getDB={getDB}
+              updateByIdDB={updateByIdDB}
+              items={items}
             />
           ))
       }
 
 
 
-      {arr.length === 0 ? (
+      {items.length === 0 ? (
           <p className="check">No hay Socios Escritos</p>
       ) : null}
       

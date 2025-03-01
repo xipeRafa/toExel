@@ -7,8 +7,8 @@ export default function Form({
   editMode,
   msg,
   error,
-  setArr,
-  arr,
+  // setArr,
+  // arr,
   setMsg,
   setFinder,
   setError,
@@ -20,7 +20,8 @@ export default function Form({
   postSocio,
   setGetDB,
   getDB,
-  updateByIdDB
+  updateByIdDB,
+  items
 }) {
 
      const formateador = new Intl.DateTimeFormat("es-MX", {
@@ -75,7 +76,7 @@ export default function Form({
 
     } = state;
 
-console.log(state)
+
 
     const onSubmit = (e) => {
 
@@ -89,7 +90,7 @@ console.log(state)
      
 
         if (editMode) {
-            setArr(arr.map( (el) => (el.id === state.id ? state : el) ))
+            //setArr(arr.map( (el) => (el.id === state.id ? state : el) ))
             setEdit(null);
             setMsg('Editado: ' + state.nombreDelSocio);
             updateByIdDB(state.idDB, state)
@@ -110,7 +111,7 @@ console.log(state)
                 state.id = Date.now();
                 state.toggle = true;
                 state.armasArr = []
-                setArr([...arr, state]);
+                //setArr([...arr, state]);
                 setMsg('Nuevo Socio Añadido')
                 postSocio(state)
       

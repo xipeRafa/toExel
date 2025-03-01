@@ -7,11 +7,15 @@ export default function Item({
   el,
   setEdit,
   setState,
-  arr,
-  setArr,
+  // arr,
+  // setArr,
   setFinder,
   setMsg,
-  deleteByIdDB
+  deleteByIdDB,
+  setGetDB,
+  getDB,
+  updateByIdDB,
+  items
 }) {
 
 
@@ -33,36 +37,47 @@ export default function Item({
  const [isActiveModalNewArma, setIsActiveModalNewArma] = useState(true)
 
   const deleteItem = (EL) => {
-console.log(EL)
+
       if (window.confirm("Quieres Borrar a este Socio")) {
           setIsActiveModal(!isActiveModal)
-          setArr(arr.filter((el) => el.id !== EL.id))
+          //setArr(arr.filter((el) => el.id !== EL.id))
           deleteByIdDB(EL.idDB)
           setFinder(null);
           setMsg('Eliminado: ' + EL.nombreDelSocio);
+
+        setTimeout(()=>{
+              setGetDB(!getDB)
+        },700)
 
       }   
       
   }
 
 
-  const toggleItem = (ID, nombre) => {
+  const toggleItem = (EL) => {
     if (window.confirm("Quieres Cambiar Status")) {
 
       let ttArr = []
 
-      arr.map((el) => {
-          if(el.id === ID){
+      items.map((el) => {
+          if(el.id === EL.id){
               el.toggle = !el.toggle
               ttArr.push(el)
           }
       })
 
-      setArr(arr.map( (el) => (el.id === ID ? ttArr[0] : el) ))
+      //setArr(arr.map( (el) => (el.id === EL.id ? ttArr[0] : el) ))
 
-      arr.find((el) => el.id === ID).toggle
-            ? setMsg(`Marcado como Activo: ${ nombre}`)
-            : setMsg(`Marcado como Inactivo: ${ nombre}`)
+      items.find((el) => el.id === EL.id).toggle
+            ? setMsg(`Marcado como Activo: ${ EL.nombreDelSocio}`)
+            : setMsg(`Marcado como Inactivo: ${ EL.nombreDelSocio}`)
+
+
+      updateByIdDB(EL.idDB, ttArr[0])
+
+      setTimeout(()=>{
+          setGetDB(!getDB)
+      },700)
 
     }  
   }
@@ -127,7 +142,7 @@ console.log(EL)
 
       let armArr = []
 
-      arr.map((obj) => {
+      items.map((obj) => {
 
           if(obj.id === EL.id){
               obj.armasArr.push(stateNewArma)
@@ -137,7 +152,7 @@ console.log(EL)
       }) 
        
 
-      setArr(arr.map( (el) => (el.id === EL.id ? armArr[0] : el) ))
+      //setArr(arr.map( (el) => (el.id === EL.id ? armArr[0] : el) ))
 
 
       setStateNewArma({
@@ -153,7 +168,14 @@ console.log(EL)
           armasLargas:''
       })
 
-        setIsActiveModalNewArma(!isActiveModalNewArma)
+      setIsActiveModalNewArma(!isActiveModalNewArma)
+
+
+      updateByIdDB(EL.idDB, armArr[0])
+
+      setTimeout(()=>{
+            setGetDB(!getDB)
+      },700)
 
   }
 
@@ -170,7 +192,7 @@ console.log(EL)
 
 
           <div className={!el.toggle ? 'active c-pointer' : 'c-pointer'} onClick={modalName}>
-              {el.nombreDelSocio} {el.apellidoPaterno} {el.apellidoMaterno}
+              {el.nombreDelSocio} {el.apellidoPaterno} { el.apellidoMaterno}
           </div>
 
 
@@ -178,7 +200,7 @@ console.log(EL)
 
               <button className='btnCerrarModal' onClick={() => setIsActiveModal(!isActiveModal)}>Cerrar ✕</button>
 
-              <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el.id, el.nombreDelSocio)} />
+              <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el)} />
               <label className='labelItemToggle' htmlFor={el.id}> {!el.toggle ? 'Inactivo' : ' Activo' } </label>
 
 

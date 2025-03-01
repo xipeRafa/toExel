@@ -5,7 +5,7 @@ import * as XLSX from "xlsx"
 
 
 
-export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) {
+export default function MenuButtons({setError, setMsg, setFinder, items}) {
 
 
 
@@ -13,12 +13,12 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
         setError(false)
 
-        if (arr.length === 0) {
+        if (items.length === 0) {
             setMsg(null)
             setError('No hay Socios Escritos');
             return;
         } else {
-            setMsg(`${arr.length}, Todos los Socios`);
+            setMsg(`${items.length}, Todos los Socios`);
         }
 
         setFinder(null)
@@ -31,16 +31,16 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
         setError(false)
 
-        let check = arr.some((el) => el.toggle === true);
+        let check = items.some((el) => el.toggle === true);
   
         if (check) {
-            setMsg(`${arr.filter((el) => el.toggle === true).length} Socios Activos`)
+            setMsg(`${items.filter((el) => el.toggle === true).length} Socios Activos`)
         } else {
             setMsg(null)
             setError('No hay Socios Activos');
         }
 
-        setFinder(arr.filter((el) => el.toggle === true))
+        setFinder(items.filter((el) => el.toggle === true))
     }
 
 
@@ -49,16 +49,16 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
         setError(false)
 
-        let check = arr.some((el) => el.toggle === false)
+        let check = items.some((el) => el.toggle === false)
   
         if (check) {
-            setMsg(`${arr.filter((el) => el.toggle === false).length} Socios Inactivos`)
+            setMsg(`${items.filter((el) => el.toggle === false).length} Socios Inactivos`)
         } else {
             setMsg(null)
             setError('No hay Socios Inactivos');
         }
 
-        setFinder(arr.filter((el) => el.toggle === false))
+        setFinder(items.filter((el) => el.toggle === false))
     }
 
 
@@ -70,7 +70,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
         setError(false)
 
-        if (arr.length === 0) {
+        if (items.length === 0) {
             setMsg(null)
             setError('No hay Socios Escritos para Ordenar');
             return;
@@ -78,7 +78,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
             setMsg('Socios de Mayor a Menor por Fecha');
         }
 
-        let copy = [...arr]
+        let copy = [...items]
 
         setFinder(copy.sort((o1, o2) => o1.id - o2.id))
 
@@ -90,7 +90,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
 
         setError(false)
 
-        if (arr.length === 0) {
+        if (items.length === 0) {
             setMsg(null)
             setError('No hay Socios Escritos para Ordenar');
             return;
@@ -98,7 +98,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
             setMsg('Socios de Menor a Mayor por Fecha');
         }
 
-        let copy = [...arr]
+        let copy = [...items]
 
         setFinder(copy.sort((o1, o2) => o2.id - o1.id))
 
@@ -166,7 +166,7 @@ export default function MenuButtons({setError, setMsg, setFinder, arr, setArr}) 
           <button onClick={handleUnSort}>Fecha Max to Min</button>
 
 
-            <button onClick={()=>downloadExcel(arr)}>
+            <button onClick={()=>downloadExcel(items)}>
                 Download As Excel
             </button>
 
