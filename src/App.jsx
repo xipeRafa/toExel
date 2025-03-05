@@ -12,6 +12,7 @@ import useFinder from './hooks/useFinder.jsx';
 import useLocalStorage from './hooks/useLocalStorage.jsx';
 import useMsgs from './hooks/useMsgs.jsx';
 
+// import DownloadExcelAnexo from "./components/btnsExcel/DownloadExcelAnexo.jsx"
 
 
 import {
@@ -24,6 +25,11 @@ import {
 } from 'firebase/firestore';
 
 import { firestoreDB } from './firebase/firebaseConfig';
+
+
+
+
+
 
 
 
@@ -191,6 +197,72 @@ export default function App() {
 
 
 
+// console.log(items.sort(function(a, b) {
+//     if (a.apellidoPaterno > b.apellidoPaterno) {
+//         return 1;
+//     } else if (a.apellidoPaterno < b.apellidoPaterno) {
+//         return -1;
+//     }
+// })
+
+
+  items.sort((a, b) => {
+          const result = a.nombreDelSocio.localeCompare(b.nombreDelSocio);
+
+          return result === 0 ? result : a.apellidoPaterno.localeCompare(b.apellidoPaterno);
+        })
+
+
+
+
+const multiDataSetAnexo = [
+
+
+  {
+    columns: [
+      { value: "No. DE REGISTRO", widthPx: 120, style: { alignment: { horizontal: "center", bold: true } }, }, // width in pixels
+      { value: "NOMBRE SOCIO", widthPx: 120 }, // width in charachters
+      { value: "No. DE SOCIO", widthPx: 120 }, // , widthCh: 120 will check for width in pixels first
+      { value: "ARMAS CORTAS", widthPx: 120 }, // width in pixels
+      { value: "ARMAS LARGAS", widthPx: 120 }, // width in charachters
+      { value: "FECHA ALTA", widthPx: 120 }, // will check for width in pixels first
+    ],
+    data: [
+      ["Johnson", 300070, "Male", "Johnson", 30000, "Male"],
+      ["Monika", 355000, "Female"],
+      ["Konstantina", 20000, "Female"],
+      ["John", 250000, "Male"],
+      ["Josef", 450500, "Male"],
+    ],
+  },
+
+
+  // {
+  //   xSteps: 1, // Will start putting cell with 1 empty cell on left most
+  //   ySteps: 5, //will put space of 5 rows,
+  //   columns: ["Name", "Department"],
+  //   data: [
+  //     ["Johnson", "Finance"],
+  //     ["Monika", "IT"],
+  //     ["Konstantina", "IT Billing"],
+  //     ["John", "HR"],
+  //     ["Josef", "Testing"],
+  //   ],
+  // },
+
+
+]
+
+// items.map(obj=>{
+//   console.log(Object.values(obj))
+// })
+
+// multiDataSetAnexo[0].data = ['Johnson 1', 30000, 'Male 1']
+// console.log(multiDataSetAnexo)
+
+
+
+
 
 
 
@@ -247,18 +319,15 @@ export default function App() {
       />
 
 
-     {/*  <JsonToExcel
-        title="Download as Excel"
-        data={arr}
-        fileName="sample-file"
-        btnClassName="custom-classname"
-      />*/}
+  
+       {/*<DownloadExcelAnexo multiDataSetAnexo={multiDataSetAnexo} />*/}
+
 
 
      
 
       {finderState === null
-        ? items.sort((a, b) => b.nombreDelSocio - a.nombreDelSocio).map((el, i) => (
+        ? items.map((el, i) => (
             <Item
               key={i}
               i={i}
@@ -278,7 +347,7 @@ export default function App() {
             />
           ))
 
-        : finderState.sort((a, b) => a.nombreDelSocio - b.nombreDelSocio).map((el, i) => (
+        : finderState.map((el, i) => (
             <Item
               key={i}
               i={i}
@@ -304,6 +373,72 @@ export default function App() {
       {items.length === 0 ? (
           <p className="check">No hay Socios Escritos</p>
       ) : null}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     {/***/}
+
+
       
     </div>
   );

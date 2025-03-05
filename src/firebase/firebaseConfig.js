@@ -11,12 +11,12 @@ import { getFirestore } from 'firebase/firestore';
 //require("dotenv").config()
 
 const app = firebase.initializeApp({
-    apiKey: "AIzaSyBHgG4mwWSEUBLPS1p2XFtaC8GwPIv2xN8",
-  authDomain: "arquidiocesishermosillo-776dd.firebaseapp.com",
-  projectId: "arquidiocesishermosillo-776dd",
-  storageBucket: "arquidiocesishermosillo-776dd.appspot.com",
-  messagingSenderId: "767127814821",
-  appId: "1:767127814821:web:6c159d62075bcd1271c34c"
+    apiKey: "AIzaSyB2F4R4KkxUwb4GFKs7twRhiHS5i-i51D4",
+  authDomain: "scopic-73416.firebaseapp.com",
+  projectId: "scopic-73416",
+  storageBucket: "scopic-73416.appspot.com",
+  messagingSenderId: "475263107333",
+  appId: "1:475263107333:web:27180a036864e16618376c"
 });
 
 

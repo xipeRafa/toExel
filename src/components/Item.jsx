@@ -84,9 +84,6 @@ export default function Item({
 
 
   const editItem = (item) => {
-
-    console.log(item.idDB, el)
-
       setIsActiveModal(!isActiveModal)
       window.scrollTo(0,0);
       setMsg('Listo para Editar')
@@ -210,7 +207,7 @@ export default function Item({
 
                   <div>
                       <p className='name'>{el.nombreDelSocio} </p>
-                      <p className='name'> {el.apellidoPaterno} {el.apellidoMaterno} </p>
+                      <p className='name'> {el.apellidoPaterno} {el.apellidoMaterno} </p><br />
                       <p><span>CURP:</span> {el.curp}</p>
                       <p><span>Numero:</span> {el.numeroDelSocio}</p>
 
@@ -234,6 +231,7 @@ export default function Item({
 
                   <div className='newArmas'>{el.armasArr.map((ele, i)=>(
                       <div key={i}>
+                      <br />
                           <p><span>Clase:</span> {ele.clase}</p>
                           <p><span>Calibre:</span> {ele.calibre}</p>
                           <p><span>Marca:</span> {ele.marca}</p>
