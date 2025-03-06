@@ -1,8 +1,7 @@
 
 // import '../style.css';
 
-//import * as XLSX from "xlsx"
-import ReactHTMLTableToExcel from "react-html-table-to-excel"
+
 
 
 
@@ -112,50 +111,12 @@ export default function MenuButtons({setError, setMsg, setFinder, items}) {
 
 
 
-/* -=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=------------------------------clearComplete----------- */
 
-    // const handleClearComplete = () => {
 
-    //     setError(false)
-
-    //     let check = arr.some((el) => el.toggle === true);
-
-    //     if (check) {
-    //         setMsg('Las Tareas Completadas se Eliminaron ');
-    //     } else {
-    //         setMsg('No hay Tareas Completadas para Eliminar');
-    //         return;
-    //     }
-
-    //     setArr(arr.filter((el) => el.toggle === false))
-
-    //     setFinder(null)
-    // }
 
 
     
-  // const downloadExcel = (data) => {
 
-  //     let hello = []
-
-  //     data.map(el =>{
-  //       delete el.id
-  //       delete el.toggle
-
-  //       // el.NoREGCLUB = el.numeroRegistroDelClub
-  //       // delete el.numeroRegistroDelClub
-
-  //       hello.unshift(el)
-  //     })
-
-  //    console.log(hello)
-  //     const worksheet = XLSX.utils.json_to_sheet(data);
-  //     const workbook = XLSX.utils.bo9ok_new();
-  //     XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1") 
-  //     //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
-  //     //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
-  //     XLSX.writeFile(workbook, "DataSheet.xlsx");
-  // }
 
 
 
@@ -169,18 +130,7 @@ export default function MenuButtons({setError, setMsg, setFinder, items}) {
           <button onClick={handleUnSort}>Fecha Max to Min</button>
 
 
-            <button className='dn' onClick={()=>downloadExcel(items)}>
-                Download As Excel 
-            </button>
-
-                <ReactHTMLTableToExcel
-                    id="test-table-xls-button"
-                    className="download-table-xls-button dn"
-                    table="table-to-xls"
-                    filename="tablexls"
-                    sheet="tablexls"
-                    buttonText="Download as XLS Completo"
-                />
+          
                 <br/>
                 <br />
 

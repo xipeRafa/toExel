@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+
 import './App.css';
 
 import FinderSearch from './components/FinderSearch.jsx';
@@ -33,23 +33,85 @@ import { firestoreDB } from './firebase/firebaseConfig';
 
 
 
+
+
+
+
+
+
+
+import { useCallback, useMemo, useRef, useState, useEffect } from 'react';
+
+import { AgGridReact } from 'ag-grid-react';
+
+import {
+  CellStyleModule,
+  ClientSideRowModelModule,
+  ModuleRegistry,
+  TextFilterModule,
+  ValidationModule,
+  createGrid,
+} from "ag-grid-community";
+
+import {
+  ColumnMenuModule,
+  ContextMenuModule,
+  ExcelExportModule,
+} from "ag-grid-enterprise";
+
+ModuleRegistry.registerModules([
+  TextFilterModule,
+  CellStyleModule,
+  ClientSideRowModelModule,
+  ExcelExportModule,
+  ColumnMenuModule,
+  ContextMenuModule,
+  ValidationModule /* Development Only */,
+]);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export default function App() {
+
+
+   const formateador = new Intl.DateTimeFormat("es-MX", {
+        dateStyle: "long",
+        //timeStyle: "short",
+    })
+
+    const milisegundosComoFecha = (milisegundos=0) => {  // '8 de agosto de 2024, 12:08 a.m.'
+
+        return formateador.format(new Date(milisegundos))
+
+    }
 
 
   // const [arr, setArr] = useLocalStorage();
 
     const [items, setItems] = useState([]);
-
+console.log(items)
   const itemCollection = collection(firestoreDB, 'sociosCaza')
   
 
 
   const [getDB, setGetDB] = useState(true);
 
-  useEffect(() => {
-     let isMounted = true
 
-     if(isMounted = true){
+  useEffect(() => {
+
+    if(localStorage.userSocio !== undefined){
+
     getDocs(itemCollection)
       .then((item) => {
           if (item.size === 0) {
@@ -63,6 +125,27 @@ export default function App() {
 
           setItems(documents)
           //localStorage.setItem('array', JSON.stringify(documents))
+
+
+
+          let arrExcel = []
+          documents.forEach((obj) => {
+            let objExcel = {}
+         
+              objExcel.nombreDelSocio=obj.nombreDelSocio
+              objExcel.numeroDelSocio=obj.numeroDelSocio
+              objExcel.armasCortas=obj.armasCortas
+              objExcel.armasLargas=obj.armasLargas
+              objExcel.fechaDeInscripcion=milisegundosComoFecha(obj.fechaDeInscripcion)
+              objExcel.numeroDeRegistroDelClub='624'
+
+              arrExcel.push(objExcel)
+
+          })
+
+         
+              localStorage.toExel=JSON.stringify(arrExcel)
+          
       })
       .catch((err) => {
           console.log('Error searching items', err);
@@ -75,7 +158,7 @@ export default function App() {
     
     }
 
-    isMounted = false
+    
   }, [getDB]);
 
 
@@ -215,26 +298,26 @@ export default function App() {
 
 
 
-const multiDataSetAnexo = [
+// const multiDataSetAnexo = [
 
 
-  {
-    columns: [
-      { value: "No. DE REGISTRO", widthPx: 120, style: { alignment: { horizontal: "center", bold: true } }, }, // width in pixels
-      { value: "NOMBRE SOCIO", widthPx: 120 }, // width in charachters
-      { value: "No. DE SOCIO", widthPx: 120 }, // , widthCh: 120 will check for width in pixels first
-      { value: "ARMAS CORTAS", widthPx: 120 }, // width in pixels
-      { value: "ARMAS LARGAS", widthPx: 120 }, // width in charachters
-      { value: "FECHA ALTA", widthPx: 120 }, // will check for width in pixels first
-    ],
-    data: [
-      ["Johnson", 300070, "Male", "Johnson", 30000, "Male"],
-      ["Monika", 355000, "Female"],
-      ["Konstantina", 20000, "Female"],
-      ["John", 250000, "Male"],
-      ["Josef", 450500, "Male"],
-    ],
-  },
+//   {
+//     columns: [
+//       { value: "No. DE REGISTRO", widthPx: 120, style: { alignment: { horizontal: "Center", bold: true } }, }, // width in pixels
+//       { value: "NOMBRE SOCIO", widthPx: 120 }, // width in charachters
+//       { value: "No. DE SOCIO", widthPx: 120 }, // , widthCh: 120 will check for width in pixels first
+//       { value: "ARMAS CORTAS", widthPx: 120 }, // width in pixels
+//       { value: "ARMAS LARGAS", widthPx: 120 }, // width in charachters
+//       { value: "FECHA ALTA", widthPx: 120 }, // will check for width in pixels first
+//     ],
+//     data: [
+//       ["Johnson", 300070, "Male", "Johnson", 30000, "Male"],
+//       ["Monika", 355000, "Female"],
+//       ["Konstantina", 20000, "Female"],
+//       ["John", 250000, "Male"],
+//       ["Josef", 450500, "Male"],
+//     ],
+//   },
 
 
   // {
@@ -251,7 +334,14 @@ const multiDataSetAnexo = [
   // },
 
 
-]
+// ]
+
+
+
+
+
+
+
 
 // items.map(obj=>{
 //   console.log(Object.values(obj))
@@ -261,6 +351,163 @@ const multiDataSetAnexo = [
 // console.log(multiDataSetAnexo)
 
 
+ const gridRef = useRef();
+
+
+
+  const [rowData, setRowData] = useState();
+
+  console.log(rowData);
+
+
+
+
+// header
+  const [columnDefs, setColumnDefs] = useState([
+    { 
+      field: 'numeroDeRegistroDelClub', minWidth: 150, headerName: 'No. DE REGISTRO',  
+      headerClass: 'gold-header', hearderStyle:{fontWeithg:'Bold'}
+    },
+    {
+      field: 'nombreDelSocio', minWidth: 200, headerName: 'NOMBRE SOCIO', headerClass: 'gold-header'
+      // cellClassRules: {
+      //   greenBackground: (params) => {
+      //     return params.value < 23;
+      //   },
+      //   redFont: (params) => {
+      //     return params.value < 20;
+      //   },
+      // },
+    },
+    {
+      field: 'numeroDelSocio',
+      minWidth: 200,
+      headerName: 'No. DE SOCIO', headerClass: 'gold-header'
+      // cellClassRules: {
+      //   redFont: (params) => {
+      //     return params.value === 'United States';
+      //   },
+      // },
+    },
+    { 
+      field: 'armasCortas',
+      minWidth: 150,
+      headerName: 'ARMAS CORTAS', headerClass: 'gold-header'
+      // valueGetter: 'data.country.charAt(0)',
+      // cellClass: ['redFont', 'greenBackground'],
+    },
+    {
+      field: 'armasLargas', minWidth: 150, headerName: 'ARMAS LARGAS', headerClass: 'gold-header'
+      // cellClassRules: {
+      //   notInExcel: (params) => {
+      //     return true;
+      //   },
+      // },
+    },
+    { field: 'fechaDeInscripcion', minWidth: 150,  headerName: 'FECHA ALTA', headerClass: 'gold-header' },
+  ]);
+
+
+
+
+  // const defaultColDef = useMemo(() => {
+  //   return {
+  //     cellClassRules: {
+  //       darkGreyBackground: (params) => {
+  //         return (params.node.rowIndex || 0) % 2 == 0;
+  //       },
+  //     },
+  //     filter: true,
+  //     minWidth: 100,
+  //     flex: 1,
+  //   };
+  // }, []);
+
+
+
+
+
+
+  const excelStyles = useMemo(() => {
+    return [
+      {
+        id: 'gold-header',
+        alignment: {
+          vertical: 'Center',
+          horizontal: 'Center'
+        },
+      },
+      {
+        id: 'cell',
+        alignment: {
+          vertical: 'Center',
+          horizontal: 'Center'
+        },
+      },
+      {
+        id: 'greenBackground',
+        // interior: {
+        //   color: '#b5e6b5',
+        //   pattern: 'Solid',
+        // },
+        alignment: {
+          vertical: 'Center',
+          horizontal: 'Center'
+        },
+        font: {
+          color: '#ffffff',
+        },
+      },
+      {
+        id: 'redFont',
+        font: {
+          fontName: 'Calibri Light',
+          underline: 'Single',
+          italic: true,
+          color: '#BB0000',
+        },
+      },
+      {
+        id: 'darkGreyBackground',
+        interior: {
+          color: '#888888',
+          pattern: 'Solid',
+        },
+        font: {
+          fontName: 'Calibri Light',
+          color: '#ffffff',
+        },
+      },
+    ]
+     }, []);
+
+
+
+
+
+
+  
+
+  
+    
+
+// const onGridReady = useCallback((params) => {
+//     
+//   }, []);
+ 
+
+
+
+ 
+
+
+
+  const onBtnExportDataAsExcel = useCallback(() => {
+          setRowData(JSON.parse(localStorage.toExel))
+          setTimeout(()=>{
+              gridRef.current.api.exportDataAsExcel(); 
+          },1111)
+  }, []);
 
 
 
@@ -317,6 +564,21 @@ const multiDataSetAnexo = [
         // setArr={setArr}
         items={items}
       />
+
+      <button onClick={onBtnExportDataAsExcel}  >
+          Excel Anexo
+      </button>
+
+
+      <AgGridReact
+                ref={gridRef}
+                rowData={rowData}
+                columnDefs={columnDefs}
+
+                //defaultColDef={defaultColDef}
+                excelStyles={excelStyles}
+                //onGridReady={onGridReady}
+              />
 
 
   

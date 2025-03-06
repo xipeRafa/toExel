@@ -29,6 +29,10 @@ export default function Login() {
       if(nameLogin==='Susana' && passwordLogin==='Susy123'){
           localStorage.userSocio=nameLogin
           setIsActiveModal(false)
+          setTimeout(()=>{
+              location.reload()
+          },555)
+          
       }else{
           alert('Nombre o Contraseña incorrecto')
       }

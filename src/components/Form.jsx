@@ -106,7 +106,6 @@ export default function Form({
             // }
 
 
-                state.id = Date.now();
                 state.toggle = true;
                 state.armasArr = []
                 //setArr([...arr, state]);
