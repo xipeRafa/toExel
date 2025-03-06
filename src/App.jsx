@@ -112,7 +112,7 @@ console.log(items)
 
     if(localStorage.userSocio !== undefined){
 
-    getDocs(itemCollection)
+      getDocs(itemCollection)
       .then((item) => {
           if (item.size === 0) {
               console.log('No results!');
@@ -124,27 +124,6 @@ console.log(items)
           }));
 
           setItems(documents)
-          //localStorage.setItem('array', JSON.stringify(documents))
-
-
-
-          let arrExcel = []
-          documents.forEach((obj) => {
-            let objExcel = {}
-         
-              objExcel.nombreDelSocio=obj.nombreDelSocio
-              objExcel.numeroDelSocio=obj.numeroDelSocio
-              objExcel.armasCortas=obj.armasCortas
-              objExcel.armasLargas=obj.armasLargas
-              objExcel.fechaDeInscripcion=milisegundosComoFecha(obj.fechaDeInscripcion)
-              objExcel.numeroDeRegistroDelClub='624'
-
-              arrExcel.push(objExcel)
-
-          })
-
-         
-              localStorage.toExel=JSON.stringify(arrExcel)
           
       })
       .catch((err) => {
@@ -502,12 +481,33 @@ console.log(items)
 
 
 
-  const onBtnExportDataAsExcel = useCallback(() => {
-          setRowData(JSON.parse(localStorage.toExel))
+  const onBtnExportDataAsExcel = (items) => {
+
+          let arrExcel = []
+
+          items.forEach((obj) => {
+              let objExcel = {}
+         
+              objExcel.nombreDelSocio=obj.nombreDelSocio
+              objExcel.numeroDelSocio=obj.numeroDelSocio
+              objExcel.armasCortas=obj.armasCortas
+              objExcel.armasLargas=obj.armasLargas
+              objExcel.fechaDeInscripcion=milisegundosComoFecha(obj.fechaDeInscripcion)
+              objExcel.numeroDeRegistroDelClub='624'
+
+              arrExcel.push(objExcel)
+
+          })
+
+          
           setTimeout(()=>{
-              gridRef.current.api.exportDataAsExcel(); 
+              setRowData(arrExcel) 
+          },511)
+
+          setTimeout(()=>{
+              gridRef.current.api.exportDataAsExcel()
           },1111)
-  }, []);
+  };
 
 
 
@@ -565,7 +565,7 @@ console.log(items)
         items={items}
       />
 
-      <button onClick={onBtnExportDataAsExcel}  >
+      <button onClick={()=>onBtnExportDataAsExcel(items)}  >
           Excel Anexo
       </button>
 
