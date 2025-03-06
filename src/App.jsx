@@ -345,7 +345,7 @@ console.log(items)
   const [columnDefs, setColumnDefs] = useState([
     { 
       field: 'numeroDeRegistroDelClub', minWidth: 150, headerName: 'No. DE REGISTRO',  
-      headerClass: 'gold-header', hearderStyle:{fontWeithg:'Bold'}
+      headerClass: 'gold-header', hearderStyle:{fontWeithg:'Bold'},
     },
     {
       field: 'nombreDelSocio', minWidth: 200, headerName: 'NOMBRE SOCIO', headerClass: 'gold-header'
@@ -415,6 +415,14 @@ console.log(items)
           vertical: 'Center',
           horizontal: 'Center'
         },
+        font: {
+          bold:true,
+        },
+        border:{
+          color:'black',
+          lineStyle:'Dash',
+          weight:'1'
+        },
       },
       {
         id: 'cell',
@@ -444,6 +452,7 @@ console.log(items)
           underline: 'Single',
           italic: true,
           color: '#BB0000',
+          bold:true,
         },
       },
       {
@@ -460,19 +469,6 @@ console.log(items)
     ]
      }, []);
 
-
-
-
-
-
-  
-
-  
-    
-
-// const onGridReady = useCallback((params) => {
-//     
-//   }, []);
  
 
 
