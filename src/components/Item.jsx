@@ -75,6 +75,7 @@ export default function Item({
 
 
   const toggleItem = (EL) => {
+    console.log(EL)
     if (window.confirm("Quieres Cambiar Status")) {
 
       let ttArr = []
@@ -239,8 +240,10 @@ export default function Item({
 
               <button className='btnCerrarModal' onClick={() => setIsActiveModal(!isActiveModal)}>Cerrar ✕</button>
 
-              <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el)} />
-              <label className='labelItemToggle' htmlFor={el.id}> {!el.toggle ? 'Inactivo' : ' Activo' } </label>
+              <input className='dn' type="button" id={el.id} />
+              <label className='labelItemToggle' htmlFor={el.id} onClick={()=> toggleItem(el)}> 
+                  {!el.toggle ? 'Inactivo' : ' Activo' } 
+              </label>
 
 
               <div className='modalContent'>
