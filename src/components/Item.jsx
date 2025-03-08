@@ -56,7 +56,7 @@ export default function Item({
 
   const deleteArma = (ARMA) => {
 
-      if (window.confirm("Quieres Borrar esta Arma")) {
+      if (window.confirm("Quieres Borrar esta Arma Clase: " + ARMA.clase)) {
 
           setIsActiveModal(!isActiveModal)
           //setArr(arr.filter((el) => el.id !== EL.id))
@@ -283,7 +283,7 @@ export default function Item({
                           <p><span>Arma Corta:</span> {ele.armasCortas}</p>
                           <p><span>Arma Larga:</span> {ele.armasLargas}</p>
 
-                          <button onClick={() => deleteArma(ele)}>Borrar Arma</button>
+                          <button onClick={() => deleteArma(ele)}>🗑︎</button>
                           {/*<button onClick={() => editItemArma(ele)}>Editar</button>*/}
                   </div>       
                   ))}
