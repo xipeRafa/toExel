@@ -287,7 +287,7 @@ modal{
 .editarArmaButtonsContainer{
   display: flex;
   padding-left: 14px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
 }
 
 .modalContent>div>p>span{
