@@ -92,7 +92,7 @@ export default function App() {
 
     const milisegundosComoFecha = (milisegundos=0) => {  // '8 de agosto de 2024, 12:08 a.m.'
 
-        return formateador.format(new Date(milisegundos))
+        return formateador.format(new Date(milisegundos)).toUpperCase()
 
     }
 
@@ -343,11 +343,12 @@ export default function App() {
 // header
   const [columnDefs, setColumnDefs] = useState([
     { 
-      field: 'numeroDeRegistroDelClub', minWidth: 150, headerName: 'No. DE REGISTRO',  
-      headerClass: 'gold-header', hearderStyle:{fontWeithg:'Bold'}, 
+      field: 'numeroDeRegistroDelClub', width: 10, headerName: 'No. DE REGISTRO',  
+      headerClass: 'gold-header', 
+      // hearderStyle:{fontWeithg:'Bold'}, 
     },
     {
-      field: 'nombreDelSocio', minWidth: 200, headerName: 'NOMBRE SOCIO', headerClass: 'gold-header',
+      field: 'nombreDelSocio', minWidth: 300, headerName: 'NOMBRE SOCIO', headerClass: 'gold-header',
       // cellClassRules: {
       //   greenBackground: (params) => {
       //     return params.value < 23;
@@ -361,7 +362,8 @@ export default function App() {
     },
     {
       field: 'numeroDelSocio',
-      minWidth: 200,
+      // minWidth: 100,
+      width: 50,
       headerName: 'No. DE SOCIO', headerClass: 'gold-header', border:true,
       // cellClassRules: {
       //   redFont: (params) => {
@@ -371,13 +373,13 @@ export default function App() {
     },
     { 
       field: 'armasCortas',
-      minWidth: 150,
+      width: 50,
       headerName: 'ARMAS CORTAS', headerClass: 'gold-header'
       // valueGetter: 'data.country.charAt(0)',
       // cellClass: ['redFont', 'greenBackground'],
     },
     {
-      field: 'armasLargas', minWidth: 150, headerName: 'ARMAS LARGAS', headerClass: 'gold-header'
+      field: 'armasLargas', width: 50, headerName: 'ARMAS LARGAS', headerClass: 'gold-header'
       // cellClassRules: {
       //   notInExcel: (params) => {
       //     return true;
@@ -414,7 +416,8 @@ export default function App() {
         id: 'gold-header',
         alignment: {
           vertical: 'Center',
-          horizontal: 'Center'
+          horizontal: 'Center',
+          wrapText: true,
         },
         font: {
           bold:true,
@@ -447,6 +450,28 @@ export default function App() {
         alignment: {
           vertical: 'Center',
           horizontal: 'Center'
+        },
+        borders: {
+          borderBottom: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 1,
+          },
+          borderTop: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 1,
+          },
+          borderLeft: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 1,
+          },
+          borderRight: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 1,
+          },
         },
       },
       {
@@ -502,8 +527,6 @@ export default function App() {
 
           items.forEach((obj,index) => {
               let objExcel = {}
-
-              console.log(obj)
 
               let ac = Number(obj.armasArr.filter(el=>el.armasCortas==='1').length) + Number(obj.armasCortas)
               let al = Number(obj.armasArr.filter(el=>el.armasLargas==='1').length) + Number(obj.armasLargas)
