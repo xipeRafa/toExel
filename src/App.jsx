@@ -482,11 +482,16 @@ export default function App() {
 
           items.forEach((obj,index) => {
               let objExcel = {}
-         
+
+              console.log(obj)
+
+              let ac = Number(obj.armasArr.filter(el=>el.armasCortas==='1').length) + Number(obj.armasCortas)
+              let al = Number(obj.armasArr.filter(el=>el.armasLargas==='1').length) + Number(obj.armasLargas)
+
               objExcel.nombreDelSocio=obj.nombreDelSocio +' '+ obj.apellidoPaterno +' '+ obj.apellidoMaterno
               objExcel.numeroDelSocio=index+1
-              objExcel.armasCortas=obj.armasCortas
-              objExcel.armasLargas=obj.armasLargas
+              objExcel.armasCortas=ac
+              objExcel.armasLargas=al
               objExcel.fechaDeInscripcion=milisegundosComoFecha(obj.fechaDeInscripcion)
               objExcel.numeroDeRegistroDelClub='624'
 
