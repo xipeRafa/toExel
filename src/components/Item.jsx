@@ -75,7 +75,7 @@ export default function Item({
 
 
   const toggleItem = (EL) => {
-    console.log(EL)
+
     if (window.confirm("Quieres Cambiar Status")) {
 
       let ttArr = []
@@ -101,6 +101,7 @@ export default function Item({
       },700)
 
     }  
+
   }
 
 
@@ -275,7 +276,6 @@ export default function Item({
 
                   <div className='newArmas'>{el.armasArr.map((ele, i)=>(
                       <div key={i}>
-                      <br />
                           <p><span>Clase:</span> {ele.clase}</p>
                           <p><span>Calibre:</span> {ele.calibre}</p>
                           <p><span>Marca:</span> {ele.marca}</p>
