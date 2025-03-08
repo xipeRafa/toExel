@@ -179,7 +179,6 @@ export default function MenuButtons({setError, setMsg, setFinder, items}) {
 
                         <td>{el.nombreDelSocio}</td>
                         <td>{el.curp}</td>
-                        <td>{el.numeroDelSocio}</td>
                         <td>{el.domicilioDelSocio}</td>
 
 

@@ -56,7 +56,6 @@ export default function Form({
       apellidoMaterno,
 
       curp,
-      numeroDelSocio,
       domicilioDelSocio,
 
       clase,
@@ -125,7 +124,6 @@ export default function Form({
       apellidoMaterno: '',
 
       curp: '',
-      numeroDelSocio:'',
       domicilioDelSocio: '',
 
       clase: '',
@@ -178,21 +176,13 @@ export default function Form({
       <form onSubmit={onSubmit} className='formStyle0'>
         <div className='formStyle1'>
 
-          <label className={!editMode ? 'dn' : ''}>Numero Registro Del Club</label>
-          <input
-          readOnly
-              type="text"
-              autoComplete="off"
-              placeholder="624"
-              //name="numeroRegistroDelClub"
-          />
 
-          <label className={!editMode ? 'dn' : ''}>Domicilio Del Club</label>
+          <label className={!editMode ? 'dn' : ''}>REG Domicilio Del Club</label>
           <input
           readOnly
               type="text"
               autoComplete="off"
-              placeholder="San Luis Potosi No. 158, Col. San Benito, C. P. 83190, Hermosillo, Son."
+              placeholder="624 - San Luis Potosi No. 158, Col. San Benito, C. P. 83190, Hermosillo, Son."
               name="domicilioDelClub"
               //onChange={handleState}
               //value={domicilioDelClub}
@@ -242,15 +232,7 @@ export default function Form({
               required
           />
 
-          <label className={!editMode ? 'dn' : ''}>Numero Del Socio</label>
-          <input
-              type="text"
-              autoComplete="off"
-              placeholder="Numero Del Socio"
-              name="numeroDelSocio"
-              onChange={handleState}
-              value={numeroDelSocio}
-          />
+         
 
           <label className={!editMode ? 'dn' : ''}>Domicilio Del Socio</label>
            <input
@@ -271,6 +253,19 @@ export default function Form({
               placeholder="Fecha de Inscripción"
               name="fechaDeInscripcion"
               onChange={(e)=>handleStateDateInput(e)}
+          />
+
+
+          <label className={!editMode ? 'dn' : ''}>Fecha De Inscripcion</label>
+            <input
+              className='fechaDeInscripcion'
+              readOnly
+              type="text"
+              value={fechaDeInscripcion === 0 
+                        ? 'Fecha de Inscripción' 
+                        : `Inscripción: ${milisegundosComoFecha(fechaDeInscripcion)}`
+                      }
+              
           />
 
 </div>
@@ -360,17 +355,7 @@ export default function Form({
           />
 
           
-           <label className={!editMode ? 'dn' : ''}>Fecha De Inscripcion</label>
-          <input
-              className='fechaDeInscripcion'
-              readOnly
-              type="text"
-              value={fechaDeInscripcion === 0 
-                        ? 'Fecha de Inscripción' 
-                        : `Inscripción: ${milisegundosComoFecha(fechaDeInscripcion)}`
-                      }
-              
-          />
+            
  </div>
 
 <br />

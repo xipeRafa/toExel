@@ -209,7 +209,6 @@ export default function Item({
                       <p className='name'>{el.nombreDelSocio} </p>
                       <p className='name'> {el.apellidoPaterno} {el.apellidoMaterno} </p><br />
                       <p><span>CURP:</span> {el.curp}</p>
-                      <p><span>Numero:</span> {el.numeroDelSocio}</p>
 
                       <p><span>Domicilio:</span> {el.domicilioDelSocio}</p>
 
@@ -345,6 +344,7 @@ export default function Item({
 
           {/*<label>Arma Corta</label>*/}
           <input
+              min="0" step="1" max="1"
               type="number"
               autoComplete="off"
               placeholder="Arma Corta"
@@ -355,6 +355,7 @@ export default function Item({
 
           {/*<label>Arma Larga</label>*/}
           <input
+              min="0" step="1" max="1"
               type="number"
               autoComplete="off"
               placeholder="Arma Larga"

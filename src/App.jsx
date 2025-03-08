@@ -100,7 +100,7 @@ export default function App() {
   // const [arr, setArr] = useLocalStorage();
 
     const [items, setItems] = useState([]);
-console.log(items)
+
   const itemCollection = collection(firestoreDB, 'sociosCaza')
   
 
@@ -149,7 +149,6 @@ console.log(items)
       apellidoMaterno: '',
 
       curp: '',
-      numeroDelSocio:'',
       domicilioDelSocio: '',
 
       clase: '',
@@ -336,7 +335,7 @@ console.log(items)
 
   const [rowData, setRowData] = useState();
 
-  console.log(rowData);
+
 
 
 
@@ -481,11 +480,11 @@ console.log(items)
 
           let arrExcel = []
 
-          items.forEach((obj) => {
+          items.forEach((obj,index) => {
               let objExcel = {}
          
-              objExcel.nombreDelSocio=obj.nombreDelSocio
-              objExcel.numeroDelSocio=obj.numeroDelSocio
+              objExcel.nombreDelSocio=obj.nombreDelSocio +' '+ obj.apellidoPaterno +' '+ obj.apellidoMaterno
+              objExcel.numeroDelSocio=index+1
               objExcel.armasCortas=obj.armasCortas
               objExcel.armasLargas=obj.armasLargas
               objExcel.fechaDeInscripcion=milisegundosComoFecha(obj.fechaDeInscripcion)
