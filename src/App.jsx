@@ -344,23 +344,25 @@ export default function App() {
   const [columnDefs, setColumnDefs] = useState([
     { 
       field: 'numeroDeRegistroDelClub', minWidth: 150, headerName: 'No. DE REGISTRO',  
-      headerClass: 'gold-header', hearderStyle:{fontWeithg:'Bold'},
+      headerClass: 'gold-header', hearderStyle:{fontWeithg:'Bold'}, 
     },
     {
-      field: 'nombreDelSocio', minWidth: 200, headerName: 'NOMBRE SOCIO', headerClass: 'gold-header'
+      field: 'nombreDelSocio', minWidth: 200, headerName: 'NOMBRE SOCIO', headerClass: 'gold-header',
       // cellClassRules: {
       //   greenBackground: (params) => {
       //     return params.value < 23;
       //   },
-      //   redFont: (params) => {
-      //     return params.value < 20;
-      //   },
+        // redFont: (params) => {
+        //   return params.value < 20;
+        // },
+
       // },
+      cellClass: ['greenBackground']
     },
     {
       field: 'numeroDelSocio',
       minWidth: 200,
-      headerName: 'No. DE SOCIO', headerClass: 'gold-header'
+      headerName: 'No. DE SOCIO', headerClass: 'gold-header', border:true,
       // cellClassRules: {
       //   redFont: (params) => {
       //     return params.value === 'United States';
@@ -417,10 +419,27 @@ export default function App() {
         font: {
           bold:true,
         },
-        border:{
-          color:'black',
-          lineStyle:'Dash',
-          weight:'1'
+        borders: {
+          borderBottom: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 2,
+          },
+          borderTop: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 2,
+          },
+          borderLeft: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 2,
+          },
+          borderRight: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 2,
+          },
         },
       },
       {
@@ -438,10 +457,11 @@ export default function App() {
         // },
         alignment: {
           vertical: 'Center',
-          horizontal: 'Center'
+          horizontal: 'Left'
         },
         font: {
-          color: '#ffffff',
+          // color: '#ffffff',
+          bold:true
         },
       },
       {
