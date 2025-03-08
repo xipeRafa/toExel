@@ -240,10 +240,10 @@ export default function Item({
 
               <button className='btnCerrarModal' onClick={() => setIsActiveModal(!isActiveModal)}>Cerrar ✕</button>
 
-              <input className='dn' type="button" id={el.id} />
-              <label className='labelItemToggle' htmlFor={el.id} onClick={()=> toggleItem(el)}> 
+              {/*<input className='d' type="button" id={el.id} value='ss'/>*/}
+              <label className='labelItemToggle' onClick={()=> toggleItem(el)}> 
                   {!el.toggle ? 'Inactivo' : ' Activo' } 
-              </label>
+              </label> {/* htmlFor={el.id}*/}
 
 
               <div className='modalContent'>
