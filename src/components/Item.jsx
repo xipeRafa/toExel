@@ -242,8 +242,8 @@ export default function Item({
               <button className='btnCerrarModal' onClick={() => setIsActiveModal(!isActiveModal)}>Cerrar ✕</button>
 
               {/*<input className='d' type="button" id={el.id} value='ss'/>*/}
-              <label className='labelItemToggle' onClick={()=> toggleItem(el)}> 
-                  {!el.toggle ? 'Inactivo' : ' Activo' } 
+              <label className={el.toggle ? 'labelItemToggle' : 'labelItemToggleFalse' } onClick={()=> toggleItem(el)}> 
+                  {!el.toggle ? 'Inactivo ✘' : ' Activo ✔' } 
               </label> {/* htmlFor={el.id}*/}
 
 
@@ -296,11 +296,11 @@ export default function Item({
 
               </div>
 
-
+<div className='editarItemButtonsContainer'>
               <button onClick={() => deleteItem(el)}>Borrar</button>
               <button onClick={() => editItem(el)}>Editar</button>
               <button onClick={() => anadirArma(el)}>Añadir Arma</button>
-
+</div>
         {/*      <input className='dn' type="button" id={el.id} onClick={()=> toggleItem(el.id, el.nombreDelSocio)} />
               <label className='labelItemToggle' htmlFor={el.id}> {!el.toggle ? 'Inactivo' : ' Activo' } </label>*/}
 

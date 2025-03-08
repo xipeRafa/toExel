@@ -185,7 +185,19 @@ label{
 .labelItemToggle{
   cursor: pointer;
   margin-top: 50px;
+  font-weight: bold;
+/*  background-color: rgba(40, 20, 170, .1);*/
 }
+
+
+.labelItemToggleFalse{
+  cursor: pointer;
+  margin-top: 50px;
+  color: rgb(170, 20, 40);
+  font-weight: bold;
+/*   background-color: rgba(170, 20, 40, .1);*/
+}
+
 .labelItemToggle:hover{
   opacity: .8;
 }
@@ -280,18 +292,20 @@ modal{
 
 .modalContent>div>p>span{
     color: rgba(0, 0, 0, .4);
-    font-size: 20px;
+    font-size: 18px;
     margin-left: 16px;
     letter-spacing: 0;
 /*    font-family: serif;*/
+font-weight: 100;
 }
 
 .modalContent>div>div>p>span{
     color: rgba(0, 0, 0, .4);
-    font-size: 16px;
+    font-size: 18px;
     margin-left: 16px;
     letter-spacing: 0;
 /*    font-family: serif;*/
+font-weight: 100;
 }
 
 .modalContent>div>p{
@@ -299,7 +313,7 @@ modal{
   margin-bottom: 10px;
   font-size: 22px;
   font-family: sans-serif;
-  color: rgba(0, 0, 0, .7);
+  color: rgba(0, 0, 0, .6);
 }
 
 .modalContent>div>div>p{
@@ -307,7 +321,7 @@ modal{
   margin-bottom: 10px;
   font-size: 20px;
  font-family: sans-serif;
-  color: rgba(0, 0, 0, .7);
+  color: rgba(0, 0, 0, .6);
 }
 
 modal>button{
@@ -381,8 +395,8 @@ modal>button{
       width: 100%;
     }
 
-    modal>button{
-        margin: 10px 20px!important;
+    modal>div>button{
+        margin-top: 30px !important;
     }
 
     modal{
@@ -438,7 +452,11 @@ modal>button{
   cursor: pointer;
 }
 
-
+.editarItemButtonsContainer>button{
+  border: none;
+  width: 260px;
+  margin: 0 16px;
+}
 
 
 thead,
