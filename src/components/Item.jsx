@@ -270,8 +270,9 @@ export default function Item({
                       <p><span>Matricula:</span> {el.matricula}</p>
 
                       <p><span>Folio:</span> {el.folio}</p>
-                      <p><span>Arma Corta:</span> {el.armasCortas}</p>
-                      <p><span>Arma Larga:</span> {el.armasLargas}</p>
+                      <p><span>{el.armasCortas == '1' ? 'ARMA CORTA':'ARMA LARGA'}</span></p>
+                      {/*<p><span>Arma Corta:</span> {el.armasCortas}</p>
+                      <p><span>Arma Larga:</span> {el.armasLargas}</p>*/}
                   </div>
 
                   <div className='newArmas'>{el.armasArr.map((ele, i)=>(
@@ -283,8 +284,12 @@ export default function Item({
                           <p><span>Matricula:</span> {ele.matricula}</p>
 
                           <p><span>Folio:</span> {ele.folio}</p>
-                          <p><span>Arma Corta:</span> {ele.armasCortas}</p>
-                          <p><span>Arma Larga:</span> {ele.armasLargas}</p>
+
+                          <p><span>{ele.armasCortas == '1' ? 'ARMA CORTA':'ARMA LARGA'}</span></p>
+
+
+                     {/*     <p><span>Arma Corta:</span> {ele.armasCortas}</p>
+                          <p><span>Arma Larga:</span> {ele.armasLargas}</p>*/}
 
                           <div className='editarArmaButtonsContainer'>
                               <button onClick={() => deleteArma(ele)}>🗑︎</button>
