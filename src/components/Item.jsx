@@ -39,16 +39,36 @@ export default function Item({
   const deleteItem = (EL) => {
 
       if (window.confirm("Quieres Borrar a este Socio")) {
-          setIsActiveModal(!isActiveModal)
+
+          setIsActiveModalNewArma(!isActiveModalNewArma)
           //setArr(arr.filter((el) => el.id !== EL.id))
           deleteByIdDB(EL.idDB)
           setFinder(null);
           setMsg('Eliminado: ' + EL.nombreDelSocio);
 
-        setTimeout(()=>{
+          setTimeout(()=>{
               setGetDB(!getDB)
-        },700)
+          },700)
 
+      }   
+      
+  }
+
+  const deleteArma = (ARMA) => {
+
+      if (window.confirm("Quieres Borrar esta Arma")) {
+
+          setIsActiveModal(!isActiveModal)
+          //setArr(arr.filter((el) => el.id !== EL.id))
+          setFinder(null);
+
+          let newArrOneWaponLess = el.armasArr.filter(el=>el.AID !== ARMA.AID)
+
+          el.armasArr = newArrOneWaponLess
+
+          updateByIdDB(el.idDB, el)
+
+          setMsg('Arma Eliminada de: ' + el.nombreDelSocio);
       }   
       
   }
@@ -142,6 +162,7 @@ export default function Item({
       items.map((obj) => {
 
           if(obj.id === EL.id){
+              stateNewArma.AID=Date.now()
               obj.armasArr.push(stateNewArma)
               armArr.push(obj) 
           }
@@ -180,6 +201,27 @@ export default function Item({
       window.scrollTo(0,0);
       setIsActiveModal(!isActiveModal)
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -240,6 +282,9 @@ export default function Item({
                           <p><span>Folio:</span> {ele.folio}</p>
                           <p><span>Arma Corta:</span> {ele.armasCortas}</p>
                           <p><span>Arma Larga:</span> {ele.armasLargas}</p>
+
+                          <button onClick={() => deleteArma(ele)}>Borrar Arma</button>
+                          {/*<button onClick={() => editItemArma(ele)}>Editar</button>*/}
                   </div>       
                   ))}
                   </div>
@@ -266,6 +311,32 @@ export default function Item({
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
           <modal className={!isActiveModalNewArma ? 'inModal' : 'outModal'}>
 
               <button className='btnCerrarModal' onClick={()=>setIsActiveModalNewArma(!isActiveModalNewArma)}>Cerrar ✕</button>
@@ -275,6 +346,8 @@ export default function Item({
 
 
               <div className='modalContent'>
+
+
 
 
 
