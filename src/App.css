@@ -262,16 +262,20 @@ modal{
   border-bottom: 1px solid rgba(0, 0, 0, .1);
 }
 
-.newArmas>div>button{
-  margin-left: 16px;
-  margin-bottom: 18px;
-/*  background-color: transparent;
-  border: none;*/
+.newArmas>div>div>button{
+/*  margin-left: 16px;
+  margin-bottom: 18px;*/
+  border: none;
   font-size: 20px;
-padding: 4px 12px;
-/*opacity: .6;*/
-background-color: rgba(220, 220, 220, .6);
+  padding: 4px 12px;
+  background-color: rgba(220, 220, 220, .6);
+/*  line-height:28px;*/
+}
 
+.editarArmaButtonsContainer{
+  display: flex;
+  padding-left: 14px;
+  margin-bottom: 14px;
 }
 
 .modalContent>div>p>span{

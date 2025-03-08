@@ -286,8 +286,10 @@ export default function Item({
                           <p><span>Arma Corta:</span> {ele.armasCortas}</p>
                           <p><span>Arma Larga:</span> {ele.armasLargas}</p>
 
-                          <button onClick={() => deleteArma(ele)}>🗑︎</button>
-                          {/*<button onClick={() => editItemArma(ele)}>Editar</button>*/}
+                          <div className='editarArmaButtonsContainer'>
+                              <button onClick={() => deleteArma(ele)}>🗑︎</button>
+                              {/*<button style={{lineHeight:'30px', color:'rgb(121,135,160)',fontSize: '27px',padding: '2px 12px',marginLeft:'15px'}} onClick={() => editItemArma(ele)}>✎</button>*/}
+                          </div>
                   </div>       
                   ))}
                   </div>
