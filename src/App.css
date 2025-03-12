@@ -50,7 +50,7 @@ body {
 .formStyle1, .formStyle2{
     padding-top: 20px;
     text-align: center;
-    width: 50%;
+    width: 49%;
 }
 
 
@@ -502,5 +502,7 @@ td>tr{
   border: 1px solid red;
   display: block;
 }
-
+.domicilio{
+  font-size: 12px!important;
+}
 

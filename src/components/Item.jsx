@@ -258,10 +258,10 @@ export default function Item({
                       <p className='name'> {el.apellidoPaterno} {el.apellidoMaterno} </p><br />
                       <p><span>CURP:</span> {el.curp}</p>
 
-                      <p><span>Domicilio:</span> {el.domicilioDelSocio}</p>
+                      <p className='domicilio'><span>Domicilio:</span> {el.domicilioDelSocio}</p>
 
-                      <p><span>Fecha de Inscripción:</span></p>
-                       <p><span></span> {milisegundosComoFecha(el.fechaDeInscripcion)}</p>
+                      <p><span>Inscripción:</span>{milisegundosComoFecha(el.fechaDeInscripcion)}</p>
+                       {/*<p><span></span> </p>*/}
                   </div> 
 
                   <div>
