@@ -202,7 +202,7 @@ export default function Item({
   }
 
   const modalName=()=>{
-      //window.scrollTo(0,0);
+      window.scrollTo(0,0);
       setIsActiveModal(!isActiveModal)
   }
 
