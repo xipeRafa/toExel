@@ -110,7 +110,14 @@ export default function Form({
                 //setArr([...arr, state]);
                 setMsg('Nuevo Socio Añadido')
                 postSocio(state)
-      
+
+                // JSON.parse(localStorage.arrz).map(el=>{
+                //             postSocio(el)
+                // })
+                        //   postSocio({toggle:true,"apellidoMaterno":"PEÑA","nombreDelSocio":"SANTIAGO","apellidoPaterno":"ACEDO","curp":"AEPS771012HSRCXN00","domicilioDelSocio":"C. MAZATAN 200 INT, COL. INSURGENTES, C.P. 83106, HERMOSILLO, SONORA","fechaDeInscripcion":0,"clase":"PISTOLA","calibre":".380","marca":"TANFOGLIO","modelo":"TINTAN ll","matricula":"EB21429","folio":"A 3672344","armasCortas":1,"armasLargas":"",
+                        //     "armasArr":[{"clase":"PISTOLA","calibre":".380","marca":"COLT","modelo":"SIN","matricula":"RR11540","folio":"A 3672371","armasCortas":1,"armasLargas":""}]
+                        // })
+
          
 
         }
@@ -195,7 +202,7 @@ export default function Form({
               placeholder="Nombre Del Socio"
               name="nombreDelSocio"
               onChange={handleState}
-              value={nombreDelSocio.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase())}
+              value={nombreDelSocio.toUpperCase()}
               required
           />
 
@@ -206,7 +213,7 @@ export default function Form({
               placeholder="Apellido Paterno"
               name="apellidoPaterno"
               onChange={handleState}
-              value={apellidoPaterno.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase())}
+              value={apellidoPaterno.toUpperCase()}
               required
           />
 
@@ -217,7 +224,7 @@ export default function Form({
               placeholder="Apellido Materno"
               name="apellidoMaterno"
               onChange={handleState}
-              value={apellidoMaterno.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase())}
+              value={apellidoMaterno.toUpperCase()}
               required
           />
 
@@ -256,7 +263,7 @@ export default function Form({
           />
 
 
-          <label className={!editMode ? 'dn' : ''}>Fecha De Inscripcion</label>
+        <label className={!editMode ? 'dn' : ''}>Fecha De Inscripcion</label>
             <input
               className='fechaDeInscripcion'
               readOnly

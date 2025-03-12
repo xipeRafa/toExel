@@ -7,7 +7,7 @@
 
 
 
-export default function MenuButtons({setError, setMsg, setFinder, items}) {
+export default function MenuButtons({setError, setMsg, setFinder, items, setBtnDisplayState}) {
 
 
 
@@ -24,7 +24,7 @@ export default function MenuButtons({setError, setMsg, setFinder, items}) {
         }
 
         setFinder(null)
-
+        setBtnDisplayState(true)
     }
 
 
@@ -43,6 +43,7 @@ export default function MenuButtons({setError, setMsg, setFinder, items}) {
         }
 
         setFinder(items.filter((el) => el.toggle === true))
+        setBtnDisplayState(false)
     }
 
 
@@ -61,6 +62,7 @@ export default function MenuButtons({setError, setMsg, setFinder, items}) {
         }
 
         setFinder(items.filter((el) => el.toggle === false))
+        setBtnDisplayState(false)
     }
 
 

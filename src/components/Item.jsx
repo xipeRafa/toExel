@@ -15,7 +15,8 @@ export default function Item({
   setGetDB,
   getDB,
   updateByIdDB,
-  items
+  items,
+  setBtnDisplayState
 }) {
 
 
@@ -25,7 +26,7 @@ export default function Item({
         //timeStyle: "short",
     })
 
-    const milisegundosComoFecha = (milisegundos) => {  // '8 de agosto de 2024, 12:08 a.m.'
+    const milisegundosComoFecha = (milisegundos=0) => {  // '8 de agosto de 2024, 12:08 a.m.'
 
         return formateador.format(new Date(milisegundos))
 
@@ -40,7 +41,7 @@ export default function Item({
 
       if (window.confirm("Quieres Borrar a este Socio")) {
 
-          setIsActiveModalNewArma(!isActiveModalNewArma)
+          setIsActiveModal(!isActiveModal)
           //setArr(arr.filter((el) => el.id !== EL.id))
           deleteByIdDB(EL.idDB)
           setFinder(null);
@@ -58,11 +59,12 @@ export default function Item({
 
       if (window.confirm("Quieres Borrar esta Arma Clase: " + ARMA.clase)) {
 
-          setIsActiveModal(!isActiveModal)
+          
+          setIsActiveModalNewArma(!isActiveModalNewArma)
           //setArr(arr.filter((el) => el.id !== EL.id))
           setFinder(null);
 
-          let newArrOneWaponLess = el.armasArr.filter(el=>el.AID !== ARMA.AID)
+          let newArrOneWaponLess = el.armasArr.filter(el=>el.matricula !== ARMA.matricula)
 
           el.armasArr = newArrOneWaponLess
 
@@ -81,7 +83,7 @@ export default function Item({
       let ttArr = []
 
       items.map((el) => {
-          if(el.id === EL.id){
+          if(el.idDB === EL.idDB){
               el.toggle = !el.toggle
               ttArr.push(el)
           }
@@ -89,7 +91,7 @@ export default function Item({
 
       //setArr(arr.map( (el) => (el.id === EL.id ? ttArr[0] : el) ))
 
-      items.find((el) => el.id === EL.id).toggle
+      items.find((el) => el.idDB === EL.idDB).toggle
             ? setMsg(`Marcado como Activo: ${ EL.nombreDelSocio}`)
             : setMsg(`Marcado como Inactivo: ${ EL.nombreDelSocio}`)
 
@@ -164,7 +166,7 @@ export default function Item({
       items.map((obj) => {
 
           if(obj.id === EL.id){
-              stateNewArma.AID=Date.now()
+              //stateNewArma.AID=Date.now()
               obj.armasArr.push(stateNewArma)
               armArr.push(obj) 
           }
@@ -200,7 +202,7 @@ export default function Item({
   }
 
   const modalName=()=>{
-      window.scrollTo(0,0);
+      //window.scrollTo(0,0);
       setIsActiveModal(!isActiveModal)
   }
 
@@ -233,7 +235,7 @@ export default function Item({
 
 
           <div className={!el.toggle ? 'active c-pointer' : 'c-pointer'} onClick={modalName}>
-              {el.nombreDelSocio} {el.apellidoPaterno} { el.apellidoMaterno}
+               {el.apellidoPaterno} { el.apellidoMaterno} {el.nombreDelSocio}
           </div>
 
 

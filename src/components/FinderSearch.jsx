@@ -13,7 +13,7 @@ export default function FinderSearch({items, handleSearch, searchTXT}) {
           placeholder="BUSCAR SOCIO POR APELLIDO PATERNO..."
           onChange={(e) => handleSearch(e, items)}
           type="search"
-          value={searchTXT.replace(/(^\w{1})|(\s+\w{1})/g, letra => letra.toUpperCase())}
+          value={searchTXT.toUpperCase()}
       />
 
   );

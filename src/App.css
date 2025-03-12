@@ -64,10 +64,11 @@ button {
   color: rgba(0, 0, 0, .8);
   letter-spacing: .6px;
   text-transform: uppercase;
+  opacity: .8;
 }
 
 button:hover{
-  opacity: .7;
+  opacity:1;
 }
 
 button:focus{
@@ -123,6 +124,7 @@ button:focus{
   width: 100%;
   height: 78px;
    background-color: rgba(0,0,0, 1);
+   z-index: 99;
 }
 
 
@@ -451,7 +453,7 @@ modal>button{
 .c-pointer{
   cursor: pointer;
 }
-
+.editarItemButtonsContainer{margin-bottom: 800px}
 .editarItemButtonsContainer>button{
   border: none;
   width: 260px;
@@ -500,4 +502,5 @@ td>tr{
   border: 1px solid red;
   display: block;
 }
+
 

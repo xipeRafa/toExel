@@ -275,7 +275,6 @@ export default function App() {
 
 
 
-
 // const multiDataSetAnexo = [
 
 
@@ -517,8 +516,38 @@ export default function App() {
 
 
 
- 
 
+
+  const[sliceState, setSliceState]=useState(0)
+  let prodByPage = 7;
+  const[sliceAlert, setSliceAlert]=useState('')
+
+
+  const[btnDisplayState, setBtnDisplayState]=useState(true)
+
+
+
+
+let arrAC = []
+let arrAL = []
+let acc = []
+let all = []
+
+items.forEach((obj,index) => {
+
+              arrAC.push(Number(obj.armasArr.filter(el=>el.armasCortas==1).length))
+              arrAL.push(Number(obj.armasArr.filter(el=>el.armasLargas==1).length))
+
+              if(obj.armasCortas==1){
+                  acc.push(obj.armasCortas)
+              }
+              if(obj.armasLargas==1){
+                  all.push(obj.armasLargas)
+              }
+})
+
+let totalArmasLargas = all.reduce((a, b) => a + b, 0) + arrAL.reduce((a, b) => a + b, 0)
+let totalArmasCortas = acc.reduce((a, b) => a + b, 0) + arrAC.reduce((a, b) => a + b, 0)
 
 
   const onBtnExportDataAsExcel = (items) => {
@@ -528,8 +557,8 @@ export default function App() {
           items.forEach((obj,index) => {
               let objExcel = {}
 
-              let ac = Number(obj.armasArr.filter(el=>el.armasCortas==='1').length) + Number(obj.armasCortas)
-              let al = Number(obj.armasArr.filter(el=>el.armasLargas==='1').length) + Number(obj.armasLargas)
+              let ac = Number(obj.armasArr.filter(el=>el.armasCortas==1).length) + Number(obj.armasCortas)
+              let al = Number(obj.armasArr.filter(el=>el.armasLargas==1).length) + Number(obj.armasLargas)
 
               objExcel.nombreDelSocio=obj.nombreDelSocio +' '+ obj.apellidoPaterno +' '+ obj.apellidoMaterno
               objExcel.numeroDelSocio=index+1
@@ -550,7 +579,35 @@ export default function App() {
           setTimeout(()=>{
               gridRef.current.api.exportDataAsExcel()
           },1111)
+
   };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -587,11 +644,11 @@ export default function App() {
 
 
       <div className='totalesGenerales'>
-          <span>Armas Cortas: {items.filter(el=>el.armasCortas === '1').length + ac.length}</span>
-          <span>Armas Largas: {items.filter(el=>el.armasLargas === '1').length + al.length}</span>
+          <span>Armas Cortas: {totalArmasCortas}</span>
+          <span>Armas Largas: {totalArmasLargas}</span>
 
           <span>
-              Total de Armas: {items.filter(el=>el.armasLargas === '1').length + items.filter(el=>el.armasCortas === '1').length + ac.length + al.length}
+              Total de Armas: {totalArmasCortas + totalArmasLargas}
           </span>
       </div>
 
@@ -606,9 +663,11 @@ export default function App() {
         // arr={arr}
         // setArr={setArr}
         items={items}
+        btnDisplayState={btnDisplayState}
+        setBtnDisplayState={setBtnDisplayState}
       />
 
-      <button onClick={()=>onBtnExportDataAsExcel(items)}  >
+      <button className='' onClick={()=>onBtnExportDataAsExcel(items)}  >
           Excel Anexo
       </button>
 
@@ -632,7 +691,7 @@ export default function App() {
      
 
       {finderState === null
-        ? items.map((el, i) => (
+        ? items.slice(sliceState, sliceState + prodByPage).map((el, i) => (
             <Item
               key={i}
               i={i}
@@ -649,10 +708,11 @@ export default function App() {
               getDB={getDB}
               updateByIdDB={updateByIdDB}
               items={items}
+              setBtnDisplayState={setBtnDisplayState}
             />
           ))
 
-        : finderState.map((el, i) => (
+        : finderState.slice(sliceState, sliceState + prodByPage).map((el, i) => (
             <Item
               key={i}
               i={i}
@@ -669,8 +729,61 @@ export default function App() {
               getDB={getDB}
               updateByIdDB={updateByIdDB}
               items={items}
+              setBtnDisplayState={setBtnDisplayState}
             />
-          ))
+          ))}
+
+<hr />
+{
+
+      <div className={btnDisplayState ? '' : ''}>
+
+            <button className={sliceState === 0 ? 'dn' : 'button'} onClick={()=>{
+                                                                  if(sliceState > 0){
+                                                                      setSliceState(sliceState - prodByPage)
+                                                                      //window.scrollTo(0,0)
+                                                                    }
+                                                                  }
+                                                                }>
+                                                                    ⇦ Anterior
+            </button>  
+
+
+
+            <button className={sliceState === prodByPage || sliceState === 0 ? 'dn' : 'button'} onClick={()=>{ 
+                                                                                                        setSliceState(0)
+                                                                                                        //window.scrollTo(0,0) 
+                                                                                                    }
+                                                                                                  }>
+                                                                                                      ０
+            </button>   
+
+
+
+            <button className='button' onClick={()=>{ 
+                                    if(items.filter(el => el).length > sliceState + prodByPage){
+                                        setSliceState(sliceState + prodByPage) 
+                                        //window.scrollTo(0,0) 
+                                    }else{
+                                        setSliceAlert(' No hay mas Socios en esta Lista')
+                                        setTimeout(()=>{
+                                            setSliceAlert('')
+                                        },2500)
+                                    }
+                                }
+                    }>
+                        Siguiente ⇨ 
+            </button>  
+
+
+            <span className='sliceAlert'>{sliceAlert}</span>
+
+
+            <p className='sliceButtonsP'>De: {sliceState + 1} a: {items.length > sliceState + prodByPage ? sliceState + prodByPage : items.length}</p>
+            <p className='sliceButtonsP'>Paginas de {prodByPage} Socios. c/u </p>
+
+        </div>
+
       }
 
 
