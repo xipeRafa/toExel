@@ -79,9 +79,9 @@ button:focus{
 
   padding: 10px;
   border-top: 1px solid rgb(252, 249, 249);
-  letter-spacing: .6px;
+  letter-spacing: .4px;
   font-size: 30px;
-
+  font-family: sans-serif;
 }
 
 .item > div {
@@ -396,7 +396,9 @@ modal>button{
     .newArmas>div{
       width: 100%;
     }
-
+    .item{
+      font-size: 14px;
+    }
     modal>div>button{
         margin-top: 30px !important;
     }
@@ -453,7 +455,17 @@ modal>button{
 .c-pointer{
   cursor: pointer;
 }
+
+.bg1{
+
+}
+
+.bg2{
+
+}
+
 .editarItemButtonsContainer{margin-bottom: 800px}
+
 .editarItemButtonsContainer>button{
   border: none;
   width: 260px;
