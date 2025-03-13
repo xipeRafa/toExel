@@ -1,6 +1,4 @@
-
 import { useEffect, useState } from 'react'
-
 
 export default function Item({
   i,
@@ -18,6 +16,16 @@ export default function Item({
   items,
   setBtnDisplayState
 }) {
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -234,9 +242,14 @@ export default function Item({
       <div key={i} className="item">
 
 
-          <div className={!el.toggle ? 'active c-pointer' : 'c-pointer'} onClick={modalName}>
-               {el.apellidoPaterno} { el.apellidoMaterno} {el.nombreDelSocio}
+          <div className={i%2 === 0 ? 'bg1' : 'bg2'}  onClick={modalName}>
+               <span className={!el.toggle ? 'active c-pointer' : 'c-pointer'}>{el.apellidoPaterno} { el.apellidoMaterno} {el.nombreDelSocio}</span>
           </div>
+
+
+
+
+
 
 
           <modal className={!isActiveModal ? 'inModal' : 'outModal'}>

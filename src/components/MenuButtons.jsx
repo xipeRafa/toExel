@@ -3,13 +3,55 @@
 
 
 
+import { useCallback, useMemo, useRef, useState, useEffect } from 'react';
+
+import { AgGridReact } from 'ag-grid-react';
+
+import {
+  CellStyleModule,
+  ClientSideRowModelModule,
+  ModuleRegistry,
+  TextFilterModule,
+  ValidationModule,
+  createGrid,
+} from "ag-grid-community";
+
+import {
+  ColumnMenuModule,
+  ContextMenuModule,
+  ExcelExportModule,
+} from "ag-grid-enterprise";
+
+ModuleRegistry.registerModules([
+  TextFilterModule,
+  CellStyleModule,
+  ClientSideRowModelModule,
+  ExcelExportModule,
+  ColumnMenuModule,
+  ContextMenuModule,
+  ValidationModule /* Development Only */,
+]);
+
+
 
 
 
 
 export default function MenuButtons({setError, setMsg, setFinder, items, setBtnDisplayState}) {
 
+const formateador = new Intl.DateTimeFormat("es-MX", {
+        dateStyle: "long",
+        //timeStyle: "short",
+    })
 
+    const milisegundosComoFecha = (milisegundos=0) => {  // '8 de agosto de 2024, 12:08 a.m.'
+
+        return formateador.format(new Date(milisegundos)).toUpperCase()
+
+    }
+
+
+    
 
     const handleAll = () => {
 
@@ -109,10 +151,222 @@ export default function MenuButtons({setError, setMsg, setFinder, items, setBtnD
     }
 
 
+  const gridRef = useRef();
+
+
+
+  const [rowData, setRowData] = useState();
 
 
 
 
+
+
+// header
+  const [columnDefs, setColumnDefs] = useState([
+    { 
+      field: 'numeroDeRegistroDelClub', width: 10, headerName: 'No. DE REGISTRO',  
+      headerClass: 'gold-header', 
+      // hearderStyle:{fontWeithg:'Bold'}, 
+    },
+    {
+      field: 'nombreDelSocio', minWidth: 300, headerName: 'NOMBRE SOCIO', headerClass: 'gold-header',
+      // cellClassRules: {
+      //   greenBackground: (params) => {
+      //     return params.value < 23;
+      //   },
+        // redFont: (params) => {
+        //   return params.value < 20;
+        // },
+
+      // },
+      cellClass: ['greenBackground']
+    },
+    {
+      field: 'numeroDelSocio',
+      // minWidth: 100,
+      width: 50,
+      headerName: 'No. DE SOCIO', headerClass: 'gold-header', border:true,
+      // cellClassRules: {
+      //   redFont: (params) => {
+      //     return params.value === 'United States';
+      //   },
+      // },
+    },
+    { 
+      field: 'armasCortas',
+      width: 50,
+      headerName: 'ARMAS CORTAS', headerClass: 'gold-header'
+      // valueGetter: 'data.country.charAt(0)',
+      // cellClass: ['redFont', 'greenBackground'],
+    },
+    {
+      field: 'armasLargas', width: 50, headerName: 'ARMAS LARGAS', headerClass: 'gold-header'
+      // cellClassRules: {
+      //   notInExcel: (params) => {
+      //     return true;
+      //   },
+      // },
+    },
+    { field: 'fechaDeInscripcion', minWidth: 150,  headerName: 'FECHA ALTA', headerClass: 'gold-header' },
+  ]);
+
+
+
+
+  // const defaultColDef = useMemo(() => {
+  //   return {
+  //     cellClassRules: {
+  //       darkGreyBackground: (params) => {
+  //         return (params.node.rowIndex || 0) % 2 == 0;
+  //       },
+  //     },
+  //     filter: true,
+  //     minWidth: 100,
+  //     flex: 1,
+  //   };
+  // }, []);
+
+
+
+
+
+
+  const excelStyles = useMemo(() => {
+    return [
+      {
+        id: 'gold-header',
+        alignment: {
+          vertical: 'Center',
+          horizontal: 'Center',
+          wrapText: true,
+        },
+        font: {
+          bold:true,
+        },
+        borders: {
+          borderBottom: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 2,
+          },
+          borderTop: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 2,
+          },
+          borderLeft: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 2,
+          },
+          borderRight: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 2,
+          },
+        },
+      },
+      {
+        id: 'cell',
+        alignment: {
+          vertical: 'Center',
+          horizontal: 'Center'
+        },
+        borders: {
+          borderBottom: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 1,
+          },
+          borderTop: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 1,
+          },
+          borderLeft: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 1,
+          },
+          borderRight: {
+            // color: "#ffab00",
+            lineStyle: "Continuous",
+            weight: 1,
+          },
+        },
+      },
+      {
+        id: 'greenBackground',
+        // interior: {
+        //   color: '#b5e6b5',
+        //   pattern: 'Solid',
+        // },
+        alignment: {
+          vertical: 'Center',
+          horizontal: 'Left'
+        },
+        font: {
+          // color: '#ffffff',
+          bold:true
+        },
+      },
+      {
+        id: 'redFont',
+        font: {
+          fontName: 'Calibri Light',
+          underline: 'Single',
+          italic: true,
+          color: '#BB0000',
+          bold:true,
+        },
+      },
+      {
+        id: 'darkGreyBackground',
+        interior: {
+          color: '#888888',
+          pattern: 'Solid',
+        },
+        font: {
+          fontName: 'Calibri Light',
+          color: '#ffffff',
+        },
+      },
+    ]
+     }, []);
+
+
+ const onBtnExportDataAsExcel = (items) => {
+
+          let arrExcel = []
+
+          items.forEach((obj,index) => {
+              let objExcel = {}
+
+              let ac = Number(obj.armasArr.filter(el=>el.armasCortas==1).length) + Number(obj.armasCortas)
+              let al = Number(obj.armasArr.filter(el=>el.armasLargas==1).length) + Number(obj.armasLargas)
+
+              objExcel.nombreDelSocio=obj.nombreDelSocio +' '+ obj.apellidoPaterno +' '+ obj.apellidoMaterno
+              objExcel.numeroDelSocio=index+1
+              objExcel.armasCortas=ac
+              objExcel.armasLargas=al
+              objExcel.fechaDeInscripcion=milisegundosComoFecha(obj.fechaDeInscripcion)
+              objExcel.numeroDeRegistroDelClub='624'
+
+              arrExcel.push(objExcel)
+
+          })
+
+          
+          setTimeout(()=>{
+              setRowData(arrExcel) 
+          },511)
+
+          setTimeout(()=>{
+              gridRef.current.api.exportDataAsExcel()
+          },1111)
+
+  };
 
 
 
@@ -130,6 +384,22 @@ export default function MenuButtons({setError, setMsg, setFinder, items, setBtnD
 
           <button onClick={handleSort}>Fecha Min to Max</button>
           <button onClick={handleUnSort}>Fecha Max to Min</button>
+
+
+              <button className='' onClick={()=>onBtnExportDataAsExcel(items)}  >
+          Excel Anexo
+      </button>
+
+
+      <AgGridReact
+                ref={gridRef}
+                rowData={rowData}
+                columnDefs={columnDefs}
+
+                //defaultColDef={defaultColDef}
+                excelStyles={excelStyles}
+                //onGridReady={onGridReady}
+              />
 
 
           
