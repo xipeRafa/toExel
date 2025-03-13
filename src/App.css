@@ -80,6 +80,7 @@ button:focus{
   font-size: 30px;
   font-family: sans-serif;
   color: #333;
+  text-transform: uppercase;
 }
 
 .item > div {
