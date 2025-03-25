@@ -45,6 +45,8 @@ export default function Item({
 
  const [isActiveModalNewArma, setIsActiveModalNewArma] = useState(true)
 
+ const [isActiveModalEditArma, setIsActiveModalEditArma] = useState(true)
+
   const deleteItem = (EL) => {
 
       if (window.confirm("Quieres Borrar a este Socio")) {
@@ -67,8 +69,8 @@ export default function Item({
 
       if (window.confirm("Quieres Borrar esta Arma Clase: " + ARMA.clase)) {
 
-          
-          setIsActiveModalNewArma(!isActiveModalNewArma)
+          setIsActiveModal(!isActiveModal)
+          //setIsActiveModalNewArma(!isActiveModalNewArma)
           //setArr(arr.filter((el) => el.id !== EL.id))
           setFinder(null);
 
@@ -82,6 +84,83 @@ export default function Item({
       }   
       
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   const [stateEditArma, setStateEditArma] = useState({
+      clase: '',
+      calibre:'',
+      marca: '',
+
+      modelo: '',
+      matricula:'',
+      folio: '',
+
+      armasCortas: '',
+      armasLargas:''
+  })
+
+
+  const editItemArma =(ELE, i)=>{
+        localStorage.armaToEditIndex = JSON.stringify(i)
+        setIsActiveModalEditArma(false)
+        setStateEditArma(ELE)
+  }
+
+
+  const handleStateEditArma = (e) => {
+      const {name, value}=e.target
+      setStateEditArma({ ...stateEditArma, [name]:value }) 
+  }
+
+
+
+const EditarArmaSubmit=(EL)=>{
+
+   EL.armasArr.splice(Number(localStorage.armaToEditIndex),1,stateEditArma)
+
+   updateByIdDB(EL.idDB, EL)
+
+   setIsActiveModalEditArma(true)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   const toggleItem = (EL) => {
@@ -303,14 +382,19 @@ export default function Item({
                           <p><span>{ele.armasCortas == '1' ? 'ARMA CORTA':'ARMA LARGA'}</span></p>
 
 
-                     {/*     <p><span>Arma Corta:</span> {ele.armasCortas}</p>
-                          <p><span>Arma Larga:</span> {ele.armasLargas}</p>*/}
-
                           <div className='editarArmaButtonsContainer'>
+
                               <button onClick={() => deleteArma(ele)}>🗑︎</button>
-                              {/*<button style={{lineHeight:'30px', color:'rgb(121,135,160)',fontSize: '27px',padding: '2px 12px',marginLeft:'15px'}} onClick={() => editItemArma(ele)}>✎</button>*/}
+
+                              <button style={{lineHeight:'30px', color:'rgb(121,135,160)',fontSize: '27px',
+                                              padding: '2px 12px',marginLeft:'15px'}} 
+                                  onClick={() => editItemArma(ele, i)}>
+                                    ✎
+                              </button>
+
                           </div>
-                  </div>       
+
+                      </div>       
                   ))}
                   </div>
 
@@ -442,8 +526,8 @@ export default function Item({
 
           {/*<label>Arma Corta</label>*/}
           <input
-              min="0" step="1" max="1"
               type="number"
+              min="0" step="1" max="1"
               autoComplete="off"
               placeholder="Arma Corta"
               name="armasCortas"
@@ -453,8 +537,8 @@ export default function Item({
 
           {/*<label>Arma Larga</label>*/}
           <input
-              min="0" step="1" max="1"
               type="number"
+              min="0" step="1" max="1"
               autoComplete="off"
               placeholder="Arma Larga"
               name="armasLargas"
@@ -473,6 +557,170 @@ export default function Item({
 
 
           </modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <modal className={!isActiveModalEditArma ? 'inModal' : 'outModal'}>
+
+              <button className='btnCerrarModal' onClick={()=>setIsActiveModalEditArma(!isActiveModalEditArma)}>Cerrar ✕</button>
+<br />
+<small>Editar Arma:</small>
+
+
+
+              <div className='modalContent'>
+
+
+
+
+
+
+
+                  <div className='formStyle2'>
+
+                  <label className='labelEdit'>Clase</label>
+          <input
+              type="text"
+              autoComplete="off"
+              placeholder="Clase"
+              name="clase"
+              onChange={handleStateEditArma}
+              value={stateEditArma.clase}
+          />
+
+          <label className='labelEdit'>Calibre</label>
+          <input
+              type="text"
+              autoComplete="off"
+              placeholder="Calibre"
+              name="calibre"
+              onChange={handleStateEditArma}
+              value={stateEditArma.calibre}
+          />
+
+          <label className='labelEdit'>Marca</label>
+          <input
+              type="text"
+              autoComplete="off"
+              placeholder="Marca"
+              name="marca"
+              onChange={handleStateEditArma}
+              value={stateEditArma.marca}
+          />
+
+          <label className='labelEdit'>Modelo</label>
+          <input
+              type="text"
+              autoComplete="off"
+              placeholder="Modelo"
+              name="modelo"
+              onChange={handleStateEditArma}
+              value={stateEditArma.modelo}
+          />
+
+          <label className='labelEdit'>Matricula</label>
+          <input
+              type="text"
+              autoComplete="off"
+              placeholder="Matricula"
+              name="matricula"
+              onChange={handleStateEditArma}
+              value={stateEditArma.matricula}
+          />
+
+          <label className='labelEdit'>Folio</label>
+          <input
+              type="text"
+              autoComplete="off"
+              placeholder="Folio"
+              name="folio"
+              onChange={handleStateEditArma}
+              value={stateEditArma.folio}
+          />
+
+          <label className='labelEdit'>Arma Corta</label>
+          <input
+              type="number"
+              min="0" step="1" max="1"
+              autoComplete="off"
+              placeholder="Arma Corta"
+              name="armasCortas"
+              onChange={handleStateEditArma}
+              value={stateEditArma.armasCortas}
+          />
+
+          <label className='labelEdit'>Arma Larga</label>
+          <input
+              type="number"
+              min="0" step="1" max="1"
+              autoComplete="off"
+              placeholder="Arma Larga"
+              name="armasLargas"
+              onChange={handleStateEditArma}
+              value={stateEditArma.armasLargas}
+          />
+
+
+                  </div>
+
+              </div>
+
+
+             
+         <button className='guardarArma' onClick={() => EditarArmaSubmit(el)}>Guardar Edicion de Arma para {el.nombreDelSocio}</button>
+
+
+          </modal>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
       </div>
