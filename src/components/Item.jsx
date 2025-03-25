@@ -125,6 +125,7 @@ export default function Item({
         localStorage.armaToEditIndex = JSON.stringify(i)
         setIsActiveModalEditArma(false)
         setStateEditArma(ELE)
+        window.scrollTo(0,0);
   }
 
 
