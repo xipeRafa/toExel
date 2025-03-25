@@ -243,7 +243,7 @@ export default function Item({
 
 
           <div className={i%2 === 0 ? 'bg1' : 'bg2'}  onClick={modalName}>
-               <span className={!el.toggle ? 'active c-pointer' : 'c-pointer'}>{el.apellidoPaterno} { el.apellidoMaterno} {el.nombreDelSocio}</span>
+               <span className={!el.toggle ? 'active c-pointer' : 'c-pointer'}> {el.apellidoPaterno} { el.apellidoMaterno} {el.nombreDelSocio}</span>
           </div>
 
 
@@ -267,7 +267,7 @@ export default function Item({
 
 
                   <div>
-                      <p className='name'>{el.nombreDelSocio} </p>
+                      <p className='name'>{el.nombreDelSocio} { el.idDB }</p>
                       <p className='name'> {el.apellidoPaterno} {el.apellidoMaterno} </p><br />
                       <p><span>CURP:</span> {el.curp}</p>
 

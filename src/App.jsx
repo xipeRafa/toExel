@@ -35,25 +35,6 @@ import { firestoreDB } from './firebase/firebaseConfig';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export default function App() {
 
 
@@ -72,7 +53,7 @@ export default function App() {
   // const [arr, setArr] = useLocalStorage();
 
     const [items, setItems] = useState([]);
-
+console.log(items)
   const itemCollection = collection(firestoreDB, 'sociosCaza')
   
 
@@ -304,10 +285,10 @@ items.forEach((obj,index) => {
               arrAL.push(Number(obj.armasArr.filter(el=>el.armasLargas==1).length))
 
               if(obj.armasCortas==1){
-                  acc.push(obj.armasCortas)
+                  acc.push(Number(obj.armasCortas))
               }
               if(obj.armasLargas==1){
-                  all.push(obj.armasLargas)
+                  all.push(Number(obj.armasLargas))
               }
 })
 
