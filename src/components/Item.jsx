@@ -347,7 +347,7 @@ const EditarArmaSubmit=(EL)=>{
 
 
                   <div>
-                      <p className='name'>{el.nombreDelSocio} { el.idDB }</p>
+                      <p className='name'>{el.nombreDelSocio}</p>
                       <p className='name'> {el.apellidoPaterno} {el.apellidoMaterno} </p><br />
                       <p><span>CURP:</span> {el.curp}</p>
 
