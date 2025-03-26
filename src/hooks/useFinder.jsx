@@ -16,7 +16,7 @@ const useFinder = () => {
         setSearchTXT(e.target.value.toUpperCase())
         console.log(e.target.value)
 
-        if(searchTXT.length>2){
+        if(searchTXT.length>1){
             setFinder(arr.filter((el) => el.apellidoPaterno.indexOf(searchTXT) > -1))
         }
        

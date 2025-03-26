@@ -133,7 +133,7 @@ console.log(items)
 
       if(finderState !== null){
 
-          if(finderState.length===1 && searchTXT.length>3){
+          if(finderState.length===1 && searchTXT.length>1){
               setMsg('Encontrado')
           }else{
               setMsg(`${finderState.length} Resultados`)

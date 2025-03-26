@@ -677,7 +677,7 @@ const EditarArmaSubmit=(EL)=>{
               placeholder="Arma Corta"
               name="armasCortas"
               onChange={handleStateEditArma}
-              value={stateEditArma.armasCortas}
+              value={stateEditArma.armasCortas || 0}
           />
 
           <label className='labelEdit'>Arma Larga</label>
@@ -688,7 +688,7 @@ const EditarArmaSubmit=(EL)=>{
               placeholder="Arma Larga"
               name="armasLargas"
               onChange={handleStateEditArma}
-              value={stateEditArma.armasLargas}
+              value={stateEditArma.armasLargas || 0}
           />
 
 
