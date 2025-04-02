@@ -126,7 +126,7 @@ const formateador = new Intl.DateTimeFormat("es-MX", {
 
         let copy = [...items]
 
-        setFinder(copy.sort((o1, o2) => o1.id - o2.id))
+        setFinder(copy.sort((o1, o2) => o1.fechaDeInscripcion - o2.fechaDeInscripcion))
 
     }
 
@@ -146,16 +146,29 @@ const formateador = new Intl.DateTimeFormat("es-MX", {
 
         let copy = [...items]
 
-        setFinder(copy.sort((o1, o2) => o2.id - o1.id))
+        setFinder(copy.sort((o1, o2) => o2.fechaDeInscripcion - o1.fechaDeInscripcion))
 
     }
 
 
-  const gridRef = useRef();
 
 
 
-  const [rowData, setRowData] = useState();
+
+
+
+
+// excel generator // excel generator // excel generator // excel generator 
+// excel generator // excel generator // excel generator // excel generator 
+
+
+
+
+    const gridRef = useRef();
+
+
+
+    const [rowData, setRowData] = useState();
 
 
 
@@ -336,70 +349,70 @@ const formateador = new Intl.DateTimeFormat("es-MX", {
      }, []);
 
 
- const onBtnExportDataAsExcel = (items) => {
+    const onBtnExportDataAsExcel = (items) => {
 
-          let arrExcel = []
+            let arrExcel = []
 
-          items.forEach((obj,index) => {
-              let objExcel = {}
+            items.forEach((obj,index) => {
 
-              let ac = Number(obj.armasArr.filter(el=>el.armasCortas==1).length) + Number(obj.armasCortas)
-              let al = Number(obj.armasArr.filter(el=>el.armasLargas==1).length) + Number(obj.armasLargas)
+                    let objExcel = {}
 
-              objExcel.nombreDelSocio=obj.nombreDelSocio +' '+ obj.apellidoPaterno +' '+ obj.apellidoMaterno
-              objExcel.numeroDelSocio=index+1
-              objExcel.armasCortas=ac
-              objExcel.armasLargas=al
-              objExcel.fechaDeInscripcion=milisegundosComoFecha(obj.fechaDeInscripcion)
-              objExcel.numeroDeRegistroDelClub='624'
+                    let ac = Number(obj.armasArr.filter(el=>el.armasCortas==1).length) + Number(obj.armasCortas)
+                    let al = Number(obj.armasArr.filter(el=>el.armasLargas==1).length) + Number(obj.armasLargas)
 
-              arrExcel.push(objExcel)
+                    objExcel.nombreDelSocio=obj.nombreDelSocio +' '+ obj.apellidoPaterno +' '+ obj.apellidoMaterno
+                    objExcel.numeroDelSocio=index+1
+                    objExcel.armasCortas=ac
+                    objExcel.armasLargas=al
+                    objExcel.fechaDeInscripcion=milisegundosComoFecha(obj.fechaDeInscripcion)
+                    objExcel.numeroDeRegistroDelClub='624'
 
-          })
+                    arrExcel.push(objExcel)
+
+            })
 
           
-          setTimeout(()=>{
-              setRowData(arrExcel) 
-          },511)
+            setTimeout(()=>{
+                setRowData(arrExcel) 
+            },511)
 
-          setTimeout(()=>{
-              gridRef.current.api.exportDataAsExcel()
-          },1111)
+            setTimeout(()=>{
+                gridRef.current.api.exportDataAsExcel()
+            },1111)
 
-  };
-
-
+    };
 
 
-    
+
+
 
 
 
 
   return (
-      <div className='menuButtons'>
-          <button onClick={handleAll}>TODOS</button>
-          <button onClick={handleActive}>Activos</button>
-          <button onClick={handleCompleted}>Inactivos</button>
+        <div className='menuButtons'>
+                <button onClick={handleAll}>TODOS</button>
+                <button onClick={handleActive}>Activos</button>
+                <button onClick={handleCompleted}>Inactivos</button>
 
-          <button onClick={handleSort}>Fecha Min to Max</button>
-          <button onClick={handleUnSort}>Fecha Max to Min</button>
-
-
-              <button className='' onClick={()=>onBtnExportDataAsExcel(items)}  >
-          Excel Anexo
-      </button>
+                <button onClick={handleSort}>Fecha Min to Max</button>
+                <button onClick={handleUnSort}>Fecha Max to Min</button>
 
 
-      <AgGridReact
-                ref={gridRef}
-                rowData={rowData}
-                columnDefs={columnDefs}
+                <button className='' onClick={()=>onBtnExportDataAsExcel(items)}  >
+                        Excel Anexo
+                </button>
 
-                //defaultColDef={defaultColDef}
-                excelStyles={excelStyles}
-                //onGridReady={onGridReady}
-              />
+
+                <AgGridReact
+                        ref={gridRef}
+                        rowData={rowData}
+                        columnDefs={columnDefs}
+
+                        //defaultColDef={defaultColDef}
+                        excelStyles={excelStyles}
+                        //onGridReady={onGridReady}
+                />
 
 
           
@@ -409,13 +422,13 @@ const formateador = new Intl.DateTimeFormat("es-MX", {
 
                
 
-                  
-                    {/*<table id="table-to-xls" className='dn' >*/}
+                    {items.map((el,i)=>{
+              return <table key={i} id="table-to-xls" className='dn' style={{marginBottom:'40px'}}>
 
 {/*<caption>
     Council budget (in £) 2018
 </caption>*/}
-                   {/* <thead>
+                    <thead>
                     <tr>
                         <th>N REG CLUB</th>
                         <th>DOMICILIO DEL CLUB</th>
@@ -430,16 +443,14 @@ const formateador = new Intl.DateTimeFormat("es-MX", {
                         <th>MARCA</th>
                         <th>MODELO</th>
                         <th>MATRICULA</th>
-                        <th>FOLIO</th>
+                        <th style={{width:'100px'}}>FOLIO</th>
                         <th>ARMAS CORTAS</th>
                         <th>ARMAS LARGAS</th>
                     </tr>
                     </thead>
 
                     <tbody>
-
-                    {items.map((el,i)=>{
-              return<tr key={i}>
+<tr >
                         <td>624</td>
                         <td>
                             San Luis Potosi No.<br />
@@ -449,90 +460,116 @@ const formateador = new Intl.DateTimeFormat("es-MX", {
                             Sonora<br />
                         </td>
 
-                        <td>{el.nombreDelSocio}</td>
+                        <td>{el.apellidoPaterno} {el.apellidoMaterno} {el.nombreDelSocio}</td>
                         <td>{el.curp}</td>
+                          <td>{i+1}</td>
                         <td>{el.domicilioDelSocio}</td>
 
-
+                          
 
 
 
                         <td>
                             <tr>{el.clase}</tr>
-                            {el.armasArr.map((ele,index)=>(
-                               <tr key={index}>{ele.calibre}</tr>
+                            {el?.armasArr?.map((ele,index)=>(
+                               <tr key={index}>{ele.clase}</tr>
                             ))} 
                         </td>
 
                         <td>
-                            <tr>{el.calibre}</tr>
-                            {el.armasArr.map((ele,index)=>{
+                            <tr>{el?.calibre}</tr>
+                            {el?.armasArr?.map((ele,index)=>{
                                 return<tr key={index}>{ele.calibre}</tr>
                             })} 
                         </td>
 
                         <td>
-                            {el.marca}
-                            {el.armasArr.map((ele,index)=>{
+                            <tr>{el?.marca}</tr>
+                            {el?.armasArr?.map((ele,index)=>{
                                 return<tr key={index}>{ele.marca}</tr>
                             })} 
                         </td>
 
                         <td>
-                            {el.modelo}
-                            {el.armasArr.map((ele,index)=>{
+                            <tr>{el?.modelo}</tr>
+                            {el?.armasArr?.map((ele,index)=>{
                                 return<tr key={index}>{ele.modelo}</tr>
                             })} 
                         </td>
 
                         <td>
-                            {el.matricula}
-                            {el.armasArr.map((ele,index)=>{
+                            <tr>{el?.matricula}</tr>
+                            {el?.armasArr?.map((ele,index)=>{
                                 return<tr key={index}>{ele.matricula}</tr>
                             })} 
                         </td>
 
                         <td>
-                            {el.folio}
-                            {el.armasArr.map((ele,index)=>{
+                            <tr>{el.folio}</tr>
+                            {el.armasArr?.map((ele,index)=>{
                                 return<tr key={index}>{ele.folio}</tr>
                             })} 
                         </td>
 
                         <td>
-                            {el.armasCortas}
-                            {el.armasArr.map((ele,index)=>{
-                                return<tr key={index}>{ele.armasCortas}</tr>
+                            <tr>{Number(el.armasCortas)}</tr>
+                            {el.armasArr?.map((ele,index)=>{
+                                if(ele.armasCortas == 1){
+                                    return<tr key={index}>1</tr>
+                                }else{
+                                    return <tr>0</tr>
+                                }
                             })} 
                         </td>
                         <td>
-                            {el.armasLargas}
-                            {el.armasArr.map((ele,index)=>{
-                                return<tr key={index}>{ele.armasLargas}</tr>
+                            <tr>{Number(el.armasLargas)}</tr>
+                            {el.armasArr?.map((ele,index)=>{
+
+
+                                 if(ele.armasLargas == 1){
+                                    return<tr key={index}>1</tr>
+                                }else{
+                                    return <tr>0</tr>
+                                }
                             })} 
                         </td>
+                            
+                        
+
                     </tr>  
-                         })
+                         
 
 
 
-                    }</tbody>
-*/}
+                    </tbody>
 
 
-{/*<tfoot>
-    <tr>
-      <th scope="row">Totals</th>
-      <td>21,000</td>
+
+
+    <tr >
+         <td> </td>
+          <td> </td>
+           <td> </td>
+            <td> </td>
+             <td> </td>
+              <td>Total por Persona</td>
+               <td> </td>
+               <td> </td>
+               <td> </td>
+               <td> </td>
+               <td> </td>
+               <td> </td>
+       <td>{el.armasArr.reduce((total, item) => Number(item.armasCortas) + total, 0) + Number(el.armasCortas)}</td>
+       <td>{el.armasArr.reduce((total, item) => Number(item.armasLargas) + total, 0) + Number(el.armasLargas)} </td>
     </tr>
-  </tfoot>*/}
+
 
 
 
                   
-                {/*</table>*/}
-                   
-                
+                </table>
+               })}    
+    
 
 
       </div>
