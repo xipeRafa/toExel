@@ -235,7 +235,7 @@ items.sort((a, b) => {
       return 1; // a debe ir después de b
     }
 
-    // Si los apellidos son iguales, compara los nombres
+    // Si los apellidos son iguales, compara el apellido materno
     const nombreA = a.apellidoMaterno.toLowerCase();
     const nombreB = b.apellidoMaterno.toLowerCase();
 
@@ -243,6 +243,18 @@ items.sort((a, b) => {
       return -1; // a debe ir antes que b
     }
     if (nombreA > nombreB) {
+      return 1; // a debe ir después de b
+    }
+
+
+    // Si los apellidos son iguales, compara el nombre
+    const nombreAA = a.nombreDelSocio.toLowerCase();
+    const nombreBB = b.nombreDelSocio.toLowerCase();
+
+    if (nombreAA < nombreBB) {
+      return -1; // a debe ir antes que b
+    }
+    if (nombreAA > nombreBB) {
       return 1; // a debe ir después de b
     }
 
