@@ -20,8 +20,7 @@ export default function Form({
   postSocio,
   setGetDB,
   getDB,
-  updateByIdDB,
-  items
+  updateByIdDB
 }) {
 
      const formateador = new Intl.DateTimeFormat("es-MX", {

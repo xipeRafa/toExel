@@ -309,21 +309,15 @@ const EditarArmaSubmit=(EL)=>{
 
 
 
-
-
-
-
-
-console.log(el)
-
-
   return (
 
       <div key={i} className="item">
 
 
           <div className={i%2 === 0 ? 'bg1' : 'bg2'}  onClick={modalName}>
-               <span className={!el.toggle ? 'active c-pointer' : 'c-pointer'}> {el.apellidoPaterno} { el.apellidoMaterno} {el.nombreDelSocio}</span>
+               <span className={!el.toggle ? 'active c-pointer' : 'c-pointer'}> 
+                      {el.apellidoPaterno} { el.apellidoMaterno} {el.nombreDelSocio} 
+               </span>
           </div>
 
 
@@ -337,8 +331,9 @@ console.log(el)
               <button className='btnCerrarModal' onClick={() => setIsActiveModal(!isActiveModal)}>Cerrar ✕</button>
 
               {/*<input className='d' type="button" id={el.id} value='ss'/>*/}
-              <label className={el.toggle ? 'labelItemToggle' : 'labelItemToggleFalse' } onClick={()=> toggleItem(el)}> 
-                  {!el.toggle ? 'Inactivo ✘' : ' Activo ✔' } 
+              <label className={el.toggle ? 'labelItemToggle' : 'labelItemToggleFalse' } 
+                  onClick={()=> toggleItem(el)}> 
+                      {!el.toggle ? 'Inactivo ✘' : ' Activo ✔' } 
               </label> {/* htmlFor={el.id}*/}
 
 
@@ -449,7 +444,9 @@ console.log(el)
 
           <modal className={!isActiveModalNewArma ? 'inModal' : 'outModal'}>
 
-              <button className='btnCerrarModal' onClick={()=>setIsActiveModalNewArma(!isActiveModalNewArma)}>Cerrar ✕</button>
+              <button className='btnCerrarModal' onClick={()=>setIsActiveModalNewArma(!isActiveModalNewArma)}>
+                    Cerrar ✕
+              </button>
 <br />
 
 
@@ -554,7 +551,9 @@ console.log(el)
 
 
              
-         <button className='guardarArma' onClick={() => AgregarArmaSubmit(el)}>Guardar Arma para {el.nombreDelSocio}</button>
+          <button className='guardarArma' onClick={() => AgregarArmaSubmit(el)}>
+                Guardar Arma para {el.nombreDelSocio}
+          </button>
 
 
           </modal>
@@ -591,25 +590,22 @@ console.log(el)
 
 
 
-  <modal className={!isActiveModalEditArma ? 'inModal' : 'outModal'}>
+    <modal className={!isActiveModalEditArma ? 'inModal' : 'outModal'}>
 
-              <button className='btnCerrarModal' onClick={()=>setIsActiveModalEditArma(!isActiveModalEditArma)}>Cerrar ✕</button>
-<br />
-<small>Editar Arma:</small>
+      <button className='btnCerrarModal' onClick={()=>setIsActiveModalEditArma(!isActiveModalEditArma)}>
+        Cerrar ✕
+      </button>
 
+      <br />
 
-
-              <div className='modalContent'>
-
-
+      <small>Editar Arma:</small>
 
 
+      <div className='modalContent'>
 
+        <div className='formStyle2'>
 
-
-                  <div className='formStyle2'>
-
-                  <label className='labelEdit'>Clase</label>
+          <label className='labelEdit'>Clase</label>
           <input
               type="text"
               autoComplete="off"
@@ -691,40 +687,19 @@ console.log(el)
               value={stateEditArma.armasLargas || 0}
           />
 
-
-                  </div>
-
-              </div>
+        </div>
+      </div>
 
 
              
-         <button className='guardarArma' onClick={() => EditarArmaSubmit(el)}>Guardar Edicion de Arma para {el.nombreDelSocio}</button>
+      <button className='guardarArma' 
+          onClick={() => EditarArmaSubmit(el)}>Guardar Edicion de Arma para {el.nombreDelSocio}
+      </button>
 
 
-          </modal>
+    </modal>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      </div>
+  </div>
 
   );
 }

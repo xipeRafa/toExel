@@ -217,11 +217,40 @@ export default function App() {
 // })
 
 
-  items.sort((a, b) => {
-          const result = a.nombreDelSocio.localeCompare(b.nombreDelSocio);
+//   items.sort((a, b) => {
+//           const result = b.apellidoPaterno.localeCompare(a.apellidoPaterno);
+// console.log(result)
+//           return result === 0 ? result : a.nombreDelSocio.localeCompare(b.nombreDelSocio);
+//         })
 
-          return result === 0 ? result : a.apellidoPaterno.localeCompare(b.apellidoPaterno);
-        })
+items.sort((a, b) => {
+    // Compara los apellidos
+    const apellidoA = a.apellidoPaterno.toLowerCase();
+    const apellidoB = b.apellidoPaterno.toLowerCase();
+
+    if (apellidoA < apellidoB) {
+      return -1; // a debe ir antes que b
+    }
+    if (apellidoA > apellidoB) {
+      return 1; // a debe ir después de b
+    }
+
+    // Si los apellidos son iguales, compara los nombres
+    const nombreA = a.apellidoMaterno.toLowerCase();
+    const nombreB = b.apellidoMaterno.toLowerCase();
+
+    if (nombreA < nombreB) {
+      return -1; // a debe ir antes que b
+    }
+    if (nombreA > nombreB) {
+      return 1; // a debe ir después de b
+    }
+
+    // Si los apellidos y nombres son iguales, no hace falta cambiar el orden
+    return 0;
+  });
+
+
 
 
 
@@ -322,7 +351,6 @@ let totalArmasCortas = acc.reduce((a, b) => a + b, 0) + arrAC.reduce((a, b) => a
         msg={msg}
         // setArr={setArr}
         // arr={arr}
-        items={items}
         setMsg={setMsg}
         setFinder={setFinder}
         setError={setError}
