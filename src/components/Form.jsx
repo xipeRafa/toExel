@@ -109,6 +109,7 @@ export default function Form({
                 state.armasArr = []
                 //setArr([...arr, state]);
                 setMsg('Nuevo Socio Añadido')
+                alert('Nuevo Socio Añadido')
                 postSocio(state)
 
                 // JSON.parse(localStorage.arrz).map(el=>{
@@ -166,7 +167,7 @@ export default function Form({
         setError(false);
         setMsg('BASE DE DATOS SOCIOS');
 
-        if (window.confirm("Do you want to go out?")) {
+        if (window.confirm("Salir de esta Pagina?")) {
             localStorage.removeItem("userSocio")
             location.reload()
         }
