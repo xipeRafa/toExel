@@ -443,7 +443,7 @@ const formateador = new Intl.DateTimeFormat("es-MX", {
                         <th>MARCA</th>
                         <th>MODELO</th>
                         <th>MATRICULA</th>
-                        <th style={{width:'100px'}}>FOLIO</th>
+                        <th>FOLIO</th>
                         <th>ARMAS CORTAS</th>
                         <th>ARMAS LARGAS</th>
                     </tr>

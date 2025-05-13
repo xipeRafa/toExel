@@ -1,15 +1,11 @@
-import ReactExport from 'react-data-export';
-
-
-const ExcelFile = ReactExport.ExcelFile;
-const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
 
 
 
 
 
 
-export default function DownloadExcelAnexo({multiDataSetAnexo}) {
+
+export default function DownloadExcelAnexo({dataSet}) {
 
 
 
@@ -33,7 +29,7 @@ export default function DownloadExcelAnexo({multiDataSetAnexo}) {
 
 	return(<>
 		      <ExcelFile>
-                <ExcelSheet dataSet={multiDataSetAnexo} name="Organization" />
+                <ExcelSheet dataSet={dataSet} name="Organization" />
             </ExcelFile>
 		</>)
 }

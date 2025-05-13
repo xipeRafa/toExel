@@ -12,7 +12,6 @@ import useFinder from './hooks/useFinder.jsx';
 import useLocalStorage from './hooks/useLocalStorage.jsx';
 import useMsgs from './hooks/useMsgs.jsx';
 
-// import DownloadExcelAnexo from "./components/btnsExcel/DownloadExcelAnexo.jsx"
 
 
 import {
@@ -25,8 +24,6 @@ import {
 } from 'firebase/firestore';
 
 import { firestoreDB } from './firebase/firebaseConfig';
-
-
 
 
 
@@ -250,18 +247,18 @@ console.log(items)
 //   },
 
 
-  // {
-  //   xSteps: 1, // Will start putting cell with 1 empty cell on left most
-  //   ySteps: 5, //will put space of 5 rows,
-  //   columns: ["Name", "Department"],
-  //   data: [
-  //     ["Johnson", "Finance"],
-  //     ["Monika", "IT"],
-  //     ["Konstantina", "IT Billing"],
-  //     ["John", "HR"],
-  //     ["Josef", "Testing"],
-  //   ],
-  // },
+//   {
+//     xSteps: 1, // Will start putting cell with 1 empty cell on left most
+//     ySteps: 5, //will put space of 5 rows,
+//     columns: ["Name", "Department"],
+//     data: [
+//       ["Johnson", "Finance"],
+//       ["Monika", "IT"],
+//       ["Konstantina", "IT Billing"],
+//       ["John", "HR"],
+//       ["Josef", "Testing"],
+//     ],
+//   },
 
 
 // ]
@@ -369,8 +366,7 @@ let totalArmasCortas = acc.reduce((a, b) => a + b, 0) + arrAC.reduce((a, b) => a
 
 
   
-       {/*<DownloadExcelAnexo multiDataSetAnexo={multiDataSetAnexo} />*/}
-
+   
 
 
      
