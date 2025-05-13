@@ -314,7 +314,7 @@ const EditarArmaSubmit=(EL)=>{
 
 
 
-
+console.log(el)
 
 
   return (

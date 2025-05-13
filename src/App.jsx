@@ -50,7 +50,7 @@ export default function App() {
   // const [arr, setArr] = useLocalStorage();
 
     const [items, setItems] = useState([]);
-console.log(items)
+//console.log(items)
   const itemCollection = collection(firestoreDB, 'sociosCaza')
   
 
