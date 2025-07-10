@@ -139,7 +139,7 @@ export default function App() {
           if(searchTXT.length===0){
               setFinder(null)   
               setMsg(`${items.length}, Todos las Socios`)
-          }
+          } 
 
       }
 

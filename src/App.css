@@ -532,3 +532,32 @@ background-color: rgba(105, 162, 225, .2);
 .labelEdit{
   font-size: 16px;
 }
+
+
+
+
+
+
+input[type="date"] {
+  /*padding-left: 0;*/
+    background-color: white;
+    cursor: pointer;
+    height: 14px;
+}
+input[type="date"]:hover {
+  /*padding-left: 0;*/
+    /*background-color: rgba(229, 128, 228, 0.00276);*/
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  font-size: 14px;
+  width:calc(100% - 120px);
+
+  padding: 4px 6px;
+  margin: 0;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  background-color: rgba(129, 128, 228, 0.276);
+}
